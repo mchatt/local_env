@@ -1,0 +1,398 @@
+
+dbl.c,159
+} color[14,317
+DBLcreate_double_buffer 28,767
+DBLdelete_double_buffer 287,8374
+DBLinq_background(321,9110
+DBLbegin_frame(332,9364
+DBLend_frame(360,10121
+
+dbl.h,280
+#define DBL_MAX_SURFACES 9,236
+#define DBL_MIN_PLANES 10,263
+#define DBL_MAX_PLANES 11,290
+#define DBL_MAX_COLORS 12,317
+typedef struct _surface _surface14,372
+} Surface;Surface19,690
+typedef struct _doublebuffer _doublebuffer21,702
+} DoubleBuffer;DoubleBuffer55,2099
+
+defs.h,321
+#define ASSERT(ASSERT9,259
+#define NASSERT(NASSERT12,365
+#define WARN(WARN16,486
+#define WARN_1(WARN_119,556
+#define WARN_4(WARN_422,641
+#define Global26,777
+#define Global 28,798
+Global char        *ProgramName;31,828
+#define TRUE 37,905
+#define FALSE 41,942
+#define NULL 45,979
+#define MAX(MAX49,1015
+
+dissolve.c,1300
+#define NUM_DISSOLVE_STEPS 22,485
+#define NUM_LINE_STEPS 23,514
+#define first_width 25,544
+#define first_height 26,567
+static unsigned char first_bits[27,591
+#define second_width 32,827
+#define second_height 33,851
+static unsigned char second_bits[34,876
+#define third_width 39,1113
+#define third_height 40,1136
+static unsigned char third_bits[41,1160
+#define fourth_width 46,1396
+#define fourth_height 47,1420
+static unsigned char fourth_bits[48,1445
+#define fifth_width 53,1682
+#define fifth_height 54,1705
+static unsigned char fifth_bits[55,1729
+#define sixth_width 60,1965
+#define sixth_height 61,1988
+static unsigned char sixth_bits[62,2012
+#define seventh_width 67,2248
+#define seventh_height 68,2273
+static unsigned char seventh_bits[69,2299
+#define eighth_width 74,2537
+#define eighth_height 75,2561
+static unsigned char eighth_bits[76,2586
+static Pixmap DissolvePixmaps[81,2823
+static GC     DissolveInGC;82,2874
+static GC     DissolveOutGC;83,2902
+static GC     DissolveInLineGC[84,2931
+static GC     DissolveOutLineGC[85,2979
+static char first_dash[87,3029
+static char second_dash[88,3065
+InitializeDissolveEffect(91,3107
+DissolveRectangle(192,6634
+DissolveRectangles(212,7095
+DissolveSegments(235,7588
+DissolveTree(253,7949
+DissolvePolygon(288,8784
+
+dissolve.h,0
+
+draw.c,822
+Tree *TheTree;21,634
+static char AnimationMode 28,866
+static char strbuf[29,901
+static int  AnimationStep 30,929
+BeginFrame(47,1500
+EndFrame(62,1864
+GetDrawingSize(79,2334
+SetDrawingSize(102,2836
+SetDrawingTree(123,3402
+SetNodeLabel(141,3951
+SetDrawColor(177,4868
+SetLineWidth(191,5265
+SetContours(207,5747
+HiliteNode(264,7553
+DrawNode(287,8424
+DrawTreeContour(359,11001
+DrawTree(463,13808
+ShiftTree(502,14923
+AnimateTree(533,15822
+AnimateZip(569,16632
+CountNodes(620,17877
+CollectNodeRectangles(643,18468
+GetSubTreeRectangles(679,19690
+CollectNodeSegments(706,20568
+GetSubTreeSegments(735,21571
+ComputeSubTreeExtent(765,22515
+SearchTree(795,23676
+ExposeHandler(826,24428
+ExpandCollapseNode(846,24927
+InsertNode(1009,29651
+DeleteNode(1111,32065
+ResetLabels(1201,34147
+SetupTree(1220,34555
+
+help.h,27
+static char help_text[1,0
+
+input.c,237
+#define __EXTENSIONS__ 8,312
+char *EnvNm;19,488
+static int tokDepth 20,557
+static int prevTokDepth;21,623
+GetNextToken(43,1454
+SetNodeLabelAndValue(106,2710
+ReadTreeFromFile(135,3611
+SaveTreeToFile(296,6887
+SaveSubtree(322,7489
+
+input.h,159
+#define TOKEN_MAXSIZ 7,223
+#define INPUT_BUFSIZ 8,303
+enum { TOKEN_LABEL,16,501
+       TOKEN_EOF 21,576
+} ErrCode;ErrCode33,739
+#define NUM_ERRS 35,751
+
+intf.c,3357
+#define GLOBALS 19,432
+static Tree *PrevNode 82,1957
+extern char  *EnvNm;88,2203
+Widget        TreeTopLevel;90,2268
+Widget        TreeDrawingArea;91,2296
+Display      *TreeDisplay;92,2327
+XtAppContext  app;93,2354
+int           TreeScreen;94,2373
+int           TreeContourWidth;95,2399
+int           TreeBorderSize 96,2431
+int           TreeParentDistance 97,2475
+XFontStruct  *TreeLabelFont;98,2527
+DoubleBuffer *TreeDrawingAreaDB;99,2556
+ContourOption TreeShowContourOption 100,2589
+DensityOption TreeLayoutDensity 101,2639
+char          TreeShowSteps 102,2680
+char          TreeAlignNodes 103,2718
+char          PauseAfterStep 104,2756
+static Tree *PopupNode;110,3013
+static NodePosition NodePos;111,3068
+static Widget statusText;113,3098
+static Widget scrolledWindow;115,3125
+static Widget helpShell;117,3156
+static Widget helpForm;118,3181
+static Widget helpText;119,3205
+static Widget helpDoneButton;120,3229
+static Widget helpTitle;121,3259
+static Widget treeMenus[123,3285
+static Widget treeMenuBtns[124,3321
+static Widget treeMenuItems[127,3433
+static Widget layoutMenuItems[129,3485
+static Widget nodeMenuItems[131,3542
+static Widget helpBtn;132,3588
+static String labelStr[134,3612
+static String errStr[135,3651
+static Widget dialog[137,3684
+static Widget dlgLevelScale,141,3753
+static Widget dlgLevelScale, dlgLevelValuator,141,3753
+              dlgSiblingValuator,142,3800
+              dlgSiblingValuator, dlgSiblingScale;142,3800
+static int dlgLevelValue;143,3851
+static int dlgSiblingValue;144,3877
+static int loading_file 145,3905
+static Pixmap check_pixmap,147,3935
+static Pixmap check_pixmap, slider_pixmap;147,3935
+static Boolean nodeFound;149,3979
+static int    PauseTime 151,4006
+static Cursor PauseCursor;152,4062
+static XtResource applRsrcsDesc[154,4090
+static XtActionsRec local_actions[218,6601
+String fallback_resources[227,6857
+static ApplRsrcData    applRsrcs;288,9374
+static ApplRsrcDataPtr applRsrcsPtr;289,9408
+#define gray_width 293,9470
+#define gray_height 294,9491
+static unsigned char gray_bits[295,9513
+#define check_width 300,9666
+#define check_height 301,9688
+static unsigned char check_bits[302,9711
+#define slider_pixmap_width 307,9852
+#define slider_pixmap_height 308,9882
+static unsigned char slider_pixmap_bits[309,9913
+StatusMsg(348,11360
+Pause(369,11945
+BuildPopupMenus(399,12805
+BuildMenubar(466,15165
+BuildDialogs 605,19680
+BuildHelpWindow(873,29919
+BuildApplicationWindow(940,32578
+HandleError(976,33715
+InitializeInterface(1011,34770
+UserEventLoop(1170,39815
+TreeMenu_CB(1181,40097
+LayoutMenu_CB(1224,41240
+NodeMenu_CB(1294,43382
+Help_CB(1330,44258
+HelpDone_CB(1339,44458
+NodeLabel_CB(1348,44647
+NewTree_CB(1363,45066
+File_CB(1392,45842
+Scale_CB(1439,46921
+Popdown_CB(1476,47825
+activate_action(1484,47969
+quit_action(1495,48234
+maybe_highlight_node(1504,48333
+select_action(1517,48529
+menu_popup_action(1550,49301
+button_action(1606,50548
+static void center_widget(1679,52740
+#define shell_translations 1710,53431
+popup_dialog(1713,53510
+popdown_action(1737,54123
+set_siblingscale_CB(1743,54244
+siblingscale_CB(1755,54514
+set_levelscale_CB(1770,54876
+levelscale_CB(1782,55148
+set_siblingvalue_CB(1797,55512
+set_levelvalue_CB(1803,55674
+siblingvalue_CB(1810,55839
+levelvalue_CB(1820,56098
+main(1838,56541
+
+intf.h,3125
+#define DEFAULT_FONT	9,288
+#define BIG_FONT	10,348
+#define X11_APPLICATION_CLASS 12,405
+#define X11_DEFAULT_FONT 13,445
+#define X11_FONT_RESOURCE 14,486
+#define X11_FONT_CLASS_RESOURCE 15,531
+#define HELP_FILE 17,577
+#define LABEL_MAT_WIDTH 19,624
+#define LABEL_MAT_HEIGHT 20,660
+#define BORDER_SIZE 21,696
+#define MAX_BORDER_SIZE 22,769
+#define PARENT_DISTANCE 23,806
+#define MAX_PARENT_DISTANCE 24,879
+#define DENSITY_FACTOR 25,916
+#define MAT_SIZE 26,955
+#define ELISION_WIDTH 27,1005
+#define ANIMATION_STEP 28,1041
+#define ANIMATION_STEP_STEP 29,1077
+#define BACKGROUND_COLOR 31,1114
+#define TREE_COLOR 32,1150
+#define CONTOUR_COLOR 33,1186
+#define HIGHLIGHT_COLOR 34,1222
+#define SPLIT_COLOR 35,1258
+#define ACTION_COLOR 36,1294
+#define NUM_COLORS 37,1330
+#define TREE_MENU_NEW 39,1367
+#define TREE_MENU_LOAD 40,1403
+#define TREE_MENU_SAVE 41,1439
+#define TREE_MENU_SEP1 42,1475
+#define TREE_MENU_QUIT 43,1511
+#define TREE_MENU_STATS 44,1547
+#define TREE_MENU_ITEMS 45,1583
+#define TREE_MENU_SEP2 47,1620
+  #define LAYOUT_MENU_FIXED 50,1663
+  #define LAYOUT_MENU_VARIABLE 51,1729
+  #define LAYOUT_MENU_SEP1 52,1767
+  #define LAYOUT_MENU_SPACING 54,1806
+  #define LAYOUT_MENU_SEP2 55,1844
+  #define LAYOUT_MENU_ALIGN_NODES 56,1882
+  #define LAYOUT_MENU_ITEMS 57,1920
+#define NODE_MENU_LABEL 60,1966
+#define NODE_MENU_SEP1 61,2002
+  #define NODE_MENU_ADD_CHILD 63,2044
+  #define NODE_MENU_ADD_BEFORE 64,2082
+  #define NODE_MENU_ADD_AFTER 65,2120
+  #define NODE_MENU_ELISION 66,2158
+  #define NODE_MENU_DELETE 67,2196
+  #define NODE_MENU_ITEMS 68,2234
+  #define NODE_MENU_ELISION 70,2278
+  #define NODE_MENU_DELETE 71,2316
+  #define NODE_MENU_ITEMS 72,2354
+#define TREE_MENU 75,2400
+#define LAYOUT_MENU 76,2436
+#define NODE_MENU 77,2472
+#define NUM_MENUS 78,2508
+#define STR_SHOW_STATS 80,2545
+#define STR_HIDE_STATS 81,2581
+#define STR_NODE_COLLAPSE 82,2617
+#define STR_NODE_EXPAND 83,2653
+#define STR_SHOW_CONTOUR 84,2689
+#define STR_HIDE_CONTOUR 85,2725
+#define STR_LOAD_FILE 86,2761
+#define STR_SAVE_FILE 87,2797
+#define NUM_MENU_STRS 88,2833
+#define DLG_NEW 90,2870
+#define DLG_NODE_NAME 91,2906
+#define DLG_FILE 92,2942
+#define DLG_INFO 93,2978
+#define DLG_ERROR 94,3014
+#define DLG_SPACING 95,3050
+#define NUM_DLG 96,3086
+#define ANIMATION_SPEED_FAST 99,3152
+} ContourOption;ContourOption106,3275
+} NodePosition;NodePosition112,3338
+} DensityOption;DensityOption117,3392
+extern  Widget        TreeTopLevel;119,3410
+extern  Widget        TreeDrawingArea;120,3446
+extern  Display      *TreeDisplay;121,3485
+extern  int           TreeScreen;122,3520
+extern  int           TreeContourWidth;123,3554
+extern  int           TreeBorderSize;124,3594
+extern  int           TreeParentDistance;125,3632
+extern  XFontStruct  *TreeLabelFont;126,3674
+extern  DoubleBuffer *TreeDrawingAreaDB;127,3711
+extern  char          TreeShowSteps;128,3752
+extern  ContourOption TreeShowContourOption;129,3789
+extern  DensityOption TreeLayoutDensity;130,3834
+extern  char          TreeAlignNodes;131,3875
+extern  char          PauseAfterStep;132,3913
+
+rsrc.h,757
+#define TrNbackgroundColor 1,0
+#define TrNtreeColor 2,45
+#define TrNcontourColor 3,84
+#define TrNsplitColor 4,126
+#define TrNhighlightColor 5,166
+#define TrNactionColor 6,210
+#define TrNcontourWidth 7,251
+#define TrCBackgroundColor 9,294
+#define TrCTreeColor 10,339
+#define TrCContourColor 11,378
+#define TrCSplitColor 12,420
+#define TrCHighlightColor 13,460
+#define TrCActionColor 14,504
+#define TrCContourWidth 15,545
+#define TrDefaultBackgroundColor 17,588
+#define TrDefaultTreeColor 18,629
+#define TrDefaultContourColor 19,670
+#define TrDefaultSplitColor 20,710
+#define TrDefaultHighlightColor 21,751
+#define TrDefaultActionColor 22,790
+#define TrDefaultContourWidth 23,829
+} ApplRsrcData, *ApplRsrcDataPtr;ApplRsrcDataPtr33,1049
+
+tree.c,425
+static int NumLines 18,577
+static int NumNodes 19,602
+MakeLine(32,998
+MakeNode(56,1653
+MakeBridge(79,2120
+Offset(117,3302
+Merge(164,4052
+DetachParent(219,5377
+AttachParent(245,6115
+Split(276,7071
+Join(306,7773
+RuboutLeaf(339,8742
+LayoutLeaf(361,9407
+LayoutTree(390,10450
+Unzip(426,11167
+Zip(508,13001
+Insert(528,13485
+Delete(557,14217
+DeleteTree(593,15215
+ComputeTreeSize(645,16311
+PetrifyTree(698,17664
+
+tree.h,652
+#define INTF 7,235
+#define FOREACH_CHILD(FOREACH_CHILD9,289
+#define PT_IN_RECT(PT_IN_RECT12,399
+#define PT_IN_EXTENT(PT_IN_EXTENT18,589
+#define IS_LEAF(IS_LEAF24,841
+typedef struct line  Polyline;Polyline27,893
+typedef struct tnode Tree;Tree28,924
+typedef struct point point30,952
+} Point;Point33,995
+typedef struct extent extent35,1005
+} Extent;Extent39,1113
+struct line line41,1124
+typedef struct polygon polygon46,1176
+} Polygon;Polygon51,1276
+typedef struct label label53,1288
+} Label;Label58,1524
+struct tnode tnode60,1534
+} DrawMode;DrawMode86,2504
+} PosMode;PosMode91,2547
+extern Tree     *TheTree;123,3599
+
+usleep.c,16
+usleep 39,1188

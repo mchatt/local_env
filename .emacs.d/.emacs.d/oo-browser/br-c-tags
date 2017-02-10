@@ -1,0 +1,39 @@
+#!/bin/sh
+#
+# SUMMARY:      Build feature tags for default C construct classes.
+# USAGE:        <script-name> <ootags-program> <tags-file-to-build> <root-dir-to-search> [... <root-dir-to-search>]
+#
+# AUTHOR:       Bob Weiner
+# ORG:          BeOpen.com
+#               The Force for Open Source(TM)
+#
+#               Web:    www.beopen.com - Learn all about Open Source.
+#               E-mail: <info@beopen.com>  
+#
+# ORIG-DATE:     3-May-95 at 10:39:37
+# LAST-MOD:      9-Jun-99 at 18:03:42 by Bob Weiner
+#
+#
+# Copyright (C) 1995-1999  BeOpen.com
+# See the file BR-COPY for license information.
+#
+# This file is part of the OO-Browser.
+#
+# DESCRIPTION:  
+# DESCRIP-END.
+
+dir=`pwd`
+ootags=$1
+ftr_file=$2
+shift 2
+src_files=`dirname $ftr_file`/src_files$$
+tags_file=`dirname $ftr_file`/TAGS
+
+cd $1
+\find $* -name CVS -prune -o -name RCS -prune \
+         -name SCCS -prune -o -name .E -prune \
+   -o -name "*.[mchMCH]" -print -o -name "*.[chCH][chpCHP]" -print \
+   -o -name "*.[chCH][chpCHPx][pPx]" -print > $src_files
+cat $src_files | ${ootags} - --c++ --oo-browser -o $ftr_file
+cat $src_files | ${ootags} - --c++ -o $tags_file
+rm -f $src_files

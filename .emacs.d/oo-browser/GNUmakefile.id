@@ -1,0 +1,73 @@
+# Makefile for OO-Browser base lisp code
+#
+# AUTHOR:	Steve Baur
+# ORG:          BeOpen.com
+#               The Force for Open Source(TM)
+#
+#               Web:    www.beopen.com - Learn all about Open Source.
+#               E-mail: <info@beopen.com>  
+#
+# LAST-MOD:      6-Jun-99 at 16:04:57 by Bob Weiner
+#
+# Copyright (C) 1998, 1999 BeOpen.com
+# See the file BR-COPY for license information.
+#
+# This file is part of the OO-Browser.
+
+VERSION = 4.07
+AUTHOR_VERSION = 4.07
+
+MAINTAINER = BeOpen.com Inc. <support@beopen.com>
+PACKAGE = oo-browser
+PKG_TYPE = regular
+REQUIRES = hyperbole xemacs-base
+CATEGORY = id-lisp
+
+ELCS = br-c++-ft.elc br-c++.elc br-c-ft.elc br-clos-ft.elc br-clos.elc \
+	br-compl.elc br-eif-ft.elc br-eif.elc br-env.elc br-ftr.elc \
+	br-info.elc br-init.elc br-java-ft.elc br-java.elc br-lib.elc \
+	br-menu.elc br-name.elc br-objc-ft.elc br-objc.elc br-python-ft.elc \
+	br-python.elc br-site.elc br-smt.elc br-start.elc br-tree.elc \
+	br-vers.elc br.elc c++-browse.elc clos-brows.elc eif-browse.elc \
+	eif-calls.elc eif-ise-er.elc hash-test.elc hasht.elc hmouse-br.elc \
+	info-brows.elc java-brows.elc objc-brows.elc pyth-brows.elc \
+	smt-browse.elc 
+
+# PRELOADS = -l ./br-start.el
+
+TREE_X_FILES = $(wildcard tree-x/[ABD-Za-z]*)
+TREE_W32_FILES = $(wildcard tree-w32/[ABD-Za-z]*)
+
+EXTRA_SOURCES = br-c-tags BR-VERSION br-help br-help-ms \
+	Makefile Make-Env BR-COPY BR-RELEASE BR-README BR-FEATURES \
+	man/oo-browser.texi man/im
+
+include ../../InfoDock.rules
+
+SOURCE_FILES_TO_COPY = $(ELCS) auto-autoloads.el auto-autoloads.elc \
+	ChangeLog $(EXTRA_SOURCES)
+
+all:: $(ELCS) auto-autoloads.elc
+
+srckit: srckit-std
+
+binkit: all
+	-rm -rf $(STAGING)/lisp/$(PACKAGE)
+	-mkdir -p $(STAGING)/lisp/$(PACKAGE)/tree-x
+	-mkdir -p $(STAGING)/lisp/$(PACKAGE)/tree-w32
+	-rm -f $(STAGING)/$(MANIFEST)
+	-mkdir -p $(STAGING)/pkginfo
+	-touch $(STAGING)/$(MANIFEST)
+	$(RCOPY) $(SOURCE_FILES_TO_COPY) $(STAGING)/lisp/$(PACKAGE)
+	$(RCOPY) $(TREE_X_FILES) $(STAGING)/lisp/$(PACKAGE)/tree-x
+	$(RCOPY) $(TREE_W32_FILES) $(STAGING)/lisp/$(PACKAGE)/tree-w32
+	(cd $(STAGING); \
+	rm -f $(PACKAGE)-$(VERSION)-pkg.tar*; \
+	ls -1 $(MANIFEST) \
+		$(patsubst %,lisp/$(PACKAGE)/%,$(SOURCE_FILES_TO_COPY)) \
+		$(patsubst %,lisp/$(PACKAGE)/tree-x/%,$(notdir $(TREE_X_FILES))) \
+		$(patsubst %,lisp/$(PACKAGE)/tree-w32/%,$(notdir $(TREE_W32_FILES))) \
+		 > $(MANIFEST); \
+	$(TAR) $(EXCLUDES) -cf $(PACKAGE)-$(VERSION)-pkg.tar \
+		$(MANIFEST) lisp/$(PACKAGE); \
+	gzip -v9 $(PACKAGE)-$(VERSION)-pkg.tar)

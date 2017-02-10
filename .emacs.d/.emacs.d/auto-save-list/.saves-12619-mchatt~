@@ -1,0 +1,16 @@
+/home/centos/goworkspace/src/acs/gsr/storage/consul/consul_helper_test.go
+/home/centos/goworkspace/src/acs/gsr/storage/consul/#consul_helper_test.go#
+/home/centos/goworkspace/src/acs/common/services/utils.go
+/home/centos/goworkspace/src/acs/common/services/#utils.go#
+/home/centos/goworkspace/src/acs/common/consul/mock/serviceRegistryMock.go
+/home/centos/goworkspace/src/acs/common/consul/mock/#serviceRegistryMock.go#
+/home/centos/goworkspace/src/acs/gsr/storage/consul/consul_helper.go
+/home/centos/goworkspace/src/acs/gsr/storage/consul/#consul_helper.go#
+/home/centos/goworkspace/src/acs/gsr/resources/databases/handler.go
+/home/centos/goworkspace/src/acs/gsr/resources/databases/#handler.go#
+/home/centos/goworkspace/src/acs/gsr/resources/edgeServiceScore/handler.go
+/home/centos/goworkspace/src/acs/gsr/resources/edgeServiceScore/#handler.go#
+/home/centos/goworkspace/src/acs/gsr/resources/edgeServiceScore/handler_test.go
+/home/centos/goworkspace/src/acs/gsr/resources/edgeServiceScore/#handler_test.go#
+/home/centos/goworkspace/src/acs/gsr/resources/databases/handler_test.go
+/home/centos/goworkspace/src/acs/gsr/resources/databases/#handler_test.go#

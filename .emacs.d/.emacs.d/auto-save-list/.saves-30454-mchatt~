@@ -1,0 +1,14 @@
+/home/centos/goworkspace/src/acs/gsr/storage/consul/consul_helper.go
+/home/centos/goworkspace/src/acs/gsr/storage/consul/#consul_helper.go#
+/home/centos/goworkspace/src/acs/gsr/storage/consul/consul_helper_test.go
+/home/centos/goworkspace/src/acs/gsr/storage/consul/#consul_helper_test.go#
+/home/centos/goworkspace/src/acs/vendor/github.com/hashicorp/consul/api/session.go
+/home/centos/goworkspace/src/acs/vendor/github.com/hashicorp/consul/api/#session.go#
+/home/centos/goworkspace/src/acs/vendor/github.com/hashicorp/consul/api/api.go
+/home/centos/goworkspace/src/acs/vendor/github.com/hashicorp/consul/api/#api.go#
+/home/centos/goworkspace/src/acs/gsr/resources/edgeServiceScore/handler.go
+/home/centos/goworkspace/src/acs/gsr/resources/edgeServiceScore/#handler.go#
+/home/centos/goworkspace/src/acs/gsr/resources/edgeServiceScore/inputs.go
+/home/centos/goworkspace/src/acs/gsr/resources/edgeServiceScore/#inputs.go#
+/home/centos/goworkspace/src/acs/gsr/api/types.go
+/home/centos/goworkspace/src/acs/gsr/api/#types.go#

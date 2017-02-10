@@ -1,0 +1,19 @@
+(oo-browser
+  (standards-version 1.1
+   version VERSION
+   author-version AUTHOR_VERSION
+   date DATE
+   build-date BUILD_DATE
+   maintainer MAINTAINER
+   distribution infodock
+   priority high
+   category CATEGORY
+   dump nil
+   description "OO-Browser"
+   filename FILENAME
+   md5sum MD5SUM
+   size SIZE
+   provides (c++-browse clos-browse eif-browse hasht hmouse-br info-browse java-brows objc-brows pyth-brows smt-browse)
+   requires (REQUIRES)
+   type regular
+))

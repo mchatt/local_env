@@ -1,0 +1,3969 @@
+2002-01-03  Bob Weiner  <bwcto@users.sf.net>
+
+* BR-README: Updated and clarified Installation section.
+
+2001-05-10  Bob Weiner  <bwcto@users.sf.net>
+
+* br-python-ft.el (python-feature-entry-regexp): Renamed this regexp constant
+    from python-feature-entry.
+  br-ftr.el (br-feature-entry): Added this function.
+  br-ftr.el (br-feature-entry-regexp): Renamed this regexp constant from br-feature-entry.
+
+* br.el (br-at-feature-p): Rewrote to increase accuracy.
+
+* br-python-ft.el (python-empty-line): Updated to handle \r chars.
+
+* br.el (br-entry-info): Rewrote to support br-insert-entry-info function.
+  br-python-ft.el (python-store-entry-info):
+ 	(python-insert-entry-info): Added.
+  br-lib.el (br-setup-functions): 
+  pyth-brows.el (python-browse-setup): Added insert-entry-info, store-entry-info
+    and store-class-info function setup.
+
+* BR-VERSION: Updated copyright to support GPL 2 and distributor.
+
+* br-python-ft.el (python-lookup-docstring): Improved to use pydoc.el if
+    available and to handle all entry types with doc strings.
+        (python-get-docstring-from-source): Improved to handle all entry
+    types with doc strings.
+
+* br-lib.el (br-major-mode): Fixed to not invoke a programming mode on
+    dired buffers.
+
+* br-python-ft.el (python-feature-implementors): 
+  br-ftr.el (br-feature-name): Updated to strip any package/module prefix
+    from Python entry names.
+  br-python-ft.el (python-feature-entry): Added.
+
+* br-menu.el (br-menu-common-preamble): Updated mailing list and support menu items.
+
+2001-05-09  Bob Weiner  <bwcto@users.sf.net>
+
+* br-python-ft.el (python-import-dirs): Updated to use PYTHONPATH
+    environment variable when set.
+
+* br-python-ft.el (python-add-default-classes): Added global support.
+                  (python-scan-globals): 
+  br-python.el (python-global-name): Added and used in python-scan-features.
+
+* br-java-ft.el (java-locate-feature): 
+  br-python-ft.el (python-locate-feature): Deleted.
+
+* br-lib.el (br-filename-head): Rewrote to return a regexp.
+
+* br-python-ft.el (python-routine-def): Modified to end expression prior
+    to the terminating colon after a routine signature.
+
+* br.el (br-feature): 
+  br-ftr.el (br-feature-found-p): Modified to handle a BUF-FILE arg which
+    is a directory, for Python package handling.
+
+* br-ftr.el (br-feature-set-tags-buffer): 
+            (br-feature-tags-buffer): Added to cache access to br-feature-tags-file.
+	
+* br-lib.el (br-real-build-al): 
+	(br-real-build-alists): 
+  br-python.el (python-get-classes-from-source):
+        (python-module-name): 
+	(python-module-tag): 
+	(python-add-package): 
+	(python-search-directory): 
+  br-python-ft.el (python-add-default-classes): Added module and package
+    support for Python
+
+2001-05-07  Bob Weiner  <bwcto@users.sf.net>
+
+* br-python.el (python-to-comments-begin): Added support for C/C++/Java files.
+
+* java-brows.el (java-mode-setup): Rewrote to call new function java-lang-mode.
+  pyth-brows.el (python-mode-setup):
+ 		(python-lang-mode): Added.
+
+* br-python-ft.el: Added (require 'br-c-ft) and modified 
+    `python-feature-locate-p' to use C comment checks for C files.
+
+* br-python.el (python-class-definition-regexp): Added missing class
+	statement terminator to prevent class name substring matches.
+               (python-class-name-before): Allowed whitespace before
+   `class' keyword since sometimes classes are defined conditionally.
+
+2001-04-21  Bob Weiner  <bwcto@users.sf.net>
+
+* br-lib.el (br-real-build-alists): Modified to act as though running in
+   batch mode so that major-mode-specific messages (e.g. those in Python
+   mode) may be suppressed as files are read in for scanning.
+
+2001-04-18  Bob Weiner  <bwcto@users.sf.net>
+
+* br-env.el (br-env-select-lang): Simplified reading number from the user.
+
+2000-08-06  Bob Weiner  <weiner@beopen.com>
+
+* br-python-ft.el (python-scan-features): 
+* br-python.el (python-get-classes-from-source): Updated to ignore class
+   and function defs within doc strings.
+
+2000-07-27  Bob Weiner  <weiner@beopen.com>
+
+* br-lib.el (br-find-file-noselect): Added and bound
+   `br-find-file-noselect-function' to it.  This eliminates a regexp
+   overflow which can occur in C++ due to Hyperbole's attaching
+   `hproperty:but-create' to `find-file-hooks'.
+
+1999-10-28  Bob Weiner  <weiner@beopen.com>
+
+* br-c-tags: Added world execute bit that was missing.
+
+1999-08-15  Bob Weiner  <weiner@beopen.com>
+
+* br-name.el (br-names-display): Rewrote to utilize help mode when
+    available so can {q} out of this buffer.
+
+* br-menu.el (br-menu-external): Under InfoDock, underlined accelerator
+    key for the OO-Browser menu. 
+
+==============================================================================
+* V4.08 changes ^^^^:
+==============================================================================
+
+1999-08-04  Bob Weiner  <weiner@beopen.com>
+
+* tree-w32/intf-msw.c (HandleFrameMenuCommand): Deselect node before
+    deleting it (suggested by "Simon Waite" <opless@b0rk.co.uk>).
+
+* br-java.el: Anchored to bol so that point ends up at the start of the
+    class def when editing a class, rather than after the initial keyword.
+
+* br-lib.el (br-insert-file-contents): Added optional second arg UNUSED is
+    necessary since when used as a setting for `br-view-file-function'
+    this may be sent two arguments. 
+
+1999-08-03  Bob Weiner  <weiner@beopen.com>
+
+* br-java.el (java-class-def-regexp): Removed match of parent or protocol
+    classes at the end of expression because the expression was
+    invalid if no such classes existed and could cause the browser
+    scan to hang.
+             (java-class-name-after): Updated doc string and added
+    expression to match classes after the `extends' and `implements'
+    key words.
+
+* br-init.el (br-init-autoloads): Fixed improper file reference in
+    br-env-* autoloads.
+
+* br-start.el (br-env-default-file): 
+	      (br-env-file): Moved defs from br-env.el since the
+    `oo-browser' command in this file may reference this file before
+    br-env.el is loaded.
+
+* br-lib.el (hasht): Added missing (require 'hasht).
+
+1999-07-20  Bob Weiner  <weiner@beopen.com>
+
+* br-lib.el (br-ftr): Removed (require 'br-env).
+  br-env.el (hasht): Added (require 'br-start) since functions can be
+    autoloaded from here.
+
+* br-menu.el (br-menubar-menu-setup): 
+	     (id-menubar-br): 
+             (br-menu-common-body): Added full InfoDock Options menu when
+    available and made OO-Browser options a submenu of this.
+
+==============================================================================
+* V4.07 changes ^^^^:
+==============================================================================
+
+1999-07-18  Bob Weiner  <weiner@beopen.com>
+
+* br-vers.el (br-version): Version 4.06 released.  (Bug fix release)
+
+1999-07-16  Bob Weiner  <weiner@beopen.com>
+
+* Makefile: Tightened platform-specific target dependencies.
+
+* br.el: Added (require 'br-start).
+  br-start.el (br-ootags-executable): 
+	(br-shell-executable): 
+	(br-c-tags-flag): 
+	(br-sort-options): Moved from "br.el" to avoid byte-compilation
+    load ordering problems.
+
+1999-07-14  Bob Weiner  <weiner@beopen.com>
+
+* Makefile (dist): Changed `OO-Browser Pro' to OO-Browser for consistency
+    with other documentation.  Removed single language distribution targets
+    and separated source and runtime distribution from platform-specific
+    binaries. 
+
+1999-07-13  Bob Weiner  <weiner@beopen.com>
+
+* br-clos.el: 
+  br-eif.el: Removed circular requires pointed out by Steve Baur.
+
+1999-07-10  Bob Weiner  <weiner@beopen.com>
+
+* br-start.el (hyperb:dir): Prefer the `hyperbole/' directory to `hypb/'.
+
+1999-07-09  Bob Weiner  <weiner@beopen.com>
+
+* objc-brows.el (objc-mode-setup): 
+  java-brows.el (java-mode-setup): 
+  c++-browse.el (c++-mode-setup): Eliminated dependency on "hmouse-tag.el".
+
+* br-menu.el (br-menu-external): Removed extra parentheses that caused
+    "Continue" item to fail.
+
+==============================================================================
+* V4.06 changes ^^^^:
+==============================================================================
+
+1999-06-26  Bob Weiner  <weiner@beopen.com>
+
+* br-vers.el (br-version): Version 4.05 released.
+
+* Makefile: Added .DEFAULT target.
+
+1999-06-25  Bob Weiner  <weiner@beopen.com>
+
+* c++-browse.el (c++-mode-setup):
+  java-brows.el (java-mode-setup): 
+  objc-brows.el (objc-mode-setup): Initialized cc-mode.
+
+1999-06-16  Bob Weiner  <weiner@beopen.com>
+
+* br-menu.el (br-menu-common-preamble): Changed `About' entry to summarize 
+    OO-Browser features.
+
+1999-06-10  Bob Weiner  <weiner@beopen.com>
+
+* Makefile (dist): Changed target to build all available OO-Browser
+    distributions.
+
+1999-06-09  Bob Weiner  <weiner@beopen.com>
+
+* br-lib.el (br-find-info-node): Moved from br-info.el and renamed from
+    `info-find-nd'.
+
+* Used new name BeOpen.com throughout.
+
+1999-06-02  Bob Weiner  <weiner@beopen.com>
+
+* eif-browse.el (eif-browse-setup): 
+  br-eif-ft.el (eif-add-default-classes): 
+  br-python-ft.el (python-add-default-classes): 
+  br-c-ft.el (c-build-element-tags): Added C construct support for Python
+    and Eiffel.
+
+1999-05-18  Bob Weiner  <weiner@beopen.com>
+
+* br-env.el (br-env-validate-arg-strings): Updated to handle a deleted Env
+  File directory.
+
+1999-05-16  Bob Weiner  <weiner@beopen.com>
+
+* man/oo-browser.texi: Added to distribution.
+  Makefile: Updated to handle user manual building.
+
+1999-05-06  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c-remove-functions): Modified to leave function opening
+    brace so that the scanner can tell that this is a function def.
+
+1999-02-04  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-feature-at-reference-p): Fixed to ignore
+    ::global_function references which are handled elsewhere.
+
+1998-11-23  Bob Weiner  <weiner@beopen.com>
+
+* Makefile (dist): Added HP-UX distribution targets.
+
+==============================================================================
+* V4.05 changes ^^^^:
+==============================================================================
+
+1998-11-19  Bob Weiner  <weiner@beopen.com>
+
+* br-vers.el (br-version): Version 4.04 released.
+
+* Makefile: Added a full set of evaluation-building targets and renamed
+    unixdist targets to solarisdist.  Also eliminated `dist' term from all
+    distribution targets to reduce typing.
+
+1998-11-18  Bob Weiner  <weiner@beopen.com>
+
+* hmouse-br.el (smart-element): Improved error reporting when press occurs 
+    on a non-class and non-feature line.
+
+* br-ftr.el (br-feature-relation-implementors): Removed assumption that if 
+    there is one signature line match that it is always line three.
+    Instead, find the first line with a 'tag property and use that signature.
+    This fixed a bug that could jump to the wrong method definition when
+    the Action Key is pressed on a member call. 
+            (br-feature-to-tag): 
+	    (br-feature-add-tag): Added and used in
+    `br-feature-list-implementors' to fix bug that prevented jumping to
+    signatures listed in such buffers.
+
+1998-11-09  Bob Weiner  <weiner@beopen.com>
+
+* br-java-ft.el (java-feature-lookalikes): Added `catch'.
+
+1998-11-03  Bob Weiner  <weiner@beopen.com>
+
+* br.el (br-edit-ext-start): Fix bug that sent string as arg to nconc and
+    listed arguments in the wrong order if xterm is not used.
+
+1998-10-31  Bob Weiner  <weiner@beopen.com>
+
+* br.el (br-browse): Fixed to redisplay a dedicated OO-Browser frame if it 
+    is in use but the frame itself has been deleted.
+
+==============================================================================
+* V4.04 changes ^^^^:
+==============================================================================
+
+1998-10-27  Bob Weiner  <weiner@beopen.com>
+
+* br-vers.el (br-version): Version 4.03 released.
+
+1998-10-26  Bob Weiner  <weiner@beopen.com>
+
+* br-c++.el (c++-src-file-regexp): Extended suffixes to include .HPP.
+
+* br-ftr.el (br-feature-match-implementors): 
+	    (br-feature-insert-signatures): 
+	    (br-feature-insert-ancestor-implementors): 
+	    (br-feature-insert-descendant-implementors): Rewrote to
+    associate tags with implementor signature entries for easy definition
+    lookup.
+
+* hmouse-br.el (smart-element): Rewrote to handle overloaded methods
+    properly from both V3 and V4-type tag entries.
+  br-ftr.el (br-feature-v3-def-file): 
+	    (br-feature-v3-def-file-internal): 
+	    (br-feature-v3-file-of-tag): Added for use on OO-Browser V3
+    tags by (smart-element).
+
+* br-c-ft.el (c-build-element-tags-internal): Fixed regexp search overflow 
+    under GNU Emacs.
+
+1998-10-25  Bob Weiner  <weiner@beopen.com>
+
+* br-lib.el (br-pop-to-buffer):
+	    (br-find-file):  Added call to (hpath:push-tag-mark).
+
+* br-env.el (br-env-build): Changed EMACSLOADPATH separator to semicolon
+    when hyperb:microcruft-os-p is true.  This allows background building
+    with DOS-type shells, though a `make' program is also required for
+    such builds.
+
+1998-10-23  Bob Weiner  <weiner@beopen.com>
+
+* br.el (br-interrupt): Wrapped br-feature-clear-tags call with a (let
+    (buffer-read-only)) to avert read-only error.
+        (br-next-buffer): Moved (erase-buffer) after
+    (br-feature-clear-tags) call.
+
+* br-ftr.el (br-feature-match-implementors): Prevented substring matches,
+    e.g. looking for implementor of `func' and matching to `function'.
+
+1998-10-22  Bob Weiner  <weiner@beopen.com>
+
+* br-lib.el (br-delete-space): Made to work if string is all whitespace.
+
+* br-c++-ft.el (c++-scan-features): Fixed to ignore ::function global references.
+
+* br-c++.el (c++-header-file-regexp): 
+            (c++-src-file-regexp): Added .inc file suffix used by some libraries.
+
+* br-c++-ft.el (c++-feature-args-regexp): 
+	       (c++-func-args-regexp): Fixed bug that could remove `*'
+    characters from type declarations when trying to match feature
+    declarations to definitions.
+               (c++-feature-def-pat): Fixed problem with differing
+    whitespace within return types of declaration and definition.
+
+* br-env.el (br-env-create): Eliminated potential reference to prior Env name.
+
+* br-c++-ft.el (c-remove-functions): Added.
+               (c++-scan-features): Added call to c-remove-functions to
+    prevent any mis-scans within their bodies.  ootags processes C
+    functions separately.
+
+1998-10-19  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-at-feature-regexp): Tightened match to eliminate -, +, 
+  and ! characters within function argument lists to prevent some false
+  matches.
+
+==============================================================================
+* V4.03 changes ^^^^:
+==============================================================================
+
+1998-09-30  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-feature-signature-to-regexp): 
+ 	       (c++-type-identifier): 
+	       (c++-return-type-identifier): Allowed whitespace around
+    scoping operator.
+	       (c++-type-identifier): 
+               (c++-return-type-identifier): Added _ as leading character
+    possibility.  This fixed a bug in matching to class type names that
+    start with underscores.
+               (c++-feature-decl-or-def): 
+	       (c++-attribute-tag-regexp): Added another level of parens
+    around the `c++-type-modifier-keyword*' expression to capture all
+    keywords.
+               (c++-scan-features-in-class): Updated to better deal with
+    typedefs and other C constructs in classes.
+
+* br-lib.el (br-delete-space): Fixed potential error caused by differing
+    syntax tables.
+
+* br-c++.el (c++-list-template-argument-names): 
+            (c++-non-template-identifier):
+	    (c++-list-template-arguments): Added.
+	    (c++-get-class-name):
+            (c++-scan-parents): 
+	    (c++-normalize-template-arguments): Rewrote to handle nested template
+    arguments.
+            (c++-get-parent-name): Speeded up a bit.
+	    (c++-parse-buffer-template-arguments): Added to parse
+    and normalize in-buffer template arguments.
+
+1998-09-29  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-type-modifier-keyword): Added `typename' keyword.
+
+==============================================================================
+* V4.02 changes ^^^^:
+==============================================================================
+
+1998-09-28  SL Baur  <steve@beopen.com>
+
+* GNUmakefile.id (binkit): Ensure installation of tree-x subdirectory
+
+1998-09-28  Bob Weiner  <weiner@beopen.com>
+
+* br.el (br-window-setup): Rewrote for greater robustness.
+
+* br-c-ft.el (c++-function-identifier): 
+  br-java-ft.el (java-function-identifier): Added missing whitespace
+    characters that could allow extra whitespace to be matched at the
+    end of an identifier which in turn could trigger an Environment build
+    error.
+
+* br-python-ft.el (python-within-string-p): Simplified.
+	          (python-within-comment-p): Added and called.
+	          (python-scan-features-in-class): 
+		  (python-scan-features): Eliminated bug that could delete 
+    needed whitespace between a feature name and its arguments thereby
+    causing the viewer to not be able to locate a match in the source code.
+	          (python-feature-locate-p): Fixed bug that could try to
+    display code when no match was found.
+	          (python-routine-def-in-class): 
+	          (python-routine-def): Modified to include routine
+    arguments within the match.
+
+* br-python.el (python-to-comments-begin): Implemented this function.
+
+1998-09-27  Bob Weiner  <weiner@beopen.com>
+
+* br-python-ft.el (python-import-pathname): Added to convert an import
+    library name (possibly with path components) to a full pathname.
+                  (python-import-file): Updated to support jumping to import
+    module names and associated imported definitions (shadowing variables
+    defined within `from' clauses.
+
+* eif-calls.el (eif-attribute-to-regexp): Added support for viewing
+    multiple attribute definitions.
+
+* br-ftr.el (br-feature-make-htables): Clarified error message when
+    temporary OOBR-FTR file contains an entry with an invalid tag format.
+
+* eif-calls.el (eif-parse-features): Rewrote to include external routines
+    and to handle newer external method declaration format.
+	       (eif-parse-attributes): Added support for lists of
+    attributes in one declaration.
+
+* br-eif.el (eif-get-parents-from-source): Rewrote to set implicit parent
+    for classes referenced but not defined within the Environment.
+    (eif-scan-class-parents): Added.
+
+1998-09-26  Bob Weiner  <weiner@beopen.com>
+
+* br-eif.el (eif-get-classes-from-source): All classes have ANY as an
+    ancestor, so if no superclass was found, add ANY to the list of
+    `parents'.
+
+* br-python-ft.el (python-feature-signature-to-regexp): Fixed comment
+    start expression.  Also improved many regexp constant definitions.
+                  (python-code-file-regexp): Fixed typo that left off end
+    of string match.
+
+* br-java-ft.el (java-feature-locate-p): 
+  br-python-ft.el (python-feature-locate-p): 
+  br-c++-ft.el (c++-feature-locate-p): Clarified difference between a
+    feature-tag and a feature-regexp and fixed a problem in handling these.
+
+* br-python-ft.el (python-feature-locate-p): Deleted improper reference
+    to `java-default-interface-class' that could trigger an error.
+
+1998-09-24  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-feature-item-regexp2): Added.
+               (c++-feature-to-item-declaration): 
+	       (c++-feature-to-variable-declaration): 
+	       (c++-feature-variable-class): 
+	       (c++-feature-attribute-display): Rewrote to tighten
+    matching accuracy of declarations, mainly to handle array variables better.
+
+1998-09-23  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-feature-view-declaration): 
+  br-ftr.el (br-feature-display):
+            (br-feature-tag-signature-match): 
+    Fixed array reference error caused by passing a nil `ftr-tag' value to
+    br-feature-tag-path.  The user would see this when trying to follow a
+    method call under C++.
+
+1998-09-20  Bob Weiner  <weiner@beopen.com>
+
+* br-lib.el (br-wind-line-at-point): Fixed fencepost error.
+
+* eif-calls.el (eif-routine-regexp): Handle lines that end with a carriage return
+    which fixed missed routines.
+               (eif-routine-to-regexp): 
+    br-eif.el (eif-get-parents-from-source): Allow `inherit' keyword at
+    places other than the beginning of a line.  This fixed missed parent
+    lists.
+
+* br.el (br-mode-map): When in a listing window, make BS scroll the viewer 
+    backwards a windowful just like DEL.
+
+* br-c++-ft.el (c++-feature-add-prefix): Added = as the feature prefix for
+    type declarations like structs and enums. 
+
+* br-env.el (br-env-validate-arg-strings): Removed old code that could
+    improperly attach wrong old env name to a new env file. 
+
+1998-09-19  Bob Weiner  <weiner@beopen.com>
+
+* br-objc-ft.el
+  br-eif:
+  br-clos-ft.el: 
+  br-smt.el:
+  br-python.el:
+  br-python-ft.el:
+  br-objc.el:
+  br-info.el:
+  br-clos.el:
+  br-c++-ft.el:
+  br-c++.el:
+  br-java-ft.el:
+  br-java.el: Changed `buffer-substring' to `br-buffer-substring' calls to
+    eliminate any syntax highlighting properties from the associated
+    strings.  This slows down Environment building a bit for the sake of
+    highlighting correctness in listing displays.
+
+* br-java-ft.el (java-feature-add-prefix): Eliminated miscategorization of 
+    method interfaces as attributes (due to terminating semicolon).
+
+1998-09-18  Bob Weiner  <weiner@beopen.com>
+
+* br-menu.el (initialize menu): Under GNU Emacs, don't require non-nil
+    current-menubar since GNU Emacs doesn't use this variable.
+
+1998-09-17  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-tag-fields-regexp): Fixed problem that
+    failed to match to C++ template class names with embedded spaces.
+
+==============================================================================
+* V4.01 changes ^^^^:
+==============================================================================
+
+1998-09-15  SL Baur  <steve@beopen.com>
+
+* br-menu.el: Don't initialize menu at load time if loaded from
+    InfoDock.
+
+1998-09-13  Bob Weiner  <weiner@beopen.com>
+
+* br-c-ft.el (c-build-element-tags-internal): Added file-readable-p test
+    since file-writable-p does not test for existence.
+
+1998-09-10  SL Baur  <steve@beopen.com>
+
+* br-menu.el (hyperb:window-system): Guard initialization call of
+    `br-menu-external-setup with test for whether the menubar is
+    initialized.
+
+1998-09-01  Bob Weiner  <weiner@beopen.com>
+
+* hmouse-br.el (smart-br): When displaying a listing entry for editing
+    based on a mouse click, leave point in the listing window.
+
+* br-ftr.el (br-feature-make-htables): Send /R option to MS-DOS sort
+    command, not -r, and produce clear message if this option is not
+    handled by the sort command invoked under MS OSes.
+
+1998-08-28  Bob Weiner  <weiner@beopen.com>
+
+* br-menu.el (br-menu-update-env-list): Added to produce dynamic Env name
+    menu under GNU Emacs.  InfoDock and XEmacs do this via the :filter
+    keyword.
+
+* br-env.el (br-env-copy): Added "env-start-build-time" and
+    "env-end-build-time".
+
+* br.el (br-mode): 
+        (br-mode-map): Moved popup menu setup from br-menu.el to here.
+
+* br-tree.el (br-tree-load): Added 'mswindows symbol for XEmacs on NT.
+
+* hmouse-br.el (smart-element): Allow for optional double quotes around
+    feature file pathnames.
+  br-*-ft.el (*-output-feature-tags): Called prin1 to update the pathname
+    location of each set of tags to avoid read errors on MS OSes.
+
+* br-menu.el (br-menu-common-body): Added 3-Button-Mouse option.
+  br-start.el (br-two-button-mouse): 
+	      (br-three-button-mouse): 
+  br-site.el (br-setup-mouse-keys): Added to bind the Action Key to the
+    middle or left mouse button in OO-Browser listing buffers, for
+    easier viewing of listing items.
+
+1998-08-27  Bob Weiner  <weiner@beopen.com>
+
+* br-menu.el: Updated so that when loaded, adds a menubar entry for
+    invoking the OO-Browser under XEmacs and GNU Emacs.  InfoDock
+    automatically adds such an entry under its Software menu.
+
+* br-env.el (br-env-stats): Print language type of the current Environment 
+    on the first line of (br-env-stats) output.
+
+* br-start.el (featurep 'info): Replaced wrong 'Info symbol.
+
+* br.el (br-mode-map): Rebound {C-c C-c} from (br-env-create) to
+    (br-env-browse) since the former can no longer be called
+    interactively.
+
+1998-08-26  Bob Weiner  <weiner@beopen.com>
+
+* br-env.el (br-env-copy): Protected `set' calls with `boundp' tests
+    to eliminate possibility of unbound variable value references.
+
+* br-lib.el (br-real-build-al): Skip symlink subdirectories.  This can
+    help prevent infinite recursions caused by circular links found within
+    some code trees.  If any code lives within another tree, the
+    Environment can include its root directory.
+
+
+* br.el (br-add-class-file): Removed since would not work properly and full
+    Environment rebuilding is fast enough now.  In the future, incremental
+    Environment rebuilding may be supported.
+
+1998-08-25  Bob Weiner  <weiner@beopen.com>
+
+* br.el (br-mode-map): Added key bindings within listing buffers for Env
+    name commands.
+
+* br-lib.el (br-abbreviate-file-name): Added this function to deal with
+    XEmacs / GNU Emacs calling incompatibilities in abbreviate-file-name.
+
+1998-08-24  Bob Weiner  <weiner@beopen.com>
+
+* br-menu.el (br-menu-common-body): Removed Rebuild-Lib-Part,
+    Rebuild-Sys-Part since are seldom used.  Added Env name handling
+    items.
+
+* br-env.el (br-env-cond-build): Since this is always called from
+    br-env-load, eliminate load of Environment from its call to
+    br-env-build.
+
+* *-browse.el (*-browse): Fixed non-refresh of browser display when bring
+    a different Environment back in from memory (since br-env-load is
+    not called in such instances).
+
+1998-08-23  Bob Weiner  <weiner@beopen.com>
+
+* hasht.el (hash-delete): Fixed to truly remove a key from the hash-table.
+
+* br-env.el (br-env-create): Deleted unneeded interactive calling spec.
+
+* br.el (br-next-buffer): Set title bar in browser listing buffers to
+    show are in the OO-Browser and what the current Environment is.
+
+* br-name.el:
+  br-env.el: Added and updated to support browsing Environments by a
+    mnemonic name rather than by file name.  Also added menu of Env names
+    under InfoDock.
+
+1998-08-22  Bob Weiner  <weiner@beopen.com>
+
+* hasht.el (hash-empty-p): Added.
+
+1998-08-21  Bob Weiner  <weiner@beopen.com>
+
+* br.el (br-at): Eliminated narrowing to class to conform to the way
+    other commands work.
+
+* br-site.el: Fixed to deal with python-mode keymap being named py-mode-map.
+
+* br-clos-ft.el (clos-element-tag-list): Modified to output listing entry
+    components within tags just like other languages.  Also modified to
+    mark constant and variable tags with `=' prefixes.
+
+* eif-calls.el (eif-insert-class-info-calls): Fixed so works automatically 
+    when called from `br-entry-info'.
+
+* br-eif-ft.el (eif-locate-feature): 
+  eif-calls.el (eif-routine-regexp): 
+	       (eif-routine-to-regexp): Added support for multiple name
+    routine definitions. 
+
+1998-08-20  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-scan-features-in-class): Added support for enums,
+    typedefs, structs and unions embedded within classes.  Each such
+    construct is listed together with its class of occurrence within
+    the C construct default class instances.  Each attribute named
+    at the end of each such construct (even multiple attributes per line)
+    are added to the class' feature list.
+
+* br-ftr.el (br-etags-file): Renamed from br-tags-file to reduce any
+    confusion with OO-Browser feature tags (these are Emacs TAGS file
+    tags).
+
+* Redesigned all feature handling code to speed feature queries.
+  Using a test Environment of 586 C++ classes on a Pentium II 350 Mhz
+  Linux system, generating a listing of all Environment features
+  (9859 entries including classes) went from 15 seconds in V3.07 to 1.5
+  seconds for a 10-fold speedup.
+
+  A user-visible side-effect of this speedup under MS operating systems
+  only (due to their lack of the -d option to their builtin sort function),
+  is that features are alphabetized by category, e.g. regular methods in one
+  group, special methods in other groups, followed by attributes.
+
+1998-08-19  Bob Weiner  <weiner@beopen.com>
+
+* br.el (br-feature): Deleted optional ARG since would not work any more.
+
+1998-08-18  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-type-modifier-keyword):
+	       (c++-type-def-modifier): Added `unsigned'.
+	       (c++-attribute-decl): Adapted to support enum, struct, and
+    union as class attributes.
+
+1998-08-17  Bob Weiner  <weiner@beopen.com>
+
+* br-tree.el (br-tree-do-cmd): Fixed so features may be viewed or edited
+    just like classes.  (Before they could be viewed only.)
+
+* br.el (br-implementors): Fixed comparison problem in filtering out entries from
+    default classes like `[constant]'.
+
+1998-08-16  Bob Weiner  <weiner@beopen.com>
+
+* br-python-ft.el (python-feature-signature-to-name): Eliminated invalid
+    call to `python-feature-add-prefix'.
+	
+1998-08-15  Bob Weiner  <weiner@beopen.com>
+
+* br-ftr.el (br-feature-list-implementors): Eliminated sort of
+    implementors since is complex, time-consuming and is handled
+    elsewhere before implementors are displayed.
+            (br-feature-tags-delete): Renamed from br-delete-features and
+    moved from "br-lib.el".
+
+* br-lib.el (br-features-htable): 
+	(br-feature-paths-htable): Added these 2 variable definitions.
+  br-ftr.el (br-feature-build-htables): Renamed from `br-feature-tags-save'
+    and added code to create feature htables for faster lookup.
+            (br-feature-make-htables): Added.
+  br-env.el (br-env-load): Modified to not rebuild children-htable since
+    this is recreated from the children-alist saved in any modern Environment.
+            (br-env-save): Removed conditional copy of `br-feature-tags-file'
+    since this was replaced by alists stored in the main Environment file.
+
+* hasht.el (hash-make-prepend): 
+	   (hash-prepend): Added to allow addition of entries to a value
+    list referenced by key.
+
+1998-08-14  Bob Weiner  <weiner@beopen.com>
+
+* br.el (br-browse): Removed call to raise-frame to allow user to control
+    this behavior.
+
+* Changed \^M everywhere to more modern \r syntax and added \r where
+  needed to support MS OS usage of \r\n to end lines.
+
+1998-08-13  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-scan-features-in-class): Pure virtual functions were
+    being ignored like regular function declarations, so they were not
+    added to the features list.  Fixed.
+
+==============================================================================
+* V4.00 changes ^^^^:
+==============================================================================
+
+1998-08-04  Bob Weiner  <weiner@beopen.com>
+
+* *-brows*.el (*-browse): Under same-env conditional, move *-browse-setup
+	  to follow br-env-copy call to that br-env-file is set properly
+	prior to br-setup-constants reference of it.
+  br-lib.el (br-setup-constants): Added call to `br-init' or OOBR-FTR
+    would not be set correctly when switched languages to a cached
+    language Environment.
+
+==============================================================================
+* V3.07 changes ^^^^:
+==============================================================================
+
+1998-08-02  Bob Weiner  <weiner@beopen.com>
+
+* br-env.el (br-env-load): Do a refresh on all browser windows after
+    loading environment if this function was called interactively.
+    Otherwise, may be displaying old Environment information.
+	
+* br-env.el (br-env-read-file-name): Fix problem where `dir' was set to a
+    filename rather than a directory.  This prevented proper
+    completion when br-env-browse is called interactively.
+            (br-env-browse): Modified interactive call to complete in
+    current directory and to prompt with an Env name in the current
+    directory rather than with `br-env-file' since this is
+    typically called from `oo-browser' which has already prompted the
+    user whether to reuse the current Environment.
+
+* br.el (br-ancestors): Fixed so when called by br-routines, br-attributes 
+    or br-features and not on a class, will display an error message.
+
+* br-compl.el (br-find-class-name-as-list): Added and used to eliminate
+    creation of a '(nil) list if point is not on a class name.
+
+* br.el (br-where): Modified to always include the class name within the
+    output.
+
+* br-eif-ft.el (eif-tag-fields-regexp): Added.  Needed by br-ftr.el.
+               (eif-feature-signature-to-name): Changed to use "::" rather 
+    than "," separator for compatibility with generic OO-Browser functions.
+
+1998-08-01  Bob Weiner  <weiner@beopen.com>
+
+* br-env.el (br-env-load): Obsoleted Eiffel Environments earlier than
+    03.06.01.
+            (br-env-rebuild): Added refresh of the OO-Browser display
+    after rebuild.
+
+* br-compl.el (br-find-class-name): Fixed so returns nil if on a feature
+    entry line.
+
+* br-eif.el (eif-set-case): Modified to simply return its argument rather
+    than downcasing it.
+
+* eif-calls.el (eif-reserved-words-htable): Added to speed reserved word
+     comparisons.
+  br-eif.el (eif-get-parents-from-source): 
+  br-eif-ft.el (eif-keyword-p): Modified to use above variable.
+
+* eif-calls.el (eif-store-class-info-calls): Removed downcase call.
+  br-eif-ft.el (eif-find-class-name): 
+	       (eif-renamed-feature-p): 
+  eif-calls.el (eif-get-class-name-from-source): 
+  br-eif.el (eif-get-parents-from-source): 
+    	    (eif-get-classes-from-source): Removed (eif-set-case class)
+    call so that class names are stored and matched against as found in
+    the source.
+
+* eif-ise-er.el (eif-ise-compilation-parse-errors): Eliminated duplicative 
+    downcase of `class-name'.
+
+* br-eif.el (eif-get-classes-from-source): 
+	    (eif-get-parents-from-source): Rewrote to conform to newer
+    file processing techniques.
+
+* eif-calls.el (eif-parse-attributes): Simplified and corrected by calling 
+    br-member.  This eliminated a potential parsing hang.
+
+Wed Jul 15 13:05:25 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-compl.el (br-buffer-menu-file-name): Renamed from
+    br-buffer-menu-buffer-name and rewrote to return the file name
+    for comparison rather than the buffer name.  Eliminates problems
+    with buffer names like foo.java<2>.
+
+* br-ftr.el (br-feature-tag-signature): Removed reference to
+    language-specific c++-tag-fields-regexp.
+
+* br.el (br-where): Added missing regexp-quote to br-feature-tag-and-file call.
+
+1998-07-14  Bob Weiner <weiner@beopen.com>
+
+* br-compl.el (br-buffer-menu): Changed arg to `t' for XEmacs-compatibility.
+
+==============================================================================
+* V3.06.01 changes ^^^^:
+==============================================================================
+
+Thu Jun 11 00:24:14 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-*-ft.el (*-list-features): Removed nreverse call since was reversing
+    same named features when it should have left them alone.
+
+* br-lib.el (br-insert-file-contents): Removed 2nd arg to
+    insert-file-contents which caused *br-tmp-buffer*' to become
+    associated with the last file scanned.  Since this buffer is
+    not killed, when one would view an entry from this file, the
+    *br-tmp-buffer* would improperly be used.
+
+* br-python-ft.el (python-get-file-buffer): Deleted, call
+   br-insert-file-contents instead.
+
+* br-ftr.el (br-feature-list-attributes): Modified to do a regexp search.
+            (br-attribute-type-regexp): 
+  br-c++-ft.el (c++-feature-add-prefix): List static attributes with an "& "
+    prefix instead of an "= ".
+
+* br-env.el (br-env-stats): Extended to include editor and OS information
+    for use when troubleshooting.
+
+Wed Jun 10 22:31:05 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-at-feature-regexp): 
+               (c++-routine-prefix-in-class): Allow for :: scoping
+    operators in argument lists.
+               (c++-feature-view-declaration): After use br-find-class to
+    match to a specific class, limit feature searches to the body of that
+    class; this prevents a bug when looking for constructors that could
+    match to a feature scoped to the current class with a completely
+    different feature name (only the part preceding the :: is matched in
+    this case (the class name was improperly treated as the constructor
+    name)).
+               (c++-feature-method-display): 
+	       (c++-feature-view-declaration): 
+	       (c++-feature-attribute-display): Made match searches
+    case-sensitive.
+
+* br-c++.el (c++-parent-regexp): Fixed overrun in parent scan when
+    processing conditionalized class headers like:
+
+      #ifdef DEFINE
+      class myclass : public yourparent
+      #else
+      class myclass : public myparent
+      #endif
+      {}
+
+    by adding # as a terminator character.
+
+Tue Jun  2 15:36:44 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-java.el: Added (require 'br-c-ft).
+  br-java-ft.el (java-add-default-classes): Added call to
+    `c-add-default-classes' to support Java/C integration.
+
+1998-06-02  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-feature-declaration-regexp): Fixed bug that could
+    produce the wrong regexp when definition signature contained newlines.
+
+==============================================================================
+* V3.06 changes ^^^^:
+==============================================================================
+
+Thu May 28 14:27:09 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-menu.el (br-menu-common-body): Added Use-Vi-as-Editor menu toggle item.
+
+* br-ftr.el (br-feature-found-p): 
+  br-lib.el (br-find-class): Modified to return the line number at which
+    the entry displayed begins.
+            (br-line-number): Added.
+  br.el (br-view): Rewrote to display classes with external
+    viewers/editors at their exact starting line.
+        (br-feature): Rewrote to display elements with external
+    viewers/editors at their exact starting line.
+
+* br.el (br-edit-ext): Removed concat of an integer.
+        (br-edit-ext-start): 
+	(br-view-ext-start): Simplified by using a call to `apply'.
+    Also set window manager title to the file being displayed if "xterm"
+    is the command called; this typically means vi is being used.
+        (br-edit-externally-p): Added to allow external editing of elements.
+
+1998-05-19  Bob Weiner  <weiner@beopen.com>
+
+* br-objc-ft.el (objc-feature-map-class-tags): 
+	        (objc-feature-map-tags): 
+		(objc-list-categories): 
+  br-python-ft.el (python-feature-map-class-tags): 
+  br-java-ft.el (java-feature-map-class-tags): 
+		(java-feature-map-tags): 
+  br-c++-ft.el (c++-feature-map-class-tags): 
+               (c++-feature-map-tags): 
+	       (c++-list-features): Fixed bug that locally bound
+    case-fold-search before setting the current buffer (which has its own
+    value).
+
+* br-c++-ft.el (c++-attribute-modifier-keyword): Added support for arrays.
+               (c++-routine-prefix-in-class): 
+               (c++-routine-in-class): Added these two constants for use
+    in eliminating routine declarations while scanning class features;
+    this eliminates false attribute matches to routine argument declarations.
+               (c++-scan-features-in-class): Modified to delete routine
+    declarations from the scan.
+
+* br-*-ft.el (*-get-feature-tags): Renamed to *-output-feature-tags,
+    made 2nd arg non-optional and eliminated conditional that scanned
+    the source since this was never called to read the features; it was
+    always passed a list of features.
+
+1998-05-15  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-get-feature-tags): 
+  br-c++.el (c++-get-classes-from-source): Removed feature sort to speed up.
+  br-c++-ft.el (c++-feature-to-end): Remove testing of whether in a
+    comment or not to speed up this often called function.
+
+  Made the same changes for other languages.
+
+  The combination of these improvements sped up C++ Environment building
+  6-fold under InfoDock and XEmacs and a 14-fold speedup under GNU Emacs! 
+
+==============================================================================
+* V3.05 changes ^^^^:
+==============================================================================
+	
+1998-05-07  Bob Weiner  <weiner@beopen.com>
+
+* br-clos-ft.el (clos-feature-locate-p): Eliminated null signature bug.
+
+Thu May  7 00:00:37 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-tree.el (*br-tree-prog-name*):
+             (br-tree-load): Handle that newer versions of GNU Emacs set
+    window-system to w32 under Windows.
+
+* br-ftr.el (require 'br-c-ft): Added since it `br-feature-tags-save'
+    references its function `c-build-element-tags'.
+
+Wed May  6 01:58:56 1998  Bob Weiner  <weiner@beopen.com>
+
+* br.el:
+  br-c++-ft.el (c++-scan-features): 
+  br-c-ft.el (c-build-element-tags-internal): 
+  br-c-tags (tags_file): Renamed OO-Browser-specific tags generator to
+    `ootags' from `etags', so it can co-exist with old versions of etags.
+
+==============================================================================
+* V3.04 changes ^^^^:
+==============================================================================
+
+Mon May  4 00:59:15 1998  Bob Weiner  <weiner@beopen.com>
+
+* OO-Browser V3.03 released.
+
+* br-env.el (br-env-totals): Eliminated display of zero count Interfaces
+    if not supported by the language.
+
+* br-env.el (br-env-load): Fixed bug that didn't run language-specific
+    setup function when called from a batch build.
+
+* br-start.el (oobr): Removed this definition.  Use oo-browser instead.
+
+* Make-Env (oo-browser-env): Renamed from oobr-env.
+           (oo-browser-env-debug): Renamed from oobr-env-debug.
+
+* hasht.el (hash-merge-first-value): Added.
+  br-lib.el (br-merge-parents-htables): 
+	    (br-get-htable): Called this new function.
+
+Sun May  3 22:04:42 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-lib.el (br-build-paths-htable): We may have merged two tables where a
+    single class-name was referenced in one and defined in the other which
+    means it will have both a path entry and a br-null-path entry; remove
+    the latter.  This fixes a bug where {M-e} br-env-stats shows a class
+    as undefined when it is not.
+            (br-delete-sorted-strings):
+            (br-merge-paths-htables): Added to support this merging.
+
+* hasht.el (hash-merge): Make the merged hash-table be 20% larger than the
+    number of entries filled in all hash-tables to be merged, so that
+    hash misses are minimized.
+           (hash-make): Signal an error if sent a floating point number as
+    an argument.
+           (hash-merge-values): Copy lists so that merged result does not
+    share structure with the hash tables being merged.
+
+1998-05-03  SL Baur  <steve@beopen.com>
+
+* br.el (br-ootags-executable): Define br-directory, upon which it depends,
+    before this definition.
+
+Thu Apr 30 00:48:12 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-tree.el (br-tree-x-load-tree-file): Bound windowed-process-io for
+    XEmacs and InfoDock under Windows.
+
+* br-lib.el (br-insert-file-contents): Rewrote to only temporarily select
+    the buffer; this leaves the temporary buffer at the bottom of the buffer
+    list.
+            (*br-tmp-buffer*): Make this a hidden buffer whose name begins
+    with a space.
+
+* br-c-ft.el (c++-operator-name-regexp): In whitespace match only to
+    spaces since this is used only in tag files where all whitespace has
+    been normalized to one space.
+             (c-build-element-tags-internal): Handle operator * constructs
+    where the * is dropped by ootags.
+
+Wed Apr 29 23:56:55 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-menu.el (br-popup-menu): Removed unused InfoDock clause.
+
+Mon Apr 27 00:04:45 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-c++.el (c++-get-classes-from-source): Fixed bug that improperly
+    removed comments from source buffers that were loaded into the editor
+    before they were scanned by the browser.  `set-buffer' was called where
+    `br-view-file-function' should have been used.
+
+* br-c-ft.el (c++-operator-name-regexp): Added omitted + and - operators.
+             (c-build-element-tags-internal): Remove all non-global scoped
+    :: entries produced by ootags since the OO-Browser handles these
+    separately.
+
+==============================================================================
+* V3.03 changes ^^^^:
+==============================================================================
+
+* OO-Browser V3.02 released.
+
+* br-lib.el (br-find-class): Fixed to return nil if class is referenced
+    but not defined in the Environment.  This fixes an error where an
+    Action Key click on a referenced class does not display any message
+    of failure.
+
+* br-lib.el (br-real-add-class): Eliminated bug that would remove C++
+    comments in the original buffer.
+
+* br-lib.el (br-default-class-p): Added.
+  br-env.el (br-env-totals): Rewrote to display more informative class totals.
+
+* br-lib.el (br-merge-parents-htables): Added.
+	    (br-build-parents-htable): 
+  br-env.el (br-env-set-htables): Called above function.
+
+* br-lib.el (br-temp-directory): Added to return an OS-specific temporary dir.
+  eif-calls.el (eif-tmp-info-file):
+  br-tree.el (br-tree-load):  Called above function.
+
+* br-env.el (br-env-rebuild): Added debugging support when called with a
+    prefix arg.
+            (br-env-load): Added background-flag = 'debug option.
+
+* br.el (br-init): Stopped this call from switching buffers.
+  br-env.el (br-env-load): Added call to `br-init' to always full
+    initialize Environment file variables.
+
+Sun Apr 26 16:47:51 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-env.el (br-env-load): Rewrote to eliminate recreation of internal
+    browser data structures during builds.
+
+* br-env.el (br-env-try-load): 
+            (br-env-batch-build): Simplified and improved reliability.
+
+* br-env.el (br-env-set-htables): Automatically build children hash table
+    unless optional arg, SKIP-CHILDREN is given.
+
+* br-env.el (br-env-set-htables): 
+
+* tree-w32/: Added this directory with a Windows-specific version of the
+    graphical OO-Browser and integrated it into the OO-Browser.
+
+* br-env.el (br-env-build): 
+  Make-Env: Added this file and used for batch/background Environment builds.
+
+* br-env.el (br-env-batch-build): Fixed to properly initialize all browser
+    variables by setting br-env-file and calling `br-init'.
+
+* br-lib.el (br-get-htable): Fixed bug triggered when sys- or lib- was
+    attached twice in a computed function name which was not found and then
+    funcall was used on the nil result.
+            (br-real-build-parents-alist): Changed improper call of mapcar
+    on a hash table to hash-map.
+
+* br-c-ft.el (c++-function-identifier): Moved from "br-c++-ft.el" since
+    is needed in this file which is recursively required by br-c++-ft.el
+    when needed.
+             (c-build-element-tags-internal): Modified to use explicit
+    operator names so that entries like operator>>=() does not end up with
+    operator>>=( as its name (the opening paren should be ignored).
+
+Sat Apr 25 00:46:39 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-lib.el (br-real-build-alists): Moved locals here to minimize stack
+    usage when recurse through directories.
+            (br-add-to-paths-htable): 
+            (br-search-directory): Removed sorting of class names from
+    these functions to speed them up.
+            (br-get-*-htable): Made into a defsubsts for speed.
+            (br-build-sys-parents-htable): 
+	    (br-build-lib-parents-htable): Eliminated deep nesting in
+    hash-make call.
+            (br-real-build-parents-alist): Removed repeated stack usage
+    from `dir' local binding within nested mapcars.
+
+* br-env.el (br-env-start-build-time): 
+	    (br-env-end-build-time): Added.
+            (br-env-build): 
+            (br-env-save): Used to record last build time.
+	    (br-env-stats): Display build times.
+
+* br-env.el (br-env-build): Added an (if noninteractive ...) wrapper
+    around call to `br-env-load' to prevent infinite recursion when called
+    in batch mode from `br-env-load'.
+            (br-env-load): Fixed to not build when Env is obsolete and the
+    no-build parameter is t.
+
+* br.el (br-ootags-executable): 
+	(br-shell-executable): Added these computed constants.
+
+* br-c-ft.el (c-build-element-tags): 
+  br-ftr.el (br-feature-tags-save): Moved conditionals in here to within
+    c-build-element-tags function.
+
+==============================================================================
+* V3.02 changes ^^^^:
+==============================================================================
+
+Thu Apr 23 00:56:58 1998  Bob Weiner  <weiner@beopen.com>
+
+* OO-Browser V3.02 released.
+
+* br-c-ft.el (c-build-element-tags): 
+	     (c-build-element-tags-internal): Improved messages and skipping
+    of C tags building when not all files needed are available.
+
+* br.el (br-c-tags-flag): Fixed to require ootags.exe on MS OSs.
+
+Wed Apr 22 23:44:29 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-lib.el (br-class-path): Optimized further using catch construct.
+
+Tue Apr 21 17:51:51 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-java.el (java-get-parents-from-source): Fixed bug that would add
+    Object as the parent of interface classes not defined within the
+    Environment.  (Interfaces have no implicit parent.)
+
+Mon Apr 20 00:44:41 1998  Bob Weiner  <weiner@beopen.com>
+
+* br.el (br-add-class-file): Fixed bug that improperly regexp-quoted
+   class-path.
+
+==============================================================================
+* V3.01 changes ^^^^:
+==============================================================================
+
+* OO-Browser V3.00 released.
+
+Sun Apr 19 19:15:22 1998  Bob Weiner  <weiner@beopen.com>
+
+* br.el (br-edit-entry):
+        (br-view-entry): 
+        (br-where): Modified to automatically prompt if called
+    interactively when not in the OO-Browser user interface and to insert the
+    defining path at point if called standalone with a prefix argument.
+
+* br-java-ft.el (java-feature-signature-to-name): Changed class and
+    feature name separator from `@' to `::'.  This makes `br-find' work
+    properly for Java.
+
+* br-ftr.el (br-element-completions): Added messages alerting user to this
+    potentially long-running computation.
+
+Sat Apr 18 02:25:15 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-ftr.el (br-feature-default): Updated C++ section to find feature
+    names when within the pre-argument part of a declaration or definition
+    of a feature.
+
+* br-java-ft.el (java-skip-to-statement): 
+  br-c++-ft.el (c++-skip-to-statement): Modified to not move outside of a
+    parenthesized grouping.  This in conjunction with the Action Key allows
+    one to explore the class types associated with feature arguments, rather
+    than simply jumping to the feature declaration or definition; move point
+    to precede the parenthesized arguments for that.
+
+* br.el (br-add-class-file): Modified to automatically compute whether to
+    add to system or library hash tables wherever possible.
+
+Fri Apr 17 15:28:06 1998  Bob Weiner  <weiner@beopen.com>
+
+* br.el (br-implementors): Fixed this problem by filtering such entries:
+    It is possible for a default class like [constant] to show up in a
+    br-implementors listing if it contains an entry whose name is the same
+    as a method.
+
+* pyth-brows.el: Renamed from python-browse.el for 13-char filename
+    compatibility.
+
+* br-site.el: Added hook-based setting of mode-specific browser-related
+    keys that allow use of some browser features without using its user
+    interface.  (Previously the user had to bind these himself.)
+
+* br-env.el (br-env-load): Obsoleted C++ Environments built before V3
+    since they lack attributes and friend classes.
+
+* br.el (br-info-language-specific): 
+  br-env.el (br-env-lang-name-alist): Added to display language-specific
+    manual sections.
+
+* br-c++-ft.el (c++-friend-class-regexp): Added friend classes to feature
+    listings.
+
+Thu Apr 16 02:50:29 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-menu.el (id-menubar-br): 
+             (id-popup-br-menu): Renamed `Graphical-Add-Features' to
+    `Graphical-Descendent-Features'.
+    Added Concept-Manual and Menu-Manual at the top of each menu.
+    Unified menu implementations so items are not repeated within the code. 
+
+* hmouse-br.el (smart-br-assist-dispatch): 
+	       (smart-br-dispatch): Removed Buffer-menu entries that
+    duplicate behavior earlier in hkey-alist dispatch table.
+
+* br-menu.el (id-menubar-br): 
+             (id-popup-br-menu): Centralized graphical commands
+    on a new `Graphical' menu.
+
+* br.el (br-viewer-scroll-down-by-line): Added, bound to {,}.
+	(br-viewer-scroll-up-by-line): Added, bound to {.}.
+
+Thu Apr 16 00:41:54 1998  Bob Weiner  <steve@beopen.com>
+
+* tree-x/: Fixed bug that selected node would not highlight in red anymore
+    when run under 16-bit or higher color displays.
+
+Wed Apr 15 01:49:38 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-java-ft.el (java-feature): Updated to more clearly inform the user
+    of the location of definitions.
+                (java-feature-decl-or-def): Eliminated anchor to beginning
+    of line since is used with (java-skip-to-statement) which leaves point
+    at the first non-blank character.
+
+* br.el (br-find): Synched with `br-edit-entry'.
+        (br-protocols): Made prefix arg of 0 toggle the setting of
+    br-protocols-with-classes-flag.
+
+* br-menu.el (id-menubar-br): 
+             (id-popup-br-menu): Changed ancestor entries to do exactly
+    what the keys {a} and {C-u a} do, rather than inverting the listings.
+    Renamed `Where-is-Any' to `Where-is-Named'.
+    Renamed `Environment/Create' to `Environment/Create-or-Load'.
+    Added key binding help for virtually all menu entries.
+
+* br-tree.el (br-tree-do-cmd): Force display in selected window if
+    hpath:display-where is set to other-window; this prevents jumping the
+    selected window each time a different tree entry is selected.
+
+* tree-x/: Added ANSI-fication of C code and configure additions from
+    Martin Buchholz <martin@xemacs.org>.
+
+Tue Apr 14 16:42:07 1998  Bob Weiner  <weiner@beopen.com>
+
+* br.el (br-routines): Added and bound to {r} in listing buffers.
+        (br-lexical-routines): 
+	(br-inherited-routines): 
+  br-ftr.el (br-routine-type-regexp):
+            (br-feature-list-routines): Added to support routine-only listings.
+            (br-feature-list-attributes): 
+            (br-attribute-type-regexp): 
+  br.el (br-inherited-attributes): 
+	(br-attributes): 
+	(br-lexical-attributes): Added to support attribute-only listings.
+        (br-attributes): Added and bound to {=} in listing buffers.
+  br-c++-ft.el (c++-feature-tree-command-p): Updated to support attributes.
+
+* br-lib.el (br-delete-c-comments): Added.
+  br-c++.el (c++-get-classes-from-source): Called above function.
+
+* br-c++-ft.el (c++-routine-def-terminator-regexp): Simplified since
+    pure virtual function declarations are handled by earlier regexps.
+    (c++-attribute-decl): 
+    (c++-feature-decl-terminator-regexp): 
+    (c++-feature-def-terminator-regexp): 
+    (c++-feature-def): 
+    (c++-feature-def-in-class): Added these regexp to match C++ attributes.
+    (c++-scan-features-in-class): Updated to include C++ attributes.
+
+Mon Apr 13 00:04:30 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-feature-add-prefix): Added = prefix to handle attributes.
+
+* br-tree.el (*br-tree-prog-name*): Added initial support for
+    Windows-based graphical browser.
+
+* br.el (br-viewer-beginning-of-buffer): 
+        (br-viewer-end-of-buffer): Added and bound to "<" and ">"
+   respectively.
+
+* br.el	(br-where): Fixed to work properly on feature entries.  Previously
+    would not display anything because the wrong function was called.
+
+* br-start.el: Updated to find Hyperbole and OO-Browser directories when
+    loaded with the current directory set to the OO-Browser code directory.
+
+* br-ftr.el (br-feature-clear-signatures): Renamed to
+    br-feature-clear-tags for clarity.
+            (br-feature-get-signature): Renamed to br-feature-get-tag for
+    clarity.
+            (br-feature-put-signatures): Renamed to br-feature-put-tags for
+    clarity.
+
+* *-browse.el (*-browse): Added (br-env-copy t) call to restore Env
+    data when switching languages and returning to an Env previously
+    loaded into memory.  This fixes a bug where a new Env is loaded but
+    the browser still displays the classes of the previous Env because
+    it still has its data loaded in memory.
+
+* br-c-ft.el (c-build-element-tags-internal): Fix up global C++ operator tags
+    which ootags doesn't format properly.
+
+* br-compl.el (br-find-class-name): Fixed bug that ignored <> around Java
+    interface names and caused br-features and br-ancestors to fail if
+    invoked within the middle of an interface name.
+
+Sat Apr 11 00:28:17 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-feature-args-regexp): 
+               (c++-func-args-regexp): 
+               (c++-func-args-string): Modified to not kill the temporary
+    buffer since these functions may be called frequently.  Permanent
+    quitting of the browser will kill the temp buffer.
+
+* br-lib.el (br-buffer-replace): Added optional literal-flag argument.
+
+* br-objc-ft.el (objc-feature-normalize): 
+  br-c++-ft.el: (c++-feature-normalize): 
+  br-java-ft.el (java-feature-normalize): 
+  br-ftr.el (br-feature-delete-c-comments): Added, called by above functions.
+
+* br-c++-ft.el (c++-feature-decl-or-def): Modified to not allow : within
+    function argument parentheses so that if the : following the
+    parentheses within a constructor (which begins base class default
+    values) includes values with parentheses, these are not matched as
+    part of the parenthesized arguments.
+               (c++-feature-decl-or-def): 
+               (c++-feature-parens-grpn): Modified to include only
+    parenthesized arguments, not any trailing parts preceding the opening
+    function brace.  Also added three new named groups:
+      c++-feature-post-args-grpn
+      c++-feature-post-modifier-grpn
+      c++-feature-defaults-grpn
+
+* br-c++.el (c++-comment-regexp): Allow single line /* C-style */ comments 
+    in signatures after each argument.  Multi-line comments are too hard
+    to handle.
+  br-c++-ft.el (c++-feature-normalize): Remove C-style comments in addition to C++-style.
+  br-c++-ft.el (c++-feature-def-pat): Remove any comments before creating pat.
+
+Fri Apr 10 19:12:39 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-feature-type-grpn): Reduced from 6 to 5 since was
+    sometimes omitting the last * or & of the type.
+               (c++-feature-declaration-regexp): Subtracted one from
+    (match-end c++-feature-type-grpn) to correct for 0-based array indexing.
+               (c++-feature-signature-to-name): Fixed to extract class
+    name from non-tag signatures when with-class option is used.
+
+    (c++-feature-edit-declaration): 
+    (c++-feature-view-declaration): If point is within the signature of
+    a feature definition and a nil value for CLASS-AND-FEATURE is given,
+    the feature's declaration is displayed.
+
+    (c++-func-args-string): 
+    (c++-feature): Support jumping between declarations and definitions
+    with support for single-line C or C++-style comments between method
+    arguments.
+    
+    (c++-func-args-string): 
+    (c++-feature-args-regexp): Fixed bugs that could drop * or & from type
+    declarations and that did not convert variable names followed by `='
+    to regexps.
+
+Fri Mar 20 04:26:57 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-env.el: Modified to not load Environment after building if running in
+    batch mode.
+
+Thu Mar 19 00:14:31 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-java-ft.el (java-feature-decl): Fixed to avoid false matches to
+    statements that look like method signatures, e.g. if ( ) { }
+
+* Replaced all `fset' calls with `defalias'.
+
+* br-lib.el (br-interface-support-p): Added.
+
+* br-java-ft.el (java-feature-decl-or-def): Removed optionality from
+    java-type-identifier expression since this must be given.  Also
+    eliminated extra set of grouping characters around this expression
+    and reduced half of the grouping numbers by one.
+
+Wed Mar 18 00:00:26 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-c++.el (c++-header-file-regexp): Added to match to header include
+    files only.
+
+* br-c++-ft.el (c++-feature-args-regexp): Fixed bug that would drop * and
+    & characters from an argument type if they were preceded by whitespace.
+
+Tue Mar 17 23:15:40 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-feature-at-reference-p): Added missing save-match-data
+    call to prevent missing a member name in a `class::member' reference.
+
+==============================================================================
+* V3.00 changes ^^^^:
+==============================================================================
+
+Fri Mar 13 15:36:04 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-java.el (java-class-modifier-keyword): Modified following whitespace
+    regular expression to avoid a regexp matching problem when there is
+    excess whitespace at the end of a file following a class definition.
+
+Thu Mar 12 16:44:52 1998  Bob Weiner  <weiner@beopen.com>
+
+* br.el (br-protocols-with-classes-flag): Added to toggle whether or not
+    protocols are included in class listings.
+  br-menu.el (id-menubar-br): 
+             (id-popup-br-menu): Added toggle item of above flag.
+  java-brows.el (java-class-list-filter):
+  objc-brows.el (objc-class-list-filter): Used above flag.
+  oo-browser.texi (Browsing Protocols): Documented this flag and the menu option.
+* br.el (br-ancestors): 
+        (br-parents): 
+        (br-protocols): Modified to display in the next pane to the right,
+   rather than the left, to prevent obscuring potentially important
+   information just generated in the prior pane.
+
+* br.el (br-protocols): Changed "p" to "P" in listing buffer name to
+    distinguish from parent listings.
+        (br-buffer-prefix-inher): Changed from "Inher-Lvl-" to "OO-Browse-".
+        (br-ancestors): Changed "p" to "a" in listing buffer name to
+    distinguish from parent listings.
+    Also added buffer name command characters for several other commands.
+
+* br.el (br-show-top-classes): Renamed from br-top-classes.
+        (br-show-all-classes): Added and bound to {A}.
+
+==============================================================================
+* V2.13.02 changes ^^^^:
+==============================================================================
+
+Fri Feb 13 04:29:53 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-c++.el (c++-class-definition-regexp): 
+            (c++-class-name-before): Allow for #define replacement keyword
+    between the `class' literal and the class name, a technique used in
+    some class libraries.
+
+
+==============================================================================
+* V2.13.01 changes ^^^^:
+==============================================================================
+
+Tue Feb 10 00:03:16 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-start.el (Info-directory-list): Add oo-browser/man subdirectory if
+    it exists to eliminate need to install the online manual.
+
+* br-java-ft.el (java-at-feature-regexp): Modified optional space
+    expression to avoid a regexp stack overflow.
+
+* br-env.el (br-env-build): Don't prompt to build in the background if
+    `make' is not found.
+
+Mon Feb  9 23:55:30 1998  Bob Weiner  <weiner@beopen.com>
+
+* br.el (br-c-tags-flag): 
+  br-c-ft.el (c-build-element-tags-internal): Don't build C constructs
+    under MS OSes unless a UNIX shell is found.
+
+* br.el (br-sort-options): 
+        (br-show-classes): Handle lack of UNIX sort on MS OSes.
+
+Sun Feb  8 05:47:50 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-feature-class-name): 
+               (c++-feature-at-reference-p): 
+               (c++-feature-variable-class): Normalize class template args.
+  br-ftr.el (br-feature-default):
+            (c++-feature-variable-declaration): Handle template classes.
+	    (c++-feature-item-declaration): Added.
+	    (c++-feature-variable-class): Call above function.
+
+* br-c++.el (c++-normalize-template-arguments): Return nil if given a null argument.
+
+* br-c++-ft.el (c++-to-definition): Restore buffer and point if
+    c++-feature-reference-definition returns nil (not found).
+
+* br-java-ft.el (java-func-args-string): 
+	        (java-func-args-regexp): 
+  br-c++-ft.el (c++-func-args-regexp): 
+               (c++-func-args-string): 
+               (c++-feature-args-regexp): Fixed space and
+    c++-arg-identifier quoting replacement bugs visible under Emacs 20.
+
+* br-java-ft.el (java-feature): Eliminated declaration lookup in ancestors
+    copied from C++.  Java doesn't use method declarations separate from
+    definitions.  Commented out unused functions for now.
+
+* br-env.el (br-env-batch-build-browse): Moved killing of OO-Browser Env
+    files to this function run after a background build finishes since the
+    user may continue browsing while building and thus re-read in files
+    that the build was changing.
+
+Wed Jan 21 15:57:18 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-feature-variable-declaration): Fixed bug that allowed
+    `name' from "name , var" to match to the var's type (since were trying
+    to allow: name var1, var2, var3;) as a valid declaration.
+
+==============================================================================
+* V2.13 changes ^^^^:
+==============================================================================
+
+Tue Jan 20 15:52:44 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-lib.el (br-find-class): Fixed nesting of error messages that caused
+    a not found message when a class was found.  Added proper message when
+    class is found.
+
+* br-ftr.el: Display class name of feature when found.
+
+* br-c++-ft.el (c++-feature-variable-class): Modified to not mistake
+    delete and new statements which look like declarations.
+               (c++-feature-def-p): Eliminate false declaration matches
+    to `else if,' `else' and `for' clauses.
+              (c++-feature-decl): Eliminated keyword false declaration
+    matches. 
+
+==============================================================================
+* V2.12.05 changes ^^^^:
+==============================================================================
+
+Sat Jan 17 00:16:46 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-site.el (smart-scroll-proportional): Changed default to t to agree
+    with the Hyperbole default.
+
+Fri Jan 16 15:19:10 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-feature-at-reference-p): Handled array-type variables
+    (var[index]) as the first part of the reference.
+               (c++-feature-variable-declaration): Allow only the
+    characters [;,\(]] or a beginning of line (ignoring
+    whitespace) to precede a declaration to tighten matching.
+
+==============================================================================
+* V2.12.04 changes ^^^^:
+==============================================================================
+
+Thu Jan 15 01:22:12 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-vers.el (br-version): Updated to "02.12.04".
+
+* br-ftr.el (br-feature-put-signatures): Made compatible with GNU Emacs
+    through definition of br-feature-put-property.
+
+* br-env.el (br-env-save): Called br-env-edit to disable undo and backups
+    on OOBR Env file.
+
+* br-c++-ft.el (c++-feature-at-reference-p): Fixed bug in
+    member-ref-regexp that broke up a standalone identifier into two
+    groupings.
+               (c++-feature-reference-definition): Extended to show a
+    matching declaration if no definition possibilities are
+    found within the Environment.
+
+* br-env.el (br-env-browse): 
+	    (br-env-build): 
+	    (br-env-create): 
+	    (br-env-load): 
+     	    (br-env-try-load): Modified read-file-name calls to display
+   full file pathname rather than including a (default) prompt.  Also
+   disallowed entry of directories (without a trailing file name).
+   Displaying just the directory was inconsistent vis-a-vis whether or
+   not the default was accepted.  If another directory was entered, it
+   would not append the default file name to it but would signal an error.
+            (br-env-get-dirs): If a non-directory is given, leave it for
+   the user to correct.
+            (br-env-read-file-name): Added.
+
+* BR-README: Updated install instructions to load (rather than autoload)
+    OO-Browser initializations.  That forces all of its autoload
+    statements into the current editor session.  This is necessary
+    when a full Hyperbole distribution is not available.
+
+* br-env.el (br-env-batch-build-browse): Modified to automatically load
+    Env if the one that just finished building in the background is the
+    current Env and the browser user interface is active.
+
+* br-ftr.el: Fixed Emacs 19 conditional that did not handle version 20.
+    This made the feature listing signature code use the slower version 18
+    style.
+
+* br.el (br-browse): Fixed conditional bug that showed a compilation
+    process running when it had actually exited.
+        (br-window-setup): Updated to leave point in the first window.
+
+* br-c++-ft.el (c++-feature-variable-declaration): Handle declarations
+    where variable name is followed by an =, *, or & character.
+               (c++-feature-method-declaration): Added.
+	       (c++-feature-view-declaration): Display a method
+    declaration even if there is no definition for it in the Environment
+    (this ignores overloading).
+               (c++-feature-def-p): Fixed test ordering bug that caused
+    this to fail most of the time.
+
+* br-clos-ft.el (clos-skip-to-statement): Fixed so only moves if on the
+    first line of a definition.
+
+* br-c++-ft.el (c++-feature-view-declaration): Show definitions of
+    [default class] features rather than giving an error since a user may
+    invoke this command on them thinking he can jump to them.
+               (c++-feature-at-reference-p): 
+               (c++-feature-variable-class): Updated to handle `this'
+    pseudo-variable.
+
+* br-java-ft.el (java-feature-def-p):
+                (java-feature): 
+  br-objc-ft.el (objc-feature-def-p):
+                (objc-feature): 
+  br-c++-ft.el  (c++-feature-def-p)
+                (c++-view-friend): 
+                (c++-feature): Updated to display feature definitions only
+    when point is within a declaration signature and not the
+    brace-delimited body part.  This allows Action Key presses
+    on method bodies defined within classes to do other things.
+
+* br-ftr.el (br-feature-default): Added.
+            (br-feature-complete): Improved defaults in OO-Browser listing
+    buffers and code buffers.
+  br-c++-ft.el (c++-feature-view-declaration): Improved default and
+    added a minibuffer message telling the user the class of the feature
+    declaration just displayed since this may not be visible on screen.
+
+Wed Jan 14 22:51:15 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-feature-def-pat): 
+               (c++-feature-declaration-regexp): Fixed regexp-related bugs
+    and improper side-effect that lost [*&] chars when immediately
+    preceding the member name.  Also fixed bug where member-type was
+    regexp-quoted but then used as a literal.
+
+==============================================================================
+* V2.12.04 changes ^^^^:
+==============================================================================
+
+Tue Jan 13 00:14:03 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-vers.el (br-version): Updated to "02.12.03".
+
+* br-init.el (br-after-term-init): Added internal hkey-value variable,
+    completion and direct selection of many entities.
+
+* br-ftr.el (br-feature-tag-name): Added.
+
+* br-python-ft.el (python-feature-normalize): 
+  br-objc-ft.el (objc-feature-normalize): 
+  br-java-ft.el (java-feature-normalize): 
+  br-clos-ft.el (clos-feature-normalize): 
+  br-c+++-ftr.el (c++-feature-normalize): Fixed bug that allowed multiple
+    spaces in tag entries whose original signatures contained comments.
+    This could cause Implementors matching to fail.
+
+* br-c++-ft.el (c++-feature-signature-to-name): Added clause to handle
+    source code signature forms.
+
+* br-lib.el (br-setup-functions): Added generic br-feature-normalize.
+  br-objc-ft.el (objc-feature-normalize): 
+  br-clos-ft.el (clos-feature-normalize): Adjusted to multi-language 3 arg
+    calling convention.
+
+* br-ftr.el (br-feature-insert-signatures): Renamed from br-feature-insert-tags.
+  br-lib.el (br-feature-list-implementors): Modified to display classes
+    above each set of signatures and to display only the part of tags that
+    come from the source code itself for easier reading.
+
+* br-ftr.el (br-feature-tag-signature): Added.
+  br-lib.el (br-setup-constants): Added br-tag-fields-regexp so can
+    extract source code signatures from tag entries in any language.
+
+* br-c++-ft.el (c++-feature-attribute-display): 
+  br-c++-ft.el (c++-feature-variable-class):
+	(c++-feature-reference-definition): Added above functions and
+    called from here to determine the class of a variable used in a member
+    reference like var->method() or var.attribute.  Only works if variable
+    type is specified within the current file before point.  Also used to
+    display the definition of the variable.
+
+* br-ftr.el (br-feature-complete): Greatly improved default prompt under C++.
+
+* br.el (br-mode-map): Bound {j} to br-feature-view-declaration and
+    {J} to br-feature-edit-declaration.
+  br-lib.el (br-setup-functions): Added generic br-feature-view-declaration
+    and br-feature-edit-declaration.
+  br-c++-ft.el (c++-feature-args-regexp): 
+	(c++-feature-declaration-regexp): 
+	(c++-feature-edit-declaration):
+	(c++-feature-view-declaration): Added to edit or view C++ method declarations.
+
+* br.el (br-view): Modified to only kill previous viewer buffer if
+    successfully find the entry to view.
+
+* eif-calls.el (eif-get-features-from-source): 
+  br-ftr.el (br-feature-signature): 
+  br-python-ft.el (python-list-features): 
+              	  (python-feature-matches): 
+  br-java-ft.el (java-scan-features): 
+  br-clos-ft.el (clos-scan-features): 
+  br.el (br-lexical-features): 
+        (br-this-level-features): 
+  br-c++-ft.el (c++-list-features): Removed local binding of `features'
+    which mistakenly overroad the global variable by the same name.  This
+    caused no package names to be defined which sometimes resulted in
+    improperly loading packages unnecessarily that had already been
+    loaded.  Under InfoDock when {F} was used under C++ in a listing
+    buffer and the signatures buffer had not been created, a setting of
+    c++-mode-hook from site-var.el caused a reloading of site-func.el
+    which loaded buff-menu and several other files, delaying the execution
+    of the command significantly.
+
+==============================================================================
+* V2.12.03 changes ^^^^:
+==============================================================================
+
+Fri Jan  9 01:03:16 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-init.el (br-after-term-init): Added clauses to the hkey-alist
+    included with the OO-Browser to support Action Key clicks within C,
+    C++, Java, Lisp and Objective-C buffers (previously these clauses were
+    only included with Hyperbole distributions).
+             (br-init-autoloads): Added hmouse-tag.el entries.
+
+* br-env.el (br-env-build): Modified so that when build in the background,
+    and buffers with attached Env files that will be overwritten are
+    killed before the build is started.  This avoids any `file
+    changed on disk messages' when the files are reloaded.
+
+* br.el (br-browse): Modified to display compilation buffer showing
+    background Environment build if one is running when the browser
+    is invoked.
+
+* br-env.el (br-env-batch-build-browse): Updated to force load of just
+    built Environment before trying to browse it and to reinitialize
+    the browser display.
+
+* br-compl.el (br-complete-type): Improved filtering of entries.
+
+Thu Jan  8 12:38:53 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-ftr.el (br-feature-completions): Renamed to br-element-completions
+    and used this prior name to provide feature-only completions (no
+    entries from default classes).
+            (br-element-tags-completions): Added.
+
+* br.el (br-in-view-window-p): Fixed to ignore an active minibuffer window.
+
+* br-lib.el (br-empty-htable): Added and used in language-specific
+    *-browse functions.
+
+* br-env.el (br-env-browse): Interactively use directory of br-env-file as
+    initial contents when specifying a new Environment filename.
+
+* *-brows*.el (*-browse): Improved handling of the case where the user
+     aborts within the middle of loading an Environment.  This used to cause
+     the -FTR file name to not be updated to the new value if it appeared
+     that the same Env was being loaded a second time but it never
+     completed initialization the first time.
+
+* br-c++-ft.el (c++-feature-name-to-regexp): Rewrote to work properly with br-find.
+  br-ftr.el (br-feature-completions): Removed for-display option sent to
+    br-feature-signature-to-name which improperly prefixed each feature name.
+
+* br-start.el (hyperb:dir): Set this variable used by functions in hypb/ subdirectory.
+
+==============================================================================
+* V2.12.02 changes ^^^^:
+==============================================================================
+
+Wed Jan  7 13:19:02 1998  Bob Weiner  <weiner@beopen.com>
+
+* br-env.el (br-env-load): Eliminated confusing message about Env file not
+    existing when creating a new Env.
+            (br-env-create): Clarified messages that begin Env
+    specification and which prompt for search directories.
+            (br-env-stats): Clarified headings.
+
+* br.el (br-cleanup): Cleared current lang env-file variable when use {C-u
+    q} to prevent any use of cached data if reload the same Environment again.
+  br-env.el (br-env-add-ref-classes): Rewrote to avoid infinite recursion
+    when reload the previous Environment after a {C-u q} exit.
+
+* br-init.el (hkey-alist): Added call to smart-element.
+             (br-after-term-init): Removed no-op condition when hypb/ was
+    already in the load-path.
+             (br-init-autoloads): Added Info-goto-node autoload.
+
+* hmouse-br.el (smart-element): Added (renamed from oobr-ftr in hibtypes.el).
+
+* br-menu.el (br-popup-menu): Fixed to deal with GNU Emacs
+    definition of popup-menu as a macro.
+
+* br-start.el (br-directory): Simplified by using locate-file instead of
+    hyperb:path-being-loaded.
+
+* br-init.el (br-after-term-init): Rewrote to handle Action and Assist
+    Keyboard Keys better.
+
+==============================================================================
+* V2.12.01 changes ^^^^:
+==============================================================================
+
+Tue Dec 23 03:10:38 1997  Bob Weiner  <weiner@beopen.com>
+
+* br-vers.el (br-version): Updated to "02.12".
+
+* br-tree.el (*br-tree-prog-name*): Look for xoobr program in
+    br-directory, exec-directory and then in user's $PATH.
+
+Mon Dec 22 12:08:36 1997  Bob Weiner  <weiner@beopen.com>
+
+* oo-browser.text: Updated with new features and function documentation.
+
+* br.el (br-ancestor-trees): 
+	(br-ancestor-trees-inverted): Reversed names of these two
+    functions which were backwards and out of sync with the user manual.
+
+* br-menu.el (id-menubar-br): 
+	     (id-popup-br-menu): Added "Protocols" and "All-Protocols" items.
+	                         Added "Implementors" and "All-Implementors"
+    to class menus.
+  br.el (br-protocols): Added error if current language does not support
+    protocol browsing.
+
+* hmouse-br.el (smart-br): Fixed to allow for presses within leading
+    whitespace when implementors or ancestors are to be shown.
+               (smart-br-assist): Fixed to allow for presses within leading
+    whitespace when descendants are to be shown.
+
+* br.el (br-at-default-class-p): Added for use by hmouse-br.el.
+  hmouse-br.el (smart-br): 
+               (smart-br-assist): On a default class name, the statically
+   defined instances of the default class are listed.
+
+* br-java-ft.el (java-feature-map-class-tags): 
+         	(java-feature-map-tags): 
+  br-objc-ft.el (objc-list-categories): 
+                (objc-feature-map-class-tags): 
+                (objc-feature-map-tags): 
+  br-c++-ft.el  (c++-list-features): 
+                (c++-feature-map-tags): 
+                (c++-feature-map-class-tags): Made case-sensitive.
+
+* br.el (br-interfaces): Aliased to br-protocols for Java-centricity.
+
+* br-lib.el (br-class-category-p): Added.
+
+* br-compl.el (br-find-class-name): Updated to handle Objective-C listing
+    entries of (category) only.
+  br.el (br-implementors): Don't sort entries for which implementors are
+    requested; this can be visually confusing.
+	(br-implementors): Updated to handle Objective-C categories.
+* br-objc-ft.el (objc-list-category-classes): Added to support br-implementors.
+
+Sun Dec 21 00:14:39 1997  Bob Weiner  <weiner@beopen.com>
+
+* br-env.el (br-env-load): Obsoleted Java and Objective-C Environments
+    earlier than "02.12".
+
+* br-ftr.el (br-feature-type-regexp): Removed `@' character since it is no
+    longer used to preface category and protocol/interface entries (they
+    have no prefix since they are now displayed and treated like classes).
+
+* br-python.el (python-get-classes-from-source): Added 2 variables to let
+    clause which mistakenly had not been locally bound.
+
+* br-lib.el (br-find-class): Modified to leave point at the start of the
+    class definition rather than at the start of any preceding comments.
+    The comments still appear at the top of the window, however.
+
+Sat Dec 20 22:46:41 1997  Bob Weiner  <weiner@beopen.com>
+
+* br-java.el (java-to-comments-begin):
+  br-objc.el (objc-to-comments-begin):
+  br-c++.el (c++-to-comments-begin):   Set to br-c-to-comments-begin.
+  br-lib.el (br-c-to-comments-begin): Added, used for C-derived languages.
+    Made to ignore comments that do not begin a line, e.g. @end /* comment */.
+
+* br-objc-ft.el (objc-feature-decl-or-def): Extended to allow for final
+    , ... syntax.
+                (objc-find-class-name): Updated to surround protocol names
+    inherited by class or protocol definitions with <> delimiters.
+                (objc-to-definition):
+  br-java-ft.el (java-to-definition): 
+  br-c++-ft.el  (c++-to-definition): Reordered tests to allow selection
+    of an individual class name within the signature line of a
+    class or protocol definition.
+
+Fri Dec 19 00:08:36 1997  Bob Weiner  <weiner@beopen.com>
+
+* java-brows.el (java-class-list-filter): 
+  objc-brows.el (objc-class-list-filter): Rewrote to deal with top-level
+    classes which may inherit from abstract classes that don't count.
+
+* br-lib.el (br-flatten): Added to flatten multi-level lists.
+
+* *-brows*.el (*-class-list-filter): Rebound by default to br-class-list-identity.
+  br-lib.el (br-class-list-identity): Added.
+
+
+* br.el (br-at-class-category-p): Added.
+        (br-show-classes): Renamed from br-show-top-classes since is also
+    used to show all classes.
+
+* br.el (br-match):             
+  br-compl.el (br-class-completions): Deleted call to br-class-list-filter
+    since we want to be able to match to any concrete or abstract class.
+
+* br-help: Added {P} key binding description for showing protocols to
+    which a class conforms.
+
+* br.el (br-implementors): Changed to insert implementors in next listing
+    window instead of the previous one since implementors are sometimes
+    descendants of the entry, e.g. implementors of an abstract class.
+
+* br-objc-ft.el (objc-class-definition-regexp): Fixed to differentiate
+    between classes and protocols.
+                (objc-feature-map-tags): Fixed to handle ^ and $
+    meta-characters which in turn made br-implementors work when on
+    a feature entry.
+
+* br-objc.el (objc-get-classes-from-source): 
+  br-objc-ft.el (objc-list-protocols): Rewrote to use new scheme for
+    recording protocol entries as <classes>.
+                (objc-view-protocol): 
+* br-java-ft.el (java-view-protocol): Deleted, normal {v} command now works.
+
+* br.el (br-protocols): Rewrote to display abstract classes (protocols)
+    within ancestor inheritance lattices.  Removed display of protocol
+    definition when this command is used on a protocol; now one can use
+    {v} or {e} to view protocols.
+
+* br-lib.el (br-interface-p): Added to test for interface and protocol names
+    from listing buffers.
+            (br-concrete-class-p): Added, inverse of br-interface-p.
+  br.el (br-inherited-features): Modified to ignore inherited abstract classes.
+        (br-ancestors): 
+        (br-ancestor-trees-inverted): 
+        (br-ancestor-trees): Added final concrete-classes-flag to limit
+    display to non-abstract ancestors only.
+
+Thu Dec 18 00:31:59 1997  Bob Weiner  <weiner@beopen.com>
+
+* br.el (br-protocols): Modified to list <protocol> entries as classes
+    rather than features.
+
+* java-brows.el (java-class-list-filter): Added to eliminate <interface>
+    entries from top-level class listings.
+
+* br-java-ft.el (java-feature-map-class-tags): 
+                (java-feature-locate-p): Updated to deal with 
+    `[interface]@<interface-name>@<interface-name>' tags.
+
+
+* br-c++-ft.el (c++-feature-locate-p): Rewrote first part to simplify.
+
+* br-java.el (java-scan-parents): Added support for delimiting inherited
+    <interface> names.
+             (java-interface-parent-regexp): Added to match to interface
+    inheritance clauses within interface declarations.
+             (java-scan-class-parents): Renamed from java-scan-parents.
+	     (java-class-parent-regexp): Renamed from java-parent-regexp.
+	     (java-scan-interface-parents): Added.
+
+* br.el (br-this-level-classes): Fixed to treat protocol/interface and
+    category entries as classes so that their features are displayed
+    when all features for a listing buffer are requested via {C-u f}.
+
+* br-objc-ft.el (objc-scan-protocol-signatures): Added.
+  br-objc.el (objc-get-classes-from-source): Updated to include protocol
+    method signature tags for browsing.
+
+* br-java-ft.el (java-feature-implementors): 
+  br-objc-ft.el (objc-feature-implementors): Updated to ignore protocol
+    method signatures since they are not implementations.
+
+Wed Dec 17 00:28:05 1997  Bob Weiner  <weiner@beopen.com>
+
+* br-lib.el (br-add-default-classes): Centralized this code for use by
+    many languages.
+
+Tue Dec 16 18:35:42 1997  Bob Weiner  <weiner@beopen.com>
+
+* java-brows.el (java-browse-setup): 
+  br-java.el (java-get-classes-from-source): 
+  br-java-ft.el (java-view-protocol): 
+                (java-list-protocols):
+                (java-add-default-classes): 
+                (java-default-interface-class): 
+  br-compl.el (br-find-class-name):
+  br.el (br-at-protocol-p): Added support for delimited Java <interfaces>.
+
+* br.el (br-ancestor-trees-inverted): 
+	(br-ancestor-trees): Fixed test which was reversed, of when to show
+    previously expanded ellipses indicator for an entry.
+
+* br-ftr.el (br-feature-descendant-implementors): Added.
+            (br-feature-put-signatures): Fixed so signature properties
+    are not copied to other buffers.
+
+* br-java-ft.el (java-feature-add-prefix): Fixed bug that miscategorized
+    interface method declarations (which are all implicitly abstract) as
+    attributes rather than implicit methods.
+
+* br-ftr.el (br-edit-feature-from-tag): Fixed bug that caused non-nil
+    return when feature was not found and function was called
+    non-interactively.
+            (br-feature-ancestor-implementors): Added extensive error
+    reporting and a description of how to correct the problem when an
+    Environment includes an invalid feature definition pathname.
+            (br-feature-ancestor-implementors): Added a user message
+    when a single definition of a method is found.
+
+Wed Dec 10 18:06:51 1997  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-feature): Removed test of whether in a header file
+    since some programmers define classes within .cc code files.  The
+    old test was:
+     (if (string-match "[^.]\\.\\([hH][hHxX]?[pPxX]?\\)\\'" (buffer-name)) ...)
+    Tightened test for declarations to allow them only if point is within
+    a class definition.
+
+==============================================================================
+* V2.12 changes ^^^^:
+==============================================================================
+
+Fri Nov 28 01:08:37 1997  Bob Weiner  <weiner@beopen.com>
+
+* br-lib.el (br-to-class-definition): Added to ignore class definitions
+    within C-style comments.
+            (br-find-class): Added calls to br-to-class-definition.
+
+Thu Nov 27 23:48:43 1997  Bob Weiner  <weiner@beopen.com>
+
+* br-menu.el (id-popup-br-menu): 
+	     (id-menubar-br): Fixed bug renaming `br-class-info' to `br-entry-info'.
+
+Thu Nov 20 00:57:16 1997  Bob Weiner  <weiner@beopen.com>
+
+* br-init.el (br-skip-dir-regexps): Added skip of CVS subdirectories.
+
+* br-c++-ft.el (c++-find-class-name): Corrected problem in ordering
+    of character set with some versions of XEmacs.
+
+* br-lib.el (br-pop-to-buffer): Added to create a standard way for
+    the OO-Browser to display buffers.
+
+* br.el (br-edit): 
+        (br-view): Fixed to only move to the viewer window if
+   the OO-Browser user interface is active.
+
+* br-c++-ft.el (c++-feature-reference-definition)
+               (c++-feature-at-reference-p): Added to display member
+    reference definitions and listings of available implementors.
+* br-ftr.el (br-feature-match-implementors):
+            (br-feature-ancestor-implementors): Added to support
+    listing inherited implementor matches of an element.
+
+Wed Nov 19 18:37:17 1997  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-get-class-name-from-source): Added an error handler
+    for the case where a class definition does not have proper opening
+    and closing braces.
+
+* br-c++.el (c++-src-file-regexp): Updated to deal with .CXX and .HXX
+    suffixes typically found on case-insensitive platforms.
+
+Tue Nov 18 00:15:59 1997  Bob Weiner  <weiner@beopen.com>
+
+* ootags.c: Eliminated false macro definition recognition when
+   #define constants begin with a parenthesis, e.g. #define text (newtext).
+   Also fixed recognition of enumeration definitions.
+
+* br-c++-ft.el (c++-to-definition): Added save-excursion around call to
+    c++-class-decl-p to keep it from moving point.
+               (c++-feature): Modified to notice declarations and
+	       definitions within header files only.  This prevents
+	       falsing on in-body constructs that look like member
+	       constructs, like if (...) { ...
+
+* br-ftr.el (br-feature-display-implementors): 
+	    (br-feature-list-implementors): Added to support browsing of
+    element implementors.
+
+* br-lib.el (br-find-file): Updated to use Hyperbole hpath:display-buffer
+    function if defined.
+
+Wed Nov  5 00:37:55 1997  Bob Weiner  <weiner@beopen.com>
+
+* br-java.el (java-parent-regexp): Fixed to properly deal with all
+    implements and extends clauses used in inheritance relations.
+
+* br-env.el (br-env-add-ref-classes): Modified to assume that referenced
+    classes inherit from Object under Java.
+
+==============================================================================
+* V2.11.03 changes ^^^^:
+==============================================================================
+
+Thu Oct  9 15:26:51 1997  Bob Weiner  <weiner@beopen.com>
+
+* br-c-ft.el (c-build-element-tags): Altered so that C construct indices
+    are built exactly once when only the System or Library parts of an
+    Environment are rebuilt or when the whole Environment is rebuilt.
+    Did this in part by changing the format of the last line of the
+    OOBR-FTR tags file to include the file position where the C construct
+    tags begin, so that it may be replaced each time necessary.
+
+* Makefile (HYPB_EL/C): Added hypb/hmouse-tag whose smart tag
+    functions may be called in C-based languages when the Action Key
+    is depressed on a header file declaration to jump to its definition.
+
+Sat Oct  4 03:26:10 1997  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-member-modifier-keyword): Added support for new C++
+    `restrict' keyword.
+
+==============================================================================
+* V2.11.02 changes ^^^^:
+==============================================================================
+
+Wed Jul 30 19:11:29 1997  Bob Weiner  <weiner@beopen.com>
+
+* br-menu.el (id-menubar-br): 
+             (id-popup-br-menu): Fixed List-Window/Features command to
+    list the features of all entries.  Also renamed all items in this
+    menu section from Foo to All-Foo, to indicate that all listing
+    window entries are involved.
+
+Tue Jun 17 14:16:55 1997  Bob Weiner  <weiner@beopen.com>
+
+* br.el (br-set-window-configuration): Added to protect against
+    window configuration restore errors.
+        (br-quit): Delete dedicated OO-Browser frame if in use.
+	(br-browse): Raise dedicated OO-Browser frame if in use.
+
+Thu Jun  5 16:35:29 1997  Bob Weiner  <weiner@beopen.com>
+
+* br-menu.el (id-menubar-br):
+             (id-popup-br-menu): Updated Environment Create and Load
+    commands to reflect new OO-Browser invocation protocol.
+
+Wed Jun  4 18:44:00 1997  Bob Weiner  <weiner@beopen.com>
+
+* br-lib.el (br-find-class): 
+  br-compl.el (br-complete-class-name): 
+              (br-complete-entry): 
+  br-python-ft.el (python-feature-locate-p): 
+  br-objc-ft.el (objc-feature-locate-p): 
+  br-java-ft.el (java-feature-locate-p): 
+  br-c++-ft.el (c++-feature-locate-p): Made case-sensitive.
+
+==============================================================================
+* V2.11.01 changes ^^^^:
+==============================================================================
+
+Thu May 29 13:03:12 1997  Bob Weiner  <weiner@beopen.com>
+
+* br-objc-ft.el (objc-get-feature-tags): 
+* br-c++-ft.el (c++-get-feature-tags): Made to delete possible multiple
+    entry sets for each source pathname.
+
+Tue May 27 21:53:19 1997  Bob Weiner  <weiner@beopen.com>
+
+* br-java.el (java-strip-static-code): Rewrote to avoid potential
+    match expression problem.
+
+Thu May 22 16:30:33 1997  Bob Weiner  <weiner@beopen.com>
+
+* br.el (br-where): Rewrote to display results in the viewer window so
+    that longer paths are not cutoff and pathnames may be clicked upon
+    to visit.
+
+* br-objc-ft.el (objc-feature-name-to-regexp): Fixed bug that affected
+    br-where command.
+
+* br-ftr.el (br-feature-tags-init): Disabled backups and undo log in
+    OOBR-FTR files.
+
+Wed May 21 03:01:06 1997  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-add-default-classes): Modified to only add [function]
+    default class if `br-c-tags-flag' is t.
+               (c++-scan-features): Modified to ignore global functions
+    which are handled by the ootags program.
+
+* br-ftr.el (br-edit-feature-from-tag): Removed duplicative call to
+    (br-major-mode) following br-feature-found-p call.
+    (br-edit-feature-from-tag): Updated to show the beginning of
+      expressions whose definition name comes at the end of a list, such
+      as a braced grouping, like an `enum' in C.
+
+* br-lib.el (br-back-over-comments): Added to prevent long comments
+    from scrolling the current code line outside of the window when
+    viewing listing elements.
+            (br-find-class): Modified to call br-back-over-comments.
+* br-objc-ft.el (objc-feature-locate-p): Modified to call br-display-code.
+
+* br-lib.el (br-display-code): Added to centralize display of code elements.
+
+* br-c-ft.el (c-default-classes): Added support for browsing global
+    [variable] entries and individual [enum_label] entries.
+
+Mon May 19 15:22:30 1997  Bob Weiner  <weiner@beopen.com>
+
+* br-java-ft.el (java-to-definition): 
+  br-objc-ft.el (objc-to-definition): 
+  br-c++-ft.el (c++-to-definition): Added support for navigation
+    from variable and global function references to their definitions.
+* br-c-tags (tags_file): Modified to generated TAGS file as supplement
+    to OOBR-FTR file so one can navigate from variable and global function
+    references to their definitions.
+
+* br-c++-ft.el (c++-feature-def-pat): Added support for
+    whitespace before and after :: scoping separator in method
+    definitions.
+               (c++-func-args-regexp): Fixed bug in section labeled
+    `Replace all "\)" with "optional <c++-identifier> \)"' that
+    left \ preceding ) in the wrong place, producing an invalid
+    expression and causing matches between declarations and definitions to
+    fail.
+               (c++-feature-def-pat): Fixed to not include [default class
+    names] in the method signature pattern to match.
+
+Thu Apr 24 19:32:44 1997  Bob Weiner  <weiner@beopen.com>
+
+* br-menu.el (br-menubar-menu): Added work around for event
+    handling bug in some versions of XEmacs.
+
+Fri Apr 11 22:55:34 1997  Bob Weiner  <weiner@beopen.com>
+
+* oo-browser.texi (Eiffel Listings): Edited whole manual and added details
+    on the {i} br-entry-info command under Eiffel, which can show routine
+    call summaries and flat or short listings.
+
+Wed Apr  9 00:11:19 1997  Bob Weiner  <weiner@beopen.com>
+
+* br.el (br-quit): Fixed bug caused by br-interrupt burying buffers after
+    a window configuration was restored.
+
+* br-start.el (oo-browser): Rewrote so that if not given a prefix
+    argument, queries user whether to reuse any prior browsed Environment,
+    so that novice users can easily get back into the browser.
+
+Tue Mar 18 22:18:24 1997  Bob Weiner  <weiner@beopen.com>
+
+* br-ftr.el (br-feature-file): Eliminated invalid match to a part of a
+    signature.
+
+Sun Mar  2 19:02:19 1997  Bob Weiner  <weiner@beopen.com>
+
+* tree-x/dbl.c (DBLcreate_double_buffer): Disabled buggy double buffering
+    for now by making double buffer region a single pixel in size.
+
+Mon Feb 24 11:12:50 1997  Bob Weiner  <weiner@beopen.com>
+
+* br-java-ft.el (java-type-modifier-keyword): Remove `transient' keyword
+    deleted as of Java release 1.0.2.
+
+==============================================================================
+* V2.11 changes ^^^^:
+==============================================================================
+
+Fri Feb 21 16:45:14 1997  Bob Weiner  <weiner@beopen.com>
+
+* br-c-tags (ootags): 
+  br-c-ft.el (c-build-element-tags): Added support for Microcruft OSs.
+
+* br-menu.el (id-popup-br-menu):
+             (id-menubar-br):  Updated Mail-List-Request entries to new format.
+
+* br.el (br-in-browser): Tightened tests to require 3 or more windows to
+    be in the OO-Browser.  This could eliminate a problem that prevents
+    restoration of the browser display if the variable, `br-in-browser',
+    is somehow left non-nil after the browser display is dismantled,
+    e.g. if a user simply deletes all other windows.
+
+Thu Feb 20 07:22:17 1997  Bob Weiner  <weiner@beopen.com>
+
+* br-lib.el (br-scan-mode): Added this to eliminate execution of any
+    mode-specific hooks, such as syntax highlighting, when scanning files
+    to build Environments.
+
+Wed Feb 19 11:03:07 1997  Bob Weiner  <weiner@beopen.com>
+
+* br-init.el (br-init-autoloads): Added autoload of hypb:display-file-with-logo.
+
+Thu Dec  5 17:51:43 1996  Bob Weiner  <weiner@beopen.com>
+
+* Makefile:
+  MANIFEST:
+  oo-browser.texi:
+  python-browse.el:
+  br-python.el:
+  br-python-ft.el:
+  br-env.el (br-env-lang-avector): Added Python language support from
+    Harri Pasanen <pa@tekla.fi>, with a few modifications.
+
+Wed Nov 13 00:08:25 1996  Bob Weiner  <weiner@beopen.com>
+
+* br-java-ft.el (java-type-modifier-keyword): Removed "threadsafe" since
+    deleted from java language.
+
+Tue Nov 12 15:12:28 1996  Bob Weiner  <weiner@beopen.com>
+
+* java-brows.el (java-mode-setup): Added support for new Java mode in cc-mode.el.
+
+Mon Nov 11 17:23:57 1996  Bob Weiner  <weiner@beopen.com>
+
+* br-menu.el (id-menubar-br): Added Show-Inherited-Features under Options.
+
+* br-c++-ft.el (c++-feature-def-p): Modified to handle multi-line virtual
+    method declarations.
+
+* br-java-ft.el (java-feature-locate-p): Eliminated unneeded C++ :: carryover logic.
+                (java-scan-features): 
+                (java-feature-def-p): 
+		(java-feature-name-to-regexp):
+                (java-feature-tree-command-p): 
+		(java-feature-add-prefix): 
+		(java-feature-def-p): 
+                (java-feature-decl-or-def): Added attribute handling support.
+
+Sun Nov  3 19:49:26 1996  Bob Weiner  <weiner@beopen.com>
+
+* br-env.el (br-env-load): Modified to load language-specific libraries if
+    not already loaded.
+
+Fri Nov  1 12:56:53 1996  Bob Weiner  <weiner@beopen.com>
+
+* br-java.el (java-class-modifier-keyword): Removed `protected' which is
+    not a valid class modifier.
+* br-java-ft.el (java-include-dirs): 
+                (java-cpp-include-dirs): 
+		(java-include-regexp): 
+                (java-include-file): Deleted this stuff which never
+    should have been here, since Java doesn't use includes per se.
+                (java-code-file-regexp): Added support for 3-character
+    suffix-impaired users.
+                (java-feature-def-pat): Eliminated unneeded C++ carryover logic.
+		(java-type-modifier-keyword): Added `volatile' in
+    preparation for handling of attributes.
+                (java-abstract-method-regexp): Changed to original value in
+    preparation for handling of attributes.
+
+Thu Oct 31 14:25:02 1996  Bob Weiner  <weiner@beopen.com>
+
+* br-lib.el (br-find-file): Fixed to ensure not to use listing windows
+    when in the OO-Browser.
+
+* br-ftr.el (br-edit-feature): 
+            (br-feature-tag-and-file): Added to allow feature editing and
+    tag lookup by specifying class and feature name as separate arguments.
+
+* br-java-ft.el (java-feature-signature-to-name): Modified to use
+    java-type-tag-separator instead of "." as a separator between the class
+    and feature name, since this caused a failure when tried to do
+    completion on feature names with br-feature-complete.
+                (java-tag-fields-regexp): Made final occurrence of
+    java-type-tag-separator optional since it is not included if the
+    regexp came from a completion.
+
+* br-ftr.el (br-edit-feature-from-tag): Renamed from `br-edit-feature' so
+    can reuse that name with a simpler set of arguments.
+
+Wed Oct 30 19:50:34 1996  Bob Weiner  <weiner@beopen.com>
+
+* br-lib.el (br-real-delete-class): Altered to also delete feature tags.
+    This is called by the br-delete command.
+            (br-setup-functions): Added "feature-map-class-tags" and
+    "feature-tag-regexp".
+* br-*-ft.el (*-delete-features): Added to delete a class' features.
+             (*-feature-tag-regexp): Added to return a tag regexp from
+    class and feature name.
+             (*-feature-map-class-tags): Added to map over the feature
+    tags of a single class.
+
+* br-objc-ft.el (objc-feature-matches): Modified to take a regexp to
+    conform with other languages.
+* br-*-ft.el (*-feature-map-tags): Added this function to map over a set
+    of entries in a feature tags file and return the results.
+             (*-feature-matches): Fixed bug that failed to properly
+    delimit identifier character ranges with square brackets, causing all
+    but exact matches to fail.
+
+* br-java-ft.el (java-feature-display): Renamed from java-feature-tags-lookup.
+* br-objc-ft.el (objc-feature-display): Renamed from objc-feature-tags-lookup.
+* br-c++-ft.el  (c++-feature-display):  Renamed from c++-feature-tags-lookup.
+
+* br-lib.el (br-add-class): 
+            (br-real-add-class): Fixed bug that did not add features of a
+    class when br-add-class was called interactively.  Added the
+    optional add-features argument to handle this.
+
+* br-java-ft.el (java-return-type-identifier): Fixed bug that neglected
+    to allow the open square bracket of an array return identifier and
+    thus caused the scanner to miss methods with such return values.
+
+Tue Oct 22 23:16:02 1996  Bob Weiner  <weiner@beopen.com>
+
+* tree-x/intf.c (InitializeInterface): Renabled use of backing store
+    in DBLcreate_double_buffer call to eliminate nasty bug on some
+    platforms that blackened the whole window after drawing the tree.
+    This may not have completely fixed the problem though.
+
+Fri Sep 20 22:21:30 1996  Bob Weiner  <weiner@freya.yggdrasil.com (Bob Weiner)>
+
+* Changed `cs.uiuc.edu' to `xemacs.org', the new OO-Browser distribution site.
+
+==============================================================================
+* V2.10 changes ^^^^:
+==============================================================================
+
+This version was made by XEmacs maintainers to include Python support
+and update a few documentation references.  It was a separate branch
+from the mainline development that we synchronized with in the next
+release.
+
+==============================================================================
+* V2.9.12 changes ^^^^:
+==============================================================================
+
+Wed Oct 25 04:49:51 1995  Bob Weiner  <weiner@beopen.com>
+
+* BR-README: Reformatted with a table of contents for easy viewing.
+             Rewrote Installation / Configuration section.
+
+Sun Oct 22 00:41:50 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-menu.el (br-menubar-menu): Fixed bug when current-menubar was
+    nil, would not display menubar entry under Emacs 19 even though it
+    should.
+
+Sat Oct 21 02:02:27 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-c-tags (tags_file): Fixed bug that erased first comma in a structure
+    or enum entries, preventing the browser from displaying the source for
+    such entries.
+
+* br-init.el (br-after-term-init): Changed call of `hmouse-setup' to
+    `hmouse-shift-buttons' which fixes bug of mouse keys not being
+    initialized properly and hmouse-setup function being undefined when a
+    full Hyperbole distribution is not available.
+
+Wed Oct  4 13:41:52 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-java-ft.el (java-feature-parens-grpn): 
+	         (java-feature-decl-or-def): Added support for new
+    function exception name declarations such as:
+      public Connection(String host, int port)
+	throws UnknownHostException, InputOutputException {}
+
+Wed Sep 27 15:39:51 1995  Bob Weiner  <weiner@beopen.com>
+
+* hasht.el (hash-delete): Modified to deal with XEmacs different handling
+    of initially unbound symbols.
+
+* man/br-design.texi: Added to document design rationale of the OO-Browser.
+
+==============================================================================
+* V2.9.11 changes ^^^^:
+==============================================================================
+
+Fri Sep 22 10:12:26 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-java.el (java-get-package-name): Fixed problem with nil package name
+    being used as hash table key.
+
+Thu Sep 21 12:16:48 1995  Bob Weiner  <weiner@beopen.com>
+
+* br.el (br-add-class-file): Signal error if file is not readable.
+* br-lib.el (br-real-add-class): 
+            (br-real-build-parents-alist): 
+            (br-show-parents): Don't try to scan file if it is unreadable.
+            (br-search-directory): Fixed problem that caused scanning to
+    stop if encountered an unreadable file or invalid link.  Now just
+    displays a message.
+
+Wed Sep 20 12:30:37 1995  Bob Weiner  <weiner@beopen.com>
+
+* br.el (br-report-bug): Added to send a message to oo-browser discussion
+    list and bound to {C-c C-b}.
+* br-init.el (br-init-autoloads): Added an autoload for hmail:compose.
+* Makefile (HYPB_EL/C): Added hypb/hmail.{el,elc} to list for OO-Browser
+    bug reporting.
+
+* br-env.el (br-env-rebuild):
+            (br-env-cond-build): Prompt for background building.
+            (br-env-build): Modified to prompt for whether or not to build
+    in background when background flag is not t or nil.
+
+* smt-browse.el (smt-browse): 
+* info-brows.el (info-browse): 
+* objc-brows.el (objc-browse): 
+* eif-browse.el (eif-browse): 
+* clos-brows.el (clos-browse):
+* c++-browse.el (c++-browse):
+* java-brows.el (java-browse): Rewrote to quit if user chooses not to
+    build an Environment which has been specified but not built and to
+    alert him with a message that the Environment must be built before
+    browsing.
+
+* br-env.el (br-env-create): Modified to allow background builds when
+    re-specify current Environment and to only build the Environment if
+    called interactively.
+            (br-env-try-load): Renamed from br-env-force-load and rewrote
+    to just try to load Environment once, instead of looping, so user can
+    easily quit.
+            (br-env-init): Modified to return Env file name loaded or nil
+    if load fails.
+
+* br-c++.el (c++-src-file-regexp): Ellemtel C++ recommendations specify
+    that inline definition files should use the suffix ".icc" and other
+    people use ".I" for such files, so those suffixes are included here.
+
+* br-java.el (java-get-package-name): Simplified and fixed bug that
+    triggered error if search failed.
+	     (java-get-classes-from-source): Save return value from call
+    of java-get-package-name.
+
+==============================================================================
+* V2.9.10 changes ^^^^:
+==============================================================================
+
+Thu Sep 14 11:37:40 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-env.el (br-env-browse): Modified to specify non-existing
+    Environments, so can be called by {M-x oo-browser}.
+
+* BR-README: Clarified build and install instructions for the X OO-Browser.
+
+* br-start.el (oo-browser): Added as alias for the oobr function to
+    encourage people to recognize the real name of the package.  Also
+    reversed meaning of the prefix argument so that by default, it always
+    prompts for the Environment to browse, thereby removing a common
+    problem new users have of not being able to specify the Environment
+    location.  Immediately hitting {RET} when prompted browses the most
+    recently browsed Environment, if any.
+
+Wed Sep 13 11:21:17 1995  Bob Weiner  <weiner@beopen.com>
+
+* man/oo-browser.texi (Customization): Documented br-skip-dir-regexps and
+    br-file-dir-regexp variables.
+
+* br-lib.el (br-file-dir-regexp): Made this a global variable rather than
+    a language-specific one, since all languages had the same value.  Also
+    modified value to handle one character directory names.
+
+Tue Sep 12 16:05:26 1995  Bob Weiner  <weiner@beopen.com>
+
+* br.el (br-interrupt): Fixed bug that prevented burying of browser
+    buffers when {q} is invoked.
+        (br-ancestors): 
+        (br-descendants): Made these functions return nil when nothing to
+    show and t otherwise.
+
+==============================================================================
+* V2.9.9 changes ^^^^:
+==============================================================================
+
+Mon Aug 28 18:16:57 1995  Bob Weiner  <weiner@beopen.com>
+
+* tree-x/tree.c (MakeNode): Use memset when SYSV is defined instead of BSD
+    bzero call.
+
+Sat Aug 26 15:19:41 1995  Bob Weiner  <weiner@beopen.com>
+
+* man/oo-browser.texi (Java Specifics): Added this section.
+
+* br-java.el:
+* br-java-ft.el: Fixed comment handling for many routines, identifier
+    regexp definition, and handling of / native method listing prefix.
+
+Fri Aug 25 19:35:03 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-java-ft.el:  Removed wrong references to :: scoping modifier left
+    over from C++ code.
+
+==============================================================================
+* V2.9.8 changes ^^^^:
+==============================================================================
+
+Thu Aug 24 17:10:46 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-lib.el (br-delete-space): Fixed bug in handling multi-line strings.
+
+Wed Aug 23 11:41:25 1995  Bob Weiner  <weiner@beopen.com>
+
+* MANIFEST: 
+  Makefile:
+  br-java.el:
+  br-java-ft.el:
+  java-brows.el: Added to support Java code browsing, a single
+    inheritance, byte-code interpreted language descended in part from C++
+    and developed by Sun.  People are using it in WWW applications along
+    with Sun's Hot Java browser which interprets Java code in web pages.
+    Thanks to Jeff Sparkes for working on the Java-specific regexps.
+
+* br-menu.el (br-menubar-menu): Fixed bug that would add menu if
+    menubar was nil.
+
+==============================================================================
+* V2.9.7 changes ^^^^:
+==============================================================================
+
+Fri Jul 14 15:28:17 1995  Bob Weiner  <weiner@beopen.com>
+
+* Makefile (distclean): Modified to remove unneeded object and binary
+    files from tree-x and tree-nx.
+
+Thu Jul 13 11:30:57 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-lib.el (br-add-to-paths-htable): Don't add class if already in the table.
+
+Wed Jul 12 14:33:44 1995  Bob Weiner  <weiner@beopen.com>
+
+* br.el (br-add-class-file): Simplified and corrected errors when class
+    already existed in Environment.
+
+Tue Jul 11 14:18:23 1995  Bob Weiner  <weiner@beopen.com>
+
+* tree-x/intf.c (NewTree_CB): Allocated an extra char for string terminator.
+
+Fri Jun  2 10:14:19 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-c++.el (c++-identifier): Fixed to match to "class< template<T> >"
+    expressions, i.e. nested <<>>.  Only handles a single template
+    parameter, however.
+
+Thu Jun  1 10:26:38 1995  Bob Weiner  <weiner@beopen.com>
+
+* tree-x/Makefile: Rewrote for increased configurability.
+
+==============================================================================
+* V2.9.6 changes ^^^^:
+==============================================================================
+
+Fri May 19 08:59:14 1995  Bob Weiner  <weiner@beopen.com>
+
+* eif-calls.el (eif-reserved-words): Added new Eiffel V3 keywords.
+
+* br-env.el: Rewrote to avoid deletion of feature tags file; erase its
+    contents instead and then rebuild.
+
+* br-menu.el (id-menubar-br): 
+             (id-popup-br-menu): Added Compose-Mail-to-List and
+    Mail-List-Request entries.
+* BR-README: Added section on the new oo-browser mail list.
+
+* br-env.el (br-env-build): Added explicit setting of EMACS path
+    executable path when build in the background and path is known.
+
+==============================================================================
+* V2.9.5 changes ^^^^:
+==============================================================================
+
+Tue May 16 11:54:33 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-env.el (br-env-lang-avector): Changed "CLOS" to "Lisp" since the
+    browser can browse non-OO Lisp, too.
+
+==============================================================================
+* V2.9.4 changes ^^^^:
+==============================================================================
+
+Fri May 12 13:44:21 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-env.el (br-env-stats): 
+   	    (br-env-save): 
+	    (br-env-lang-var): 
+            (br-env-version): Added this variable to record the OO-Browser
+    version used to build each Environment.  This allows us to prompt the
+    user if an Environment format changes, necessitating a rebuild of the
+    environment.
+            (br-env-load): Prompt to rebuild obsolete C++, Objective-C and
+    Eiffel environments which do not have version numbers.
+
+Thu May 11 11:11:04 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-c-ft.el (c-build-element-tags): Fixed to handle an empty buffer.
+
+* br-env.el (br-env-save): Added save of feature tags file if save-file
+    name is different than current br-env-file.
+* br-ftr.el (br-feature-tags-file-name): Added to centralize naming of
+    feature files.
+            (br-feature-tags-init): Called this new function.
+
+* br-env.el (br-env-select-lang): Tightened check for use of dialog box so
+    won't be even if popup-dialog-box is defined by lmenu.el under GNU Emacs.
+
+* br.el (br-window-setup): Fixed to clear frame `unsplittable' property if
+    set.
+
+* br-eif-ft.el (eif-feature-signature-to-regexp): Fixed bug which
+    failed to remove class from regexp used to find feature definition.
+
+==============================================================================
+* V2.9.3 changes ^^^^:
+==============================================================================
+
+Tue May  9 22:32:15 1995  Bob Weiner  <weiner@mot.com (Bob Weiner)>
+
+* Makefile (install): Changed to install documentation.
+
+Mon May  8 18:21:33 1995  Bob Weiner  <weiner@beopen.com>
+
+* man/oo-browser.texi (Using the Mouse): 
+* br-init.el (br-after-term-init): 
+* br-menu.el (br-menubar-menu): Added support for pulldown and popup
+    menus under Emacs19.
+
+==============================================================================
+* V2.9.2 changes ^^^^:
+==============================================================================
+
+Fri May  5 12:30:08 1995  Bob Weiner  <weiner@beopen.com>
+
+* Makefile: Removed building of Info and Postscript versions of the
+    OO-Browser manual from default `make'.  Use `make info' and `make ps',
+    respectively.
+
+* br.el (br-toggle-c-tags): 
+        (br-c-tags-flag): Added to control whether C tags are built for
+    C-based language Environments.
+
+* br-objc-ft.el: Redid tags format for compatibility with C++ tags and
+    increased speed of feature listing by including feature name in tag
+    lines.  Also added in C element browsing.
+
+Thu May  4 13:32:38 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-feature-def-pat): 
+* br-compl.el  (br-class-completions): 
+* br-ftr.el    (br-feature-completions): Fixed bugs in these functions.
+
+* br-c++-ft.el (c++-type-def-modifier): 
+	       (c++-member-modifier-keyword):
+               (c++-type-modifier-keyword): Added `mutable' keyword, for
+    objects which are never const.
+	       (c++-type-modifier-keyword): Added `explicit' keyword, for new
+    constructors and operators which do not allow implicit argument
+    conversions.
+
+Wed May  3 11:06:13 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-lib.el (br-setup-constants): Added "type-tag-separator" so could be
+    referenced outside of language-specific files.
+* br-objc-ft.el (objc-type-tag-separator): Changed from "," to "@" so
+    would be the same as in C++.
+* br-smt.el (smt-type-tag-separator): Added.
+
+* br-c-ft.el: Added to handle C construct browsing for any C-based language.
+* Makefile: Added br-c-ft.el.
+
+* br-c++-ft.el (c++-element-type-alist): Renamed to c-default-classes.
+               (c++-build-c-tags): Renamed to c-build-element-tags.
+  br-c++.el:   (c++-in-c-comment-p): Renamed to c-within-comment-p.
+    Moved all of these to br-c-ft.el.
+* br.el (br-version): Automatically insert current version number when called.
+
+* br.el (br-mode-map): Removed key binding for little used
+    br-toggle-keep-viewed function in order to move br-view-friend from {M-v}
+    to {V}, since it stupidly conflicted with a basic scrolling command.
+* man/oo-browser.texi (C++ Element Selection): Updated doc to reflect this
+    change.
+
+* br-c-tags: Added to build feature tags for default C construct classes.
+
+Tue May  2 11:08:53 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-operator-identifier): Added support for new C++
+    `delete' and `new' array operators which end with [].
+
+* br-lib.el (br-get-htable): 
+* br-env.el (br-build-parents-htable): 
+            (br-build-paths-htable): 
+            (br-env-set-htables): Modified to make System entries override
+    Library entries.
+
+* tree-x/help.h: Rewrote to use ANSI C string concatenation.
+* tree-x/usleep.c: Added to support building on systems without usleep
+    system call.
+
+* br-lib.el (br-undefined-classes): Added.
+* br-env.el (br-env-stats): Added display of undefined classes which are
+    referenced in the Environment to help detect class definition omissions.
+            (br-env-totals): Modified to show the names of duplicate
+    classes to simplify eliminating them.
+
+* Makefile (tags): Replaced all - with underscore in variable names to
+    satisfy the AIX sh.
+
+Fri Apr 28 12:02:01 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-list-features): Rewrote to accomodate C construct browsing.
+    (c++-element-type-alist): Added.
+
+* br-ftr.el (br-tags-file): Added this variable to point to an Emacs TAGS
+    file temporarily build for use with the current Environment.
+	    (br-feature-tags-init): Set br-tags-file.
+
+==============================================================================
+* V2.9.1 changes ^^^^:
+==============================================================================
+
+* br-menu.el (br-menubar-menu): Fixed bug that prevented OO-Browser popup
+   from coming up under XEmacs.
+
+Thu Apr 27 17:36:06 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-return-type-identifier): Allowed spaces between
+    template parameters.
+
+* br.el (br-features): Fixed bug that did not alert user when a class has
+    no features.
+
+* br-c++-ft.el (c++-feature-decl-or-def): Updated to avoid undesired
+    matches to `enum var {};' and related sorts of constructs for now
+    since we don't deal with them and they would end up in the default
+    [function] class improperly. 
+
+Wed Apr 26 11:32:07 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-lib.el (br-setup-functions): 
+* br.el (br-mode-map): Added br-view-friend bound to {M-v}.  For now, just
+    displays the definition of a C++ friend entry at point.
+* br-c++-ft.el (c++-view-friend): Added to jump to friend definitions.
+
+* br-ftr.el (br-feature-get-signature): Made line-num-minus-one arg
+    optional.  Default is to return feature tag for current entry.
+
+* br.el (br-inherited-features): Modified call to br-list-features to
+    include indent value so that C++ can eliminate friend declarations
+    from inherited feature listings, since friends are not inherited.
+
+* br-c++-ft.el: (c++-scan-features): 
+                (c++-scan-features-in-class): Modified to leave { or ;
+     terminator in feature tags, so can distinguish declarations from
+     definitions.
+                (c++-feature-add-prefix): 
+                (c++-feature-normalize): 
+                (c++-scan-features-in-class): Included friend declarations
+     in feature listings, prefixed by "% ".  Prefixed object creation and
+     deletion features with "+ ".
+
+* br-c++-ft.el: 
+  br-c++.el:    Rewrote to handle a wider variety of template-based
+    definitions.
+
+Tue Apr 25 14:35:54 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-operator-identifier): Fixed to support overloading of
+    operators [] and ().
+
+Mon Apr 24 14:52:11 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el: Rewrote to cache feature name within each tag entry, to
+    speed up feature entry listings.
+  br-c++-ft.el (c++-scan-features-in-class): Fixed to list this feature
+    `operator int() { return i; }', as `operator int' instead of just
+    `int'.
+
+* br-eif-ft.el  (eif-type-tag-separator): 
+  br-objc-ft.el (objc-type-tag-separator): 
+  br-c++-ft.el  (c++-type-tag-separator): Changed from "|" to "," or "@" to
+    support inclusion of more information in feature tag entries.  | could
+    interfere with this in some languages.
+
+Mon Apr 17 17:23:33 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-ftr.el (br-feature-clear-signatures): Fixed V19 version to use
+    optional buf-nm parameter when given.
+            (br-feature-type-regexp): Added `>' character used by Eiffel
+    deferred features.
+
+* br-eif.el:
+  eif-calls.el:
+  br-eif-ft.el: Added full OO-Browser feature browsing capability for Eiffel.
+
+* br-lib.el (br-real-build-alists): Renamed from br-real-build-alists-br
+    and eliminated per-language setting of this function.
+
+==============================================================================
+* V2.9 changes ^^^^:
+==============================================================================
+
+Fri Apr 14 15:31:17 1995  Bob Weiner  <weiner@beopen.com>
+
+* man/oo-browser.ps: Removed from the distribution.  Too large; users who
+    need it can build it themselves.
+
+* *.el: Added KEYWORDS: header.
+
+Thu Apr 13 14:30:30 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-c++.el (c++-get-classes-from-source): Made the scanner tolerate class
+    definitions that don't end with a semicolon.
+
+* br-ftr.el (br-feature-get-tags): Fixed bug in Emacs 19 version which
+    failed to set tags list, causing an error when {C-u F} was invoked.
+
+* man/oo-browser.texi (C++ Element Selection): 
+  br-c++-ft.el (c++-scan-features): 
+               (c++-scan-features-in-class): 
+               (c++-feature-implementors): 
+	       (c++-feature-locate-p): 
+	       (c++-feature-name-to-regexp): 
+	       (c++-feature-signature-to-name): 
+	       (c++-pure-virtual-function-regexp): Added support for
+     including pure virtual functions in class member listings.
+
+Wed Apr 12 17:07:38 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-type-identifier-group): 
+               (c++-feature-decl-or-def): Fixed bug in regexp that could
+    cause a definition of "main()" to show up as "- n" in a listing buffer
+    since the wrong group would grab "mai".
+
+Tue Apr 11 12:55:11 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-clos-ft.el (clos-element-tag-list): Fixed to ignore any parameters
+    following an &keyword since these cannot be specialized (given a specific
+    type).  Also assigned all methods which are not specialized to CLOS
+    default class `t'.
+
+* BR-README: Clarified autoload directions.
+
+* br-c++-ft.el (c++-feature-decl-or-def): Allowed for whitespace following
+   the :: scoping operator.  Some people actually use it.
+
+* br.el (br-feature-signature-regexp): Added a `:' to this expression
+   since this is used by C++ feature completions.
+
+* hmouse-br.el (smart-br): 
+               (smart-br-assist): Modified to invoke the OO-Browser, if
+   not in it.  This can occur if an Action/Assist key press occurs in a
+   browser listing buffer when the browser user interface is not
+   displayed.
+* br.el (br-browse): Modified to do nothing if already in the OO-Browser.
+
+==============================================================================
+* V2.8.6 changes ^^^^:
+==============================================================================
+
+Sat Apr  8 13:53:43 1995  Bob Weiner  <weiner@beopen.com>
+
+* man/oo-browser.texi (Top): Added credits.
+
+Fri Apr  7 11:57:20 1995  Bob Weiner  <weiner@beopen.com>
+
+* man/oo-browser.texi: Changed name from oobr.texi so that filename need
+    not be included in Info directory listings.
+
+Thu Apr  6 10:20:07 1995  Bob Weiner  <weiner@beopen.com>
+
+* man/oo-browser.texi (Using the Mouse): Added a paragraph on the
+    InfoDock/XEmacs menus.
+
+* br-objc-ft.el (objc-scan-features): Skip past body of method after
+    scanning it.
+
+* Makefile (PRELOADS): Added ref to $(SITE-PRELOADS) for customization of
+    the Lisp libraries loaded before byte-compiling any files.
+           (BATCHFLAGS): Removed -no-site-file so addition of the
+    OO-Browser directory to load-path may be done in site-start.el.
+
+Wed Apr  5 17:11:31 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-c++.el (c++-parent-regexp): Added an extra c++-comment-regexp
+    so that class parents with following C++ comments are found:
+        class cl : public parent
+	  // This is a
+	  // silly set of comments
+	  {}
+
+Wed Apr  5 09:07:35 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-tree.el (br-tree-x-load-tree-file): Coerced string to int for concat.
+
+==============================================================================
+* V2.8.5 changes ^^^^:
+==============================================================================
+
+Mon Apr  3 18:16:35 1995  Bob Weiner  <weiner@beopen.com>
+
+* br.el (br-inherited-features): Added this command to show all features
+    of a class.
+        (br-inherited-features-flag): Added to control whether
+    `br-features' displays all inherited features or just lexically
+    included ones.  Default is t, all inherited features.
+
+Sun Apr  2 18:08:23 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-menu.el: Added this file of menus for the OO-Browser from InfoDock
+    and adapted for use under standard XEmacs.
+
+Sat Apr  1 14:43:00 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-func-args-regexp): 
+	       (c++-func-args-string): Modified to add optional spaces
+    between a C++ type and `*' or `&' characters since the spacing
+    sometimes varies between declaration and definition, e.g. declaration
+    is "func(const List<T>&);" and def is "func(const List<T> &id) {}".
+
+* br-ftr.el (br-edit-feature): Added to jump to feature when tag-entry and
+    file of feature def have already been computed.
+* br-ftr.el    (br-find-feature): 
+  br-c++-ft.el (c++-feature-tags-lookup): Modified to call br-edit-feature.
+
+Fri Mar 31 13:44:57 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-class-decl-p): Fixed to properly match to template classes.
+
+* br-c++.el (c++-get-parent-name): Fixed to handle class definitions whose
+    parent is an instantiation of a template class.
+
+* br-c++-ft.el (c++-feature-signature-to-regexp): Rewrote to ignore the
+    template parameter names when matching to a class template method.
+
+==============================================================================
+* V2.8.4 changes ^^^^:
+==============================================================================
+
+Tue Mar 28 15:13:51 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-type-identifier): 
+  br-c++.el (c++-identifier): Updated to handle C++ names with multiple
+    template parameters, e.g. class<T1,T2,T3>
+
+* tree-x: New release that redraws whole canvas when a tree is collapsed
+    as a stopgap measure to fix improper tree display after collapse (trees
+    collide and overwrite one another).
+    Added a separate resource file for color displays.
+    Renamed sample TREE to TREE.objc.
+    Added sample TREE.c++ file as example of browsing C++ template classes.
+
+Mon Mar 27 01:07:18 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-start.el (br-member): Use builtin member function when available.
+
+* br-c++.el (c++-get-classes-from-source): Added support for new style
+    "template <T> class name<T> {}" definitions along with template
+    method definitions.
+* br-c++.el (c++-get-class-name): 
+   	    (c++-class-definition-name): 
+	    (c++-scan-parents): 
+	    (c++-get-parent-name): Added for template support.
+* br-c++-ft.el (c++-scan-features-in-class): Added for template support.
+
+Sun Mar 26 14:06:10 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-add-default-classes): Added.
+* c++-browse.el (c++-browse-setup): Added hook which calls
+    c++-add-default-classes, so can browse global C++ functions and C
+    functions.
+                (c++-scan-features): Improved handling of non-class member
+    functions and eliminated false matches to class definitions.
+
+* br.el (br-unique): Rewrote to handle all entry types.
+        (br-order): Rewrote both of these functions to maintain element
+    tags under Emacs 19.
+
+* br-ftr.el (br-feature-clear-signatures):
+            (br-feature-get-signature):
+	    (br-feature-get-tags):
+	    (br-feature-put-signatures): Added Emacs 19 versions that use
+    text-properties so that tag associations stay with entry lines after a
+    buffer is filtered, e.g. by br-match-entries.
+
+Sun Mar 26 01:03:38 1995  Bob Weiner  <weiner@meltdown.valhalla (Bob Weiner)>
+
+* br.el (br-match-entries): Replaced invalid call to br-filter with
+    br-match-entries.
+
+Sat Mar 25 16:15:20 1995  Bob Weiner  <weiner@beopen.com>
+
+* Makefile (elc): Cleaned up user output produced by this target.
+
+* br.el (br-next-buffer): Clear out any feature tags that may have been
+    associated with this buffer, so we don't mistakenly reference them.
+
+==============================================================================
+* V2.8.3 changes ^^^^:
+==============================================================================
+
+Fri Mar 24 10:42:11 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-c++-ft.el (c++-scan-features): Fixed so skips to end of a feature
+    definition before looking for another.  This prevents matches to things
+    that look like feature definitions, e.g.  if(flag) {}, inside feature
+    bodies.
+
+* br.el (br-this-level-entries): Added.  Returns list of entry names
+    from current listing.
+        (br-match-entries): Added to filter current entry listing.
+
+* Makefile (elc): Rewrote in a portable manner so that one emacs
+    invocation builds all elc files.
+
+Thu Mar 23 17:32:50 1995  Bob Weiner  <weiner@beopen.com>
+
+* br.el (br-browse): Fixed so br-mode-hook and language-specific hook is
+    run each time the browser is invoked, not just the first time in an
+    Emacs session.
+
+* br-lib.el (br-real-delete-class): Stopped trying to replace a hash table
+    key which did not exist.
+
+* br-c++-ft.el (c++-scan-features): Fixed bug that generated improper
+    feature tags for global functions and destructors, keeping them from
+    showing up properly in listings.
+
+* br.el (br-view-full-frame): Fixed bug in displaying the command to use
+    to return to the OO-Browser, if said command is not bound to a key.
+    Also fixed bug that failed to bury browser buffers when using this
+    command.
+
+Wed Mar 22 03:20:39 1995  Bob Weiner  <weiner@beopen.com>
+
+* Makefile (EMACS): Changed default setting of this variable to XEMACS.
+
+* hmouse-br.el: Renamed a bunch of Hyperbole functions and variables.
+
+Tue Mar 21 01:05:28 1995  Bob Weiner  <weiner@beopen.com>
+
+* hasht.el (hash-replace): Fixed omission of argument to (error) call.
+    This was causing {C-c C-d}, br-delete to fail.
+
+* Makefile: Fixed problems in a number of areas with different versions
+    of make.
+
+* br-c++-ft.el (c++-feature-signature-to-name): Fixed recently added
+    problem of deleting space and [] from names such as "operator []".
+
+* Makefile (oo-browser-env): Added this target for use with batch
+    Environment building.  Uses environment variable OO_BROWSER_ENV as
+    the Environment to build.
+* br-env.el (br-env-batch-build-browse): Added to enable browsing an
+    Environment after it has finished building in the background.
+            (br-env-batch-build): Modified to only load needed browser
+    libraries once, rather than once per environment built.
+            (br-env-build): Added ability to build environments in the
+    background using optional parameter BACKGROUND-FLAG.
+            (br-env-rebuild): Added prompt to build in background when
+    called interactively.
+
+Mon Mar 20 00:16:46 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-eif.el (eif-get-parents-from-source): Rewrote to support Eiffel 3
+    inheritance clauses.
+
+==============================================================================
+* V2.8.2 changes ^^^^:
+==============================================================================
+
+* br-c++-ft.el: Added class name at the front of feature tags as in other
+    languages to speed tag lookups which can now often use string lookups
+    rather than regexp lookups.
+
+* br-lib.el (br-delete-space): Added this function and used in br-c++-ft.el.
+
+* br.el (br-where): Rewrote to handle entities in addition to classes.
+
+* br-clos-ft.el (clos-element-tag-list): Fixed bug that added nil values
+    to constant and variable definition tags, preventing the browser from
+    finding them when trying to view their definitions.
+
+                (clos-feature-name-to-regexp): Rewrote to work properly.
+
+Sun Mar 19 23:46:34 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-clos.el (clos-type-identifier-chars): Added back [] characters so
+    that default class features will be shown properly in listing buffers.
+
+Fri Mar 17 12:46:06 1995  Bob Weiner  <weiner@beopen.com>
+
+* Makefile (elc): Rewrote to compile all out of date .elc files with one
+    invocation of Emacs.
+
+Thu Mar 16 12:33:24 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-init.el (br-after-term-init): Eliminated need to load set.el.
+    Provides faster startup.
+
+* br-vers.el: Added this file and `br-version' variable so can get OO-Browser
+    version number programmatically.
+
+Wed Mar 15 14:13:19 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-init.el (br-after-term-init): Renamed all `smart-*-meta*' functions
+    to `smart-*-assist*'.
+
+==============================================================================
+* V2.8.1 changes ^^^^:
+==============================================================================
+
+Fri Mar 10 14:40:55 1995  Bob Weiner  <weiner@beopen.com>
+
+	* OO-Browser V2.8 is released.
+
+* man/oo-browser.texi: Rearranged and renamed many sections for clarity.
+                (Browsing Categories): 
+                (Browsing Protocols): Added these two sections.
+
+* br-compl.el (br-complete-type): Generalized for languages other than C++.
+
+* br.el (br-next-class): 
+        (br-prev-class): Renamed to br-*-entry.
+        (br-next-class-window): 
+        (br-prev-class-window): Renamed to br-*-listing-window.
+
+Mon Mar  6 12:04:30 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-lib.el (br-setup-constants): Removed br-show-features setting from
+    here so that it is a global setting that applies to all languages.
+    Otherwise, it would typically be set to nil each time you browsed an
+    Environment using a different language.  This is not what most users
+    would want.
+
+* br-tree.el (br-tree-filter): Rewrote for improved efficiency.  Also
+   display an invalid command message and beep if graphical browser sends
+   an invalid command.  Also fixed bug in handling long feature signatures
+   which come in as multiple output strings.
+
+Sun Mar  5 12:24:28 1995  Bob Weiner  <weiner@beopen.com>
+
+* Makefile (tags): Added tree-x and tree-nx source tags into TAGS build.
+
+* tree-x: Replaced the old Motif X OO-Browser with the new Xt-based one.
+
+* br-tree.el (br-tree-do-cmd): Fixed bug that could cause
+    br-feature-tree-command-p to be invoked in languages for which it is not
+    defined.
+
+* br-objc-ft.el (objc-feature-locate-p): Fixed so if try to browse method2
+    from class2 which is defined after method1 of class1 in the same file,
+    and method1 and method2 have the same name, it works.  Previously, the
+    class in which the method was defined was ignored under Objective-C.
+
+* br.el (br-children): 
+        (br-parents): 
+	(br-ancestors)
+	(br-descendants): When applied to a single class, eliminated narrow
+   of listing to that class.  Instead insert class in output listing, just
+   like when applied to a whole listing.  This also makes producing
+   graphical displays of a listing simpler.
+
+Sat Mar  4 14:38:45 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-objc-ft.el (objc-list-categories): 
+  	        (objc-list-protocols): Added to support category and
+  protocol browsing.
+* br-lib.el (br-setup-functions): Added per-language "list-features" and
+    "list-protocols" functions.
+
+Fri Mar  3 14:00:24 1995  Bob Weiner  <weiner@beopen.com>
+
+* br.el (br-mode-map): Added {C} = br-categories and {P} = br-protocols.
+        (br-categories): Added to show class categories.
+        (br-protocols): Added to show protocols to which a class conforms.
+
+* br-lib.el (br-real-add-class): Trigger error if class-name is nil or if
+    replace is attempted on a non-existent class.
+
+* br.el (br-features): Modified so if no feature definitions for the class
+   in the Environment, then browse feature declarations by displaying the
+   class definition.
+
+* br-compl.el (br-class-completions): 
+  br.el (br-show-top-classes):
+        (br-match): Added (br-class-list-filter classes) so each language
+    can filter the set of classes listed when showing top classes or
+    matching to class names.  Set this language-specific function to
+    'identity for all languages except Objective-C where protocols and
+    class categories are filtered out.
+
+Fri Mar  3 02:03:42 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-lib.el (br-real-build-al)
+    (br-search-directory): Modified scanning message to lead with
+    last path component in case long paths in the minibuffer would
+    otherwise obscure it.
+
+* br-objc-ft.el
+  br-objc.el
+  objc-brows.el: Numerous changes to support category and protocol browsing.
+
+Thu Mar  2 00:16:49 1995  Bob Weiner  <weiner@beopen.com>
+
+* br.el (br-interrupt):
+        (br-quit):       Added test to ensure that are in the OO-Browser
+    within the selected frame before interrupting.
+
+* br-c++-ft.el (c++-list-features): 
+  br-objc-ft.el (objc-list-features): Fixed bug where 2nd and 3rd search
+    args were reversed.
+
+* br-ftr.el (br-feature-type-regexp): Added this constant to match to
+    leading character of an OO-Browser feature listing.
+* br-ftr.el (br-feature-entry): 
+  br-compl.el (br-find-class-name):
+  br-objc-ft.el (objc-feature-signature-to-regexp):
+    Used this new constant.
+
+* br.el (br-sort-options): Added to control the way listing buffers are sorted.
+
+Wed Mar  1 10:40:54 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-compl.el (br-all-classes): Rewrote to omit sort in most cases, since
+    many functions that call this will do their own sorting.
+
+* br-lib.el (br-class-path): Made this return nil if class-path is equal
+    to br-null-path.
+
+* br.el: Redefined and rebound these commands to be more representative of
+  what they now do, considering that class features may now be other
+  things than just routines and that {f} and {F} will now list feature
+  names and feature tags respectively.
+	OLD-NAME      NEW-NAME                   OLD-KEY  NEW-KEY
+	=========================================================
+	br-find       Use br-edit-entry instead.         {C-u e}
+	br-routines   br-features                   r       f
+
+Tue Feb 28 10:11:04 1995  Bob Weiner  <weiner@beopen.com>
+
+* hasht.el (hash-length):
+           (hash-size): Changed these 2 functions to return size of the
+    hash-table structure rather than number of elements.
+           (hash-count): Added this to return number of elements in hash-table.
+
+* br-clos-ft.el (clos-element-tag-list): Renamed from `clos-element-tag' and
+    changed to return a list of tags since one method definition may
+    generate features in many classes.
+
+* hasht.el (hash-copy):      Added to copy first level of a hash table.
+           (hash-deep-copy): Added to copy all levels of a hash table.
+    Redesigned internal data structure so can tell hash tables from
+    vectors, so that copy routines know how to copy symbol values from the
+    hash table obarray.
+
+Sun Feb 26 17:03:37 1995  Bob Weiner  <weiner@beopen.com>
+
+* man/oo-browser.texi (Browsing Implementors): 
+                (Browsing Elements): Added these two sections.
+
+Sat Feb 25 12:10:29 1995  Bob Weiner  <weiner@beopen.com>
+
+* br.el (br-find): Added support for CLOS element lookup.
+
+* br-objc-ft.el (objc-feature-signature-to-name): Fixed bug that prevented
+    class name from being included when with-class option is given.
+
+* br-init.el (br-skip-dir-regexps): Added skip of SCCS subdirectories and
+    made this a user variable.
+
+* Makefile: Changed so that elc target just rebuilds out of date elc
+  files, not all elc files.  all-elc now does that.
+
+Fri Feb 24 17:19:37 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-compl.el (br-buffer-menu): Rewrote to handle case where filename is
+    stripped from path listed under File section in Buffer-menu.  Use
+    buffer names instead.  Slower, but correct in more cases.
+
+Thu Feb 23 10:51:53 1995  Bob Weiner  <weiner@beopen.com>
+
+* man/oo-browser.texi (Glossary): Added a number of OO terms.
+
+* br-ftr.el (br-feature-get-signature): Changed to return nil when no
+    feature signature is found, instead of "".
+
+* br.el (br-this-level-features): Modified to list features only, not classes.
+
+* br.el (br-implementors): 
+  br-c++-ft.el (c++-feature-implementors): 
+  br-clos-ft.el (clos-feature-implementors): 
+  br-objc-ft.el (objc-feature-implementors): Changed to support browsing
+    implementor feature from each class.
+
+* br-objc-ft.el (objc-feature-implementors): 
+  	        (objc-feature-matches): Fixed these functions so that
+    br-implementors works properly for Objective-C.
+
+Wed Feb 22 14:31:55 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-lib.el (br-build-lib-htable): Added (run-hooks 'br-after-build-lib-hook).
+            (br-build-sys-htable): Added (run-hooks 'br-after-build-sys-hook).
+    This allows language-specific actions which add to library and system
+    classes after the source code has been scanned, e.g. to add categories
+    as classes.
+  br-clos-ft.el:  Used above hook to add element category classes to system
+    classes, since the elements in these classes change as the system
+    evolves.
+
+Tue Feb 21 14:38:47 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-tree.el
+  man/oo-browser.texi
+  br-help
+  br.el (br-mode-map): Renamed `br-tree-routines-toggle' to
+    `br-tree-features-toggle' and moved key binding from {M-r} to {M-f}.
+    Renamed `br-show-routines' to `br-show-features'.
+
+* *.el: Changed all -ftr- to -feature-.
+* br*[fr]t.el: Clarified many symbol names within these files.
+
+* br-clos-ft.el
+  br-clos-rt.el: Added these 2 files to support feature browsing in CLOS
+    and BWlib, my own object system which looks like CLOS.
+
+Fri Feb 17 00:12:37 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-objc-rt.el (objc-scan-routines-in-class): 
+* br-c++-rt.el  (c++-scan-routines-in-class): Fixed bug that failed to save
+    normalized form of routine for return.
+
+Mon Feb 13 11:18:46 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-init.el (br-after-term-init): Don't load `br-menu' under tty InfoDock.
+
+Sun Feb 12 16:09:29 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-clos.el (clos-src-file-regexp): Updated to scan .el files, so
+    will-read CLOS-like definitions in Emacs Lisp code.  Normal CLOS code
+    directories will not contain any such code, so will not be affected.
+
+Thu Feb  9 13:19:38 1995  Bob Weiner  <weiner@beopen.com>
+
+* hasht.el (hash-make): Modified to accept an integer as the first
+    argument, meaning create an empty hash table with that minimum size.
+
+Mon Jan  9 12:00:40 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-c++.el (c++-in-c-comment-p):
+            (c++-to-comments-begin): Fixed to avoid treating //*** comments
+    as multi-line comments.
+
+* br-env.el (br-env-copy): Changed `intern-soft' to `intern' to avert bug
+    that appears when try to set an as yet undefined symbol.
+
+Tue Jan  3 16:49:44 1995  Bob Weiner  <weiner@beopen.com>
+
+* br-c++.el (c++-src-file-regexp): Modified to handle .cpp and .hpp
+    suffixes used by someone on OS/2.
+
+Wed Dec 21 16:30:27 1994  Bob Weiner  <weiner@beopen.com>
+
+* br-mouse.el
+  MAKE-DIST
+  br-load.lsp:  Removed these files which are no longer needed.
+
+* BR-README: Added install directive which autoloads br-env-browse, so can
+    be used to initialize the OO-Browser.
+* br-init.el (br-after-term-init2): Added autoload of br-env-browse and
+    add of oo-browser/hypb/ directory to load-path when full Hyperbole
+    system is not available.
+
+Fri Dec 16 19:15:51 1994  Bob Weiner  <weiner@beopen.com>
+
+* br-env.el (br-env-browse): Added this function to invoke the appropriate
+    language OO-Browser given an Environment as an argument.  This can be
+    used to support OO-Browser invocation by mouse clicking on Env file
+    names.
+
+Fri Dec 16 19:58:24 1994  Bob Weiner  <weiner@beopen.com>
+
+* br-init.el (br-after-term-init2): Changed so menus are only loaded under
+    XEmacs-based InfoDock.
+
+Thu Dec 15 22:26:15 1994  Bob Weiner  <weiner@beopen.com>
+
+* tree-x/intf.c: Added (XtPointer) coercions for 4th arg of XtAddCallback
+    calls to suppress compiler warnings.
+
+* br-objc-ft.el (objc-func-args-regexp): 
+                (objc-func-args-string): 
+  br-c++-ft.el  (c++-func-args-regexp): 
+                (c++-func-args-string): Fixed replacement of spaces so that
+    clicking on a declaration in a .h file jumps to the associated
+    definition in a source file.
+
+Thu Dec 15 12:37:31 1994  Bob Weiner  <weiner@beopen.com>
+
+* tree-x/intf.c: Rewrote to handle X displays of varying sizes.
+
+* br-objc-ft.el (objc-feature-def-pat): 
+  br-c++-ft.el  (c++-feature-def-pat): Rewrote to simplify and to eliminate
+    call to read-from-string, which may be unreliable in this usage.
+
+* tree-x/input.c (GetNextToken): Changed `char c' to `int c', otherwise,
+    cannot detect EOF and all possible chars.
+
+Fri Dec  9 18:05:50 1994  Bob Weiner  <weiner@beopen.com>
+
+* br-objc-rt.el (objc-routine-normalize): Rewrote to reduce strings of
+    spaces to one space.
+                (objc-ftr-def-pat): For each space, match to 0 or more
+    spaces.
+
+* br-c++-rt.el  (c++-routine-normalize): Rewrote to reduce strings of
+    spaces to one space.
+                (c++-ftr-def-pat):  For each space, match to 0 or more
+    spaces.  Also modified to match to routines which have
+    a // comment following each argument, e.g.
+    UI_EnmField::Fill_internal
+    (
+      Field_value__front_end_internal * field_msg,  // Data area to read from
+      int                             & amount_taken   // Amount we read
+    )
+  {
+  }
+
+* br-env.el (br-env-force-load): Fixed paren bug which caused use of wrong
+    file name for Envir when default was accepted.
+
+Thu Dec  1 13:44:25 1994  Bob Weiner  <weiner@beopen.com>
+
+* br.el: br-listing-window-p
+	 br-non-listing-window-p - Added these predicate macros to centralize
+   testing for browser window types.
+
+* br.el: Modified handling of br-in-browser variable to account for FSF Emacs
+    19 and XEmacs multi-frame capabilities.
+* br-init.el: Added conditional definition for selected-frame.
+
+* BR-README: Updated installation and build directions.
+* Makefile:  Added HYPERBOLE mouse support file dependencies and changed
+    `dist' target so it actually produces a standalone tar file
+    distribution of the OO-Browser.
+
+==============================================================================
+* V2.8 changes ^^^^:
+==============================================================================
+
+Mon Oct 24 21:28:09 1994  Bob Weiner  <weiner@beopen.com>
+
+* Makefile: Added for automated building of the OO-Browser.  See the
+    documentation at the top of this file for instructions on usage.
+
+Sun Oct 23 20:28:37 1994  Bob Weiner  <weiner@beopen.com>
+
+* br-lib.el (br-relative-path): Added so that relative pathnames do not
+    come out longer than absolute ones.
+
+Sun Oct 23 15:45:28 1994  Bob Weiner  <weiner@beopen.com>
+
+* man/br-user.texi: Renamed to oo-browser.texi, along with oo-browser.info.
+
+Thu Oct 20 15:47:15 1994  Bob Weiner  <weiner@beopen.com>
+
+* br-env.el (br-env-select-lang): Added popup-dialog box for language
+    selection under XEmacs when command is invoked via the mouse.
+
+Wed Oct 19 18:21:45 1994  Bob Weiner  <weiner@beopen.com>
+
+* br-env.el (br-env-lang-var): Changed Environment file name from:
+    (concat br-env-dir ".br-" lang-prefix "env")
+    to "OOBR".
+            (br-env-default-file): Added to compute default Env file.
+    Modified other br-env.el functions to use this function.
+
+* br-ftr.el (br-ftr-tags-init): Changed br-ftr-tags-file from using "-m"
+    suffix to using "-FTR" suffix.
+
+Wed Sep 21 14:52:39 1994  Bob Weiner  <weiner@beopen.com>
+
+* br-ftr.el (br-ftr-found-p): Fixed bug that could cause return value of
+    nil when feature was found and source file of feature definition was
+    read from disk the first time.
+
+Wed Sep 21 11:45:26 1994  Bob Weiner  <weiner@beopen.com>
+
+* br.el (br-mode): Added (run-hooks 'br-mode-hook).
+
+Wed Mar 30 21:07:37 1994  Bob Weiner  <weiner@beopen.com>
+
+* br.el (br-feature): Fixed to trigger an error if can't find match within
+    source code for a feature declaration tag.
+
+* br.el (br-to-view-window): Fixed to set *br-prev-class-window*.
+        (br-to-from-viewer): Fixed to move to some other window even if 
+    *br-prev-class-window* is not set.
+
+* br-ftr.el (br-ftr-current): Fixed bug that removed routine signature
+    information which followed the parameter list, e.g. function() const.
+
+* br-lib.el (br-real-delete-class): Fixed bug in call to hash-replace.
+            (br-major-mode): Added and replaced calls to br-lang-mode with
+    this, which only sets the mode if it is not set already.
+
+* c++-browse.el (c++-browse-setup): Added conditional for cc-mode, new
+    name for C++ mode under Emacs.
+
+Thu Aug 19 21:05:00 1993  Bob Weiner  <weiner@beopen.com>
+
+* br-lib.el:   Fixed `br-real-build-alists-br' to not erase routine tags file
+    when called.  This would lead to an empty routine file if sys paths had
+    methods but lib paths was built after and it did not have methods.
+  br-env.el:   Updated `br-env-build' to delete br-ftr-tags-file and its
+    buffer before doing build since is no longer done in `br-real-build-alist-br'.
+
+Sat Apr 24 15:29:46 1993  Bob Weiner  <weiner@beopen.com>
+
+*  br-xbr.el:  Renamed to br-tree.el.
+   xbr:        Renamed to tree-x
+   tree-nx:    Added for NEXTSTEP graphical browsing.
+
+Fri Apr 23 12:34:32 1993  Bob Weiner  <weiner@beopen.com>
+
+*  br-init.el, br-lib.el: Added `br-skip-dir-regexps' to make list of
+   directories skipped by browser file scans programmable.
+
+Sat May  4 07:02:58 1991  Bob Weiner  <weiner@beopen.com>
+
+*  br-lib.el, br-eif.el: Added
+     (let ((inhibit-local-variables nil))
+   to prevent setting from prompting user when files are read in.
+
+Mon Dec 24 07:21:37 1990  Bob Weiner  <weiner@beopen.com>
+
+* br.el:  Modified (br-help) to remove local keymap so normal movement
+	   commands work within help buffers.
+
+==============================================================================
+V2.6 changes ^^^^:
+==============================================================================
+
+Thu Dec 20 19:04:32 1990  Bob Weiner  <weiner@beopen.com>
+
+** br.el, br-lib.el, br-init.el:  Added full support for use of non-Emacs
+      browser viewers and editors.  All such tools are handled as
+      sub-processes, so they can be kill off through the Emacs interface if
+      desired.
+
+** br.el: Added (br-toggle-keep-viewed) bound to {C-c v} to keep/not keep
+     all viewed buffers in memory.  Default is to keep only last one.
+
+** br.el: Modified (br-match) so it allows repeated filtering of class lists to
+   hone in on desired classes.
+
+** br-xtree.el:  Renamed to br-xbr.el.
+
+Wed Dec 19 15:24:55 1990  Bob Weiner  <weiner@beopen.com>
+
+** br-xtree.el:  Added support for multiple simultaneous xtree browsing
+     sessions and optimized context time maximally when outside of
+     OO-Browser UI and pretty well when in UI (just have to sort
+     classes in order to display).
+
+Mon Dec 17 01:16:49 1990  Bob Weiner  <weiner@beopen.com>
+
+** br.el:  Added {H} (br-help-ms) command to display mouse help.
+   br-lib.el: Added `br-keep-viewed-classes' flag which if nil
+     deletes each class file as a new one is viewed.  By default, is nil.
+     t value leaves viewed classes around for further manipulation.
+
+Wed Oct 17 22:12:00 1990  Bob Weiner  <weiner@beopen.com>
+
+** br.el:  Improved ordering of large class lists by using UNIX "sort".
+
+Mon Oct 15 01:26:56 1990  Bob Weiner  <weiner@beopen.com>
+
+** eif-calls.el:  br-info-class did not work since `eif-try-for-routine-call'
+     used the wrong parameters for string matching.  Fixed.
+
+Sat Oct  6 15:12:36 1990  Bob Weiner  <weiner@beopen.com>
+
+** br-eif-ft.el:  Created this file.  Allows selection of a feature name in a
+     class export clause and moves point to feature definition if within the
+     same source file.  Also goes to class def when class name is selected.
+
+Mon Oct  1 18:13:46 1990  Bob Weiner  <weiner@beopen.com>
+
+** hash.el: Removed sorting of value elements in `hash-make' function.
+   br-eif.el: Sorted class list elements in `eif-real-build-paths-alist'.
+   br-lib.el: Removed list reversal from `br-real-build-parents-alist'
+     and `br-real-build-alists-br'.
+     Sorted each set of classes in path list construction in
+     `br-real-build-al'.
+   These changes fixed display of parents so that they are listed in the same
+     order as they are in the source file.
+
+** br-env.el: Eliminated use of `br-use-children-htable'; now assume always
+     true. This option added virtually no value.
+
+Wed Sep 26 14:07:34 1990  Bob Weiner  <weiner@beopen.com>
+
+** br.el: Fixed `br-narrow-to-class' to work with info-browse class names.
+          Added error handling into `br-view' for when class which is
+	  referenced but not defined in environment is selected.
+
+** br-env.el:  Modified `br-env-set-htables' function to add class
+     names that are referenced but not defined into the library part of the
+     environment.
+
+Tue Sep 25 13:22:57 1990  Bob Weiner  <weiner@beopen.com>
+
+** br-c++-ft.el:  Added `c++-include-dirs' variable used to set extra include
+     directories to search.
+
+** br-c++-ft.el:  Created this file.  Allows selection of a class declaration
+     within a class definition and moves point to member definition if within a
+     file in the same directory.  Handles overloading but not inherited members
+     yet.  Also goes to class def when class name is selected.
+
+** br-info.el:
+   info-brows.el:  Added these two files, allows hierarchical browsing,
+     searching of sets of Info manuals.
+
+**  br-lib.el:
+    br.el:      Modified `br-view' and `br-find-class' slightly to accomodate
+      special needs of the Info browser.
+
+** br-clos.el:
+   clos-brows.el:
+   br-smt.el
+   smt-browse.el:  Tested and added CLOS and Smalltalk browser support.
+
+Fri Sep 21 00:26:17 1990  Bob Weiner  <weiner@beopen.com>
+
+** br.el:  Stored current window line in `*br-level-hist*' in order to make
+    `br-exit-level' position all lines in buffer exited to, exactly as they
+    were before.
+
+** br.el:  Switched default at browser startup `br-browse' and when refresh
+     screen `br-refresh' or rebuild environments `br-sys-rebuild' and
+    `br-lib-rebuild' to display all classes rather than just the top-level
+    classes as they did before.  This prevents novice confusion over where his
+    classes are and allows easier access to all users.
+
+Tue Sep 18 16:37:59 1990  Bob Weiner  <weiner@beopen.com>
+
+** br-c++.el:  Fixed def of `c++-identifier' to allow `~' as first identifier
+     character to account for destructor functions.
+
+** br.el:  Added `br-interrupt' function.  Is used by `br-quit' and
+     `br-view-full-screen' to bury all browser buffers. 
+
+Fri Sep 14 03:04:31 1990  Bob Weiner  <weiner@beopen.com>
+
+** br-c++.el:  Kept from matching translated C source files that end in ..[cC].
+
+** br-init.el:  Made browser Lisp files autoload when needed, so eliminated
+     conditional flags which enabled each language, e.g. `br-use-eif'.
+     Put browser invocation key bindings at top of file so user can easily
+     change them.
+
+Mon Sep  3 16:32:16 1990  Bob Weiner  <weiner@beopen.com>
+
+** br-mouse.el:  Modified `smart-br' to display browser help when a blank class
+     listing buffer is clicked in.
+     Added `smart-br-cmd-select' function.  Make note in user manual that
+     messages will disappear from minibuffer once release the mouse button
+     under some window systems, to see message, simply hold the button down
+     until you have read the message.
+
+** br-init.el: Changed `br-mouse-setup' to use `smart-key-mouse' rather than
+     `smart-key' under SunView and Apollo DM.
+
+** br.el: Changed `br-help' function so that it uses `br-mode' as the major
+     mode for the browser help buffer.  This is necessary to support the direct
+     selection of commands from the help buffer.
+
+Sat Sep  1 19:49:25 1990  Bob Weiner  <weiner@beopen.com>
+
+** br.el: Made `br-mode' function interactive.
+
+Thu Aug 30 23:41:02 1990  Bob Weiner  <weiner@beopen.com>
+
+** br-mouse.el: Fixed so would work properly with X windows.  Changed
+     `smart-key' and `smart-key-meta' so they take a single optional arg
+     list rather than individual args that end up grouped into a list.
+     This works better for X and is unused by most other window systems.
+
+** br-init.el: Made setup of mouse control of browser automatic for X,
+     SunView and Apollo DM.
+
+
+
+* Changes for version 1.2.4
+
+Wed Aug 29 18:03:12 1990  Bob Weiner <weiner@beopen.com>
+
+** Fixed problem with `br-add-class-file' in "br.el" that set
+     children-htable values improperly.
+
+
+Thu Aug 16 03:31:54 1990  Bob Weiner  <weiner@beopen.com>
+
+** Modified `br-find-class' in "br-lib.el" in the case when
+    `br-narrow-view-to-class' is set to nil.  Previously, it just moved
+    point to the beginning of the file in which the desired class was found.
+    Now places point at the start of the class.
+
+** Changed default value of `<lang>-narrow-view-to-class' to nil for all
+     languages.
+
+
+* Changes for version 1.2.3
+
+Mon Aug  6 00:58:29 1990  Bob Weiner  <weiner@beopen.com>
+
+** Changed all filenames to be 14 or fewer chars.
+
+
+* Changes for version 1.2.2, from 1.2.1
+
+Wed Jul 25 1990  Bob Weiner    <weiner@beopen.com>
+
+** Fixed `br-where' bound to {w} in "br.el" so when called with a prefix
+     argument, displays class path properly.
+
+** Added (require 'compile) to "eif-ise-er.el" so that key definition in
+     compile would not override eif-ise-er definition of {C-x `} when library
+     was autoloaded.  Without this change, error parsing failed the first time
+     it was invoked in each Emacs session.
+
+** Added `eiffel-find-feature' and `eif-find-feature' to "br-eif.el".  Not yet
+     bound to keys, more work must be done in order to do this.
+
+** Changed get parents code in Eiffel to support comments between class
+     names in `inherit' clause (also changed `eif-parent-regexp' for same
+     reason).
+
+

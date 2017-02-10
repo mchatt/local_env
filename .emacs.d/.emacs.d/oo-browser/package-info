@@ -1,0 +1,19 @@
+(oo-browser
+  (standards-version 1.0
+   version "3.07"
+   author-version "3.07"
+   date "1998-08-14"
+   build-date "1998-08-14"
+   maintainer "BeOpen.com <support@beopen.com>"
+   distribution stable
+   priority high
+   category "id-lisp"
+   dump nil
+   description "OO-Browser"
+   filename "oo-browser-3.07-pkg.tar.gz"
+   md5sum "b8038f81058c795ea294ef16ebb019b5"
+   size 392304
+   provides (c++-browse clos-browse eif-browse hasht hmouse-br info-browse java-brows objc-brows pyth-brows smt-browse)
+   requires (hyperbole xemacs-base)
+   type regular
+))

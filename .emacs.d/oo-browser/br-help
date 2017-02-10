@@ -1,0 +1,75 @@
+OO-Browser Keyboard Help                  {H} displays mouse help
+
+--- Basic Commands ---
+
+{C-c C-l} load/create an Envir  {C-c C-r} reinitialize browser display
+			        {C-c C-s} save the current Environment
+
+{m} / {M} match classes/entries {H}       mouse help       {h}     this help
+{i}       class info            {w}       where entry def  {M-c}   class stat
+{q}       exit OO-Browser       {C-u q}   quit OO-Browser  {M-e}   Env   stat
+{x}       exit level            {b}       list buffers, select one to display
+
+--- Viewing ----
+
+{v}       view entry            {C-u v}   prompt for entry to view
+{V}       view C++ friend def
+{e}       edit entry            {C-u e}   prompt for class or feature to edit
+{j}       jump to declaration   {C-u j}   prompt for declaration to jump to
+{J}       edit declaration      {C-u J}   prompt for declaration to edit
+
+{f}       class features        {C-u f}   features of all listed classes
+{=}       class attributes      {C-u =}   attributes of all listed classes
+{r}       class routines        {C-u r}   routines of all listed classes
+{M-0 f}   toggle showing/hiding of inherited class features
+{F}       feature signature     {C-u F}   feature sigs of all listed features
+
+{SPC}     scroll viewer up      {DEL}     scroll viewer down
+{.}       scroll view up a line {,}       scroll view down a line
+{>}       scroll to viewer end  {<}       scroll to viewer beginning
+
+{C-v}     scroll listing up     {C-n}     next listing entry
+{M-v}     scroll listing down   {C-p}     prev listing entry
+
+{t}       top classes    {A} or {C-u t}   all classes  {C-c C-e} rebuild Env
+{l}       top Library classes   {C-u l}   all Lib classes    {L} rebuild Lib
+{s}       top System classes    {C-u s}   all Sys classes    {S} rebuild Sys
+{u}       list unique classes
+
+{#}       count listing entries {1}       viewer full screen
+{o}       order classes         {C-c C-v} to or from viewer wind
+
+--- Relations ---
+
+{a}       class ancestors       {C-u a}   ancestors,       all listed classes
+{d}       class descendants     {C-u d}   descendants,     all listed classes
+{@}       class at inher level  {C-u @}   at inher level,  all listed classes
+{I}       entity implementors   {C-u I}   implementors,    all listed entities
+{P}       conforming protocols  {C-u P}   conforming protocols, all listed classes
+
+{p}       class parents         {C-u p}   parents,  all listed classes
+{c}       class children        {C-u c}   children, all listed classes
+
+--- Environment Names ---
+
+{M-a} add an Env name           {M-r} replace name's associated Env
+{M-n} rename Environment        {M-m} remove a name from an Env 
+{M-l} list names with Envs
+
+--- Graphical Views ---
+
+{M-d}     descendant tree of a class    {C-u M-d} descendant tree, all classes
+{M-f}     toggle show/hide features     {M-g}     graphical view of list
+{M-k}     kill all graphical processes
+
+--- Miscellaneous ---
+
+{C-c C-d} delete Env class      {C-c #}   OO-Browser version and credits
+{C-c C-w} write browser buffer  {C-c C-k} kill viewer buffer, show help
+{C-x -}   narrow windows by 10  {C-x +}   widen windows by 10
+
+An `Environment' describes a set of inter-class relationships used by
+the browser.  An `Environment specification' tells the browser how to build
+the associated Environment.  A `top class' has no parents.  A `System class'
+is part of a system still under development.  A `Library class' is a stable,
+class released for reuse.

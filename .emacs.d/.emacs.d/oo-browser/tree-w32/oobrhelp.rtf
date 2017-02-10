@@ -1,0 +1,169 @@
+{\rtf1\ansi \deff4\deflang1033{\fonttbl{\f4\froman\fcharset0\fprq2 Times New Roman;}{\f5\fswiss\fcharset0\fprq2 Arial;}{\f11\fmodern\fcharset0\fprq1 Courier New;}}{\colortbl;\red0\green0\blue0;\red0\green0\blue255;
+\red0\green255\blue255;\red0\green255\blue0;\red255\green0\blue255;\red255\green0\blue0;\red255\green255\blue0;\red255\green255\blue255;\red0\green0\blue128;\red0\green128\blue128;\red0\green128\blue0;\red128\green0\blue128;\red128\green0\blue0;
+\red128\green128\blue0;\red128\green128\blue128;\red192\green192\blue192;}{\stylesheet{\widctlpar \f4\fs20 \snext0 Normal;}{\*\cs10 \additive Default Paragraph Font;}{\*\cs15 \additive\f11\fs18 \sbasedon10 UCase symbol;}{\*\cs16 \additive\i \sbasedon10 
+Desired;}}{\info{\operator Kirill M. Katsnelson}{\creatim\yr1998\mo4\dy3\hr19\min6}{\revtim\yr1998\mo4\dy3\hr23\min9}{\version3}{\edmins2}{\nofpages4}{\nofwords770}{\nofchars4389}{\*\company MERA}{\vern57431}}\widowctrl\ftnbj\aenddoc\formshade \fet0
+\sectd \linex0\endnhere {\*\pnseclvl1\pnucrm\pnstart1\pnindent720\pnhang{\pntxta .}}{\*\pnseclvl2\pnucltr\pnstart1\pnindent720\pnhang{\pntxta .}}{\*\pnseclvl3\pndec\pnstart1\pnindent720\pnhang{\pntxta .}}{\*\pnseclvl4\pnlcltr\pnstart1\pnindent720\pnhang
+{\pntxta )}}{\*\pnseclvl5\pndec\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl6\pnlcltr\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl7\pnlcrm\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl8
+\pnlcltr\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl9\pnlcrm\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}\pard\plain \widctlpar \f4\fs20 {\b\f5\fs28 Introduction
+\par }{\f5 
+\par \tab \tab The OO-Browser Graphical Interface
+\par 
+\par \tab This program demonstrates a dynamic tree-drawing 
+\par \tab algorithm developed by Sven Moen.  The algorithm is 
+\par \tab published in "IEEE Software", July 1990, pp. 21-28.
+\par \tab If you desire more information than the description
+\par \tab given below, see the above-referenced article. 
+\par 
+\par \tab A number of the features mentioned herein are not
+\par \tab included in this version of the program.
+\par 
+\par }{\b\f5\fs28 Algorithm
+\par }{\f5 
+\par \tab Unlike other algorithms, Moen's algorithm uses an 
+\par \tab explicit representation of node and subtree contours
+\par \tab and it stores each contour as a polygon. 
+\par 
+\par \tab Trees with nodes of any polygonal shape can be drawn
+\par \tab compactly, and the data structure supports insert and
+\par \tab delete operations on subtrees.  The results are tidy
+\par \tab trees and efficient relayouts when the tree changes.
+\par 
+\par \tab In the Layout step, the tree is traversed in depth-first
+\par \tab fashion until the leaf nodes are reached.  The contour
+\par \tab of each leaf node is formed by creating a linked list of
+\par \tab lines that wrap around the node's shape.  This is the 
+\par \tab LayoutLeaf step.  As the return trip is made back to the
+\par \tab root, the contour of each interior node is formed by
+\par \tab joining the individual contours of each child. This Join
+\par \tab step involves a Merge step where the offset between
+\par \tab two neighboring contours is computed to avoid overlap. 
+\par \tab Since the width of each subtree contour is known at
+\par \tab each step, each interior node is centered over its
+\par \tab children, and the subtree contour is extended to include
+\par \tab the interior node.  This is the AttachParent step.
+\par 
+\par \tab In a dynamic update operation (insert or delete), the
+\par \tab algorithm reuses the contours not influenced by the
+\par \tab change and updates them efficiently. When a given 
+\par \tab node changes, subtree contours at higher levels must
+\par \tab be disassembled before the change. This is called
+\par \tab the Unzip step, which call RuboutLeaf, Split, and
+\par \tab DetachParent, all inverses of LayoutLeaf, Join, and
+\par \tab AttachParent, respectively.  After the change is made,
+\par \tab the Zip step reassembles the contours by again calling
+\par \tab Layout, Join, and AttachParent.
+\par 
+\par }{\b\f5\fs28 User Interface
+\par }{\f5 \tab 
+\par \tab This program offers an interactive environment for 
+\par \tab creating and updating trees of arbitrary size. Trees
+\par \tab can be loaded from a file or created on-the-fly.  You
+\par \tab can also save trees, and specify various layout and
+\par \tab animation options.  Each feature is associated with 
+\par \tab a menu item which is explained in the next section.
+\par 
+\par \tab When invoking the program, you may specify a single
+\par \tab argument indicating the name of a tree file. This file
+\par \tab will be loaded upon startup. If you start the program
+\par \tab without arguments, the canvas will be blank.
+\par 
+\par }{\b\f5\fs28 Tree Menu}{\f5 
+\par 
+\par \tab New Tree...\tab Create a new tree. You specify 
+\par \tab \tab \tab a new root, and the existing tree, 
+\par \tab \tab \tab if any, is deleted.
+\par 
+\par \tab Load Tree...\tab Load a tree specification file.
+\par \tab \tab \tab (see the File Format section)
+\par 
+\par \tab Save Tree...\tab Save a tree specification file.
+\par \tab \tab \tab (see the File Format section)
+\par 
+\par \tab Quit\tab \tab Exits the program.
+\par 
+\par }{\b\f5\fs28 Layout Menu}{\f5 
+\par 
+\par \tab Layout Spacing...
+\par \tab \tab \tab Displays a dialog that allows you
+\par \tab \tab \tab to change the spacing between nodes
+\par \tab \tab \tab on the same level and the spacing
+\par \tab \tab \tab between levels. 
+\par 
+\par \tab Align Nodes on Level
+\par \tab \tab \tab Adds a constraint to the layout
+\par \tab \tab \tab algorithm that forces all nodes
+\par \tab \tab \tab on the same level to have the same
+\par \tab \tab \tab x-position. This leads to truncation
+\par \tab \tab \tab of nodes if necessary. The maximum
+\par \tab \tab \tab node width is controlled by the
+\par \tab \tab \tab Level Spacing. By default, this is
+\par \tab \tab \tab disabled.
+\par 
+\par }{\b\f5\fs28 Node Menu}{\f5 
+\par 
+\par \tab This popup menu is invoked by pressing and holding
+\par \tab the left mouse button on a node. This menu offers
+\par \tab several actions that can be performed on nodes.
+\par 
+\par \tab Add Child\tab Add a child to the node. The new child
+\par \tab \tab \tab is added after the bottommost child.
+\par 
+\par \tab Add Sibling Before
+\par \tab \tab \tab Add a sibling before this node.
+\par 
+\par \tab Add Sibling After
+\par \tab \tab \tab Add a sibling after this node.
+\par 
+\par \tab Collapse Node\tab Collapses or expands the subtree
+\par \tab Expand Node\tab beginning at the specified node.
+\par \tab \tab \tab This operation is similar to a
+\par \tab \tab \tab Delete operation, except that the
+\par \tab \tab \tab subtree is preserved so that you
+\par \tab \tab \tab can display it again. Collapsed
+\par \tab \tab \tab nodes are marked with a gray box.
+\par 
+\par \tab Delete Node\tab Delete the subtree beginning at the
+\par \tab \tab \tab specified node.
+\par 
+\par }{\b\f5\fs28 Tree File Format}{\f5 
+\par 
+\par \tab If you wish to load a file, you can load a file created
+\par \tab by the OO-Browser with the \{C-c d\}, (br-xbr) command.
+\par 
+\par \tab Node labels are sequences of characters delimited by
+\par \tab newlines or end-of-file. 
+\par 
+\par \tab Files must begin with an OO-Browser Environment path
+\par \tab name.  The next line must be a label, which indicates the
+\par \tab root node.  Optionally, lists containing labels may
+\par \tab follow. Each child label is indented two spaces more 
+\par \tab its parent. Lists of labels are nested to produce trees. 
+\par 
+\par \tab For example, a three-level binary tree is as follows:
+\par 
+\par \tab \tab ^^c++-^^~/OOBR
+\par \tab \tab root node level1
+\par \tab \tab   level2-1
+\par \tab \tab     level3-1
+\par \tab \tab     level3-2
+\par \tab \tab   level2-2
+\par \tab \tab     level3-3
+\par \tab \tab     level3-4
+\par 
+\par }{\b\f5\fs28 Help}{\f5 
+\par 
+\par \tab If you are reading this, chances are that you found the
+\par \tab Help button on the menubar. 
+\par 
+\par }{\b\f5\fs28 Author}{\f5 
+\par \tab 
+\par \tab This program was written by Mark L. Stern during
+\par \tab the summer of 1990.  It was redone by Bob Weiner for
+\par \tab use with the OO-Browser.
+\par 
+\par \tab Stephan Zachwieja contributed the double-buffering
+\par \tab code used for smooth animations in this program.
+\par 
+\par \tab The other authors have permitted Bob Weiner to distribute
+\par \tab the code freely as part of the OO-Browser.
+\par }}

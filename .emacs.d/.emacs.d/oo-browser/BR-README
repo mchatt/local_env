@@ -1,0 +1,196 @@
+# See "br-vers.el" for the OO-Browser lisp code directory entry.
+#
+# SUMMARY:      OO-Browser overview and installation notes
+#
+# AUTHOR:       Bob Weiner
+#
+# ORIG-DATE:    16-Jun-90
+# LAST-MOD:      3-Jan-02 at 18:16:36 by Bob Weiner
+#
+# Copyright (C) 2000-2002  Bob Weiner
+# Copyright (C) 1989-1999  BeOpen.com and the Free Software Foundation, Inc.
+#
+# See the file "BR-COPY" for license and support information.
+#
+# This file is part of the OO-Browser.
+
+We hope you enjoy developing with the OO-Browser.  Feel free to mail or post
+news containing this file wherever it may be of use.
+
+===========================================================================
+*			Table of Contents
+===========================================================================
+			* Files
+			* How to Obtain
+			* Installation / Configuration
+			* Invocation
+
+
+===========================================================================
+*			   Files
+===========================================================================
+
+See the "BR-FEATURES" file for a summary of OO-Browser features.
+
+See the "BR-RELEASE" file for a summary of new features in this release.
+
+See the "BR-COPY" file for license information.
+
+See the "MANIFEST" file for summaries of the OO-Browser files.
+
+"man/oo-browser.info" contains the Info version of the OO-Browser User
+Manual.
+
+
+===========================================================================
+*			     How to Obtain
+===========================================================================
+
+The latest release of the OO-Browser may always be found at: 
+"http://www.sf.net/projects/oo-browser".
+
+You will need to obtain one archive which includes the source,
+machine-independent runtime and documentation (this archive does not mention
+an operating system) and then a second operating-system specific archive, if
+available, which contains binaries.
+
+The OO-Browser works best when used together with the InfoDock integrated
+development environment.  InfoDock provides a modern user interface on top of
+XEmacs, information management, and powerful software development tools, all
+in one package.  The OO-Browser is available as part of InfoDock or as a
+standalone package for use with XEmacs or GNU Emacs.
+
+
+===========================================================================
+*		      Installation / Configuration
+===========================================================================
+
+If you are using InfoDock, the OO-Browser is pre-configured so you can simply
+skip to the next section, Invocation.
+
+The OO-Browser is provided in a turnkey fashion, with the Lisp files
+pre-compiled and binaries built for the client architecture.  But there
+are still a few installation steps.
+
+ 1a. If this is a UNIX or Linux distribution (.tgz suffix):
+
+        You should have a *.tgz archive of the OO-Browser; we will call the
+        absolute pathname to this archive <COMMON-TGZ-PATH>.  You may also
+	have an operating system-specific archive of binaries which we'll
+	call <BINARY-TGZ-PATH>.  Execute:
+           gunzip <COMMON-TGZ-PATH>
+           gunzip <BINARY-TGZ-PATH>
+
+        Then cd to the parent directory of where you want to install the
+        OO-Browser and unpack the archive(s):
+           cd <PARENT-DIR>
+           tar xvf <COMMON-TGZ-PATH>
+           tar xvf <BINARY-TGZ-PATH>
+
+ 1b. If this is a MS Windows distribution (.zip suffix):
+
+        You should have a *.zip archive of the OO-Browser and possibly a
+	zip archive of operating system-specific binaries.
+        Change your working directory to the parent directory of where you
+        want to install the OO-Browser:
+           cd <PARENT-DIR>
+
+	Then unpack the zip archives you have using any .zip archive utility
+	such as Winzip or Pkunzip.
+
+        NOTE: In this document we use forward slashes as directory separators
+        within shell commands.  If you don't have a UNIX-type environment
+        under Windows, you will have to use backward slashes.  For the lines
+        that you add to your emacs initialization file, you can safely use
+        forward slashes without any need for additional software.
+         
+ 1c. Execution of steps 1a or 1b creates the oo-browser/ directory (referred
+     to as <OO-BROWSER-DIR> below) and several subdirectories.
+
+ 2. If you have the separate Hyperbole information management package
+    installed in your editor (available from
+    "http://www.sf.net/projects/hyperbole"), you must be using V3.18.4 or
+    greater; otherwise, upgrade.  You do not need to obtain Hyperbole
+    but if it is installed you must have a recent version.
+
+ 3. Add the following lines to your site autoload configuration or your
+    personal initialization file, .emacs or .infodock, substituting
+    the correct absolute pathname for <OO-BROWSER-DIR>:
+
+    If Hyperbole is installed, e.g. you run the OO-Browser under InfoDock
+    (which includes Hyperbole), then add this expression:
+
+         (setq load-path (cons "<OO-BROWSER-DIR>/" load-path))
+
+    Otherwise, add this expression:
+
+         (setq load-path (append
+	     	           '("<OO-BROWSER-DIR>/"
+			     "<OO-BROWSER-DIR>/hypb/")
+			   load-path))
+
+    Then following this load-path expression, add the following line
+    regardless of whether you have Hyperbole:
+
+         (load "br-start")
+
+ 4. Add the following key binding to your site keys configuration or your
+    personal initialization file so that you can use {C-c C-o} to invoke
+    the OO-Browser:
+
+         (global-set-key "\C-c\C-o" 'oo-browser)
+
+Optional:
+
+ 5. If you prefer to use some non-Emacs editor such as vi to view and edit
+    your code, then modify to your taste the settings in the
+    br-setup-external function in "br-site.el" and add the following line to
+    your personal Emacs initialization file:
+
+         (add-hook 'br-mode-hook 'br-setup-external)
+
+ 6. You may want to change the settings of `c++-cpp-include-dirs'
+    and `c++-include-dirs' at the bottom of "<OO-BROWSER-DIR>/br-site.el".
+    Then save the "br-site.el" buffer and use {M-x byte-compile-file RET RET}
+    to create its .elc file.
+
+
+ The OO-Browser is now ready for use.  Restart your editor before trying
+ it.  See the Invocation section later in this document for how to start the
+ browser or read the OO-Browser Manual.
+
+-----
+
+			    Building from Scratch
+
+If you prefer to build the OO-Browser from source yourself, you will need to
+follow the steps above for the pre-built distribution and then also follow
+the build process given below.  Otherwise, skip this section.
+
+    Once you have the newest Hyperbole version installed, you can safely
+    delete the <OO-BROWSER-DIR>/hypb/ directory, which duplicates a subset of
+    the Hyperbole files to provide the OO-Browser with context-sensitive
+    keyboard and mouse keys.  But then you must make a symbolic link from
+    your hyperbole directory to <OO-BROWSER-DIR>/hypb if you ever plan on
+    using the OO-Browser Makefile.
+
+    The OO-Browser's Lisp files are pre-byte-compiled for InfoDock, Emacs 19
+    or higher and for XEmacs, so if you run one of these versions, when you
+    use `make' to build the OO-Browser, very few files will need to be built,
+    so your make job will finish quickly.
+
+    To build and install the OO-Browser, follow the instructions in the USAGE 
+    section at the top of the "<OO-BROWSER-DIR>/Makefile".
+
+    The OO-Browser now should be ready for use.
+
+
+===========================================================================
+*			    Invocation
+===========================================================================
+
+To invoke the OO-Browser, use:
+
+    {C-c C-o} or {M-x oo-browser RET}
+
+Read the OO-Brower Manual to learn all about it.

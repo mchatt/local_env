@@ -1,0 +1,326 @@
+
+dbl-msw.c,60
+static DoubleBuffer db;5,61
+DBLcreate_double_buffer 8,103
+
+dbl.h,312
+#define DBL_MAX_SURFACES 11,259
+#define DBL_MIN_PLANES 12,287
+#define DBL_MAX_PLANES 13,315
+#define DBL_MAX_COLORS 14,343
+typedef struct _surface _surface16,400
+} Surface;Surface21,723
+#define DBL_MAX_COLORS 25,766
+typedef struct _doublebuffer _doublebuffer28,805
+} DoubleBuffer;DoubleBuffer70,2420
+
+defs.h,324
+#define ASSERT(ASSERT13,306
+#define NASSERT(NASSERT16,415
+#define WARN(WARN20,542
+#define WARN_1(WARN_123,615
+#define WARN_4(WARN_426,703
+#define Global30,843
+#define Global 32,866
+Global char        *ProgramName;35,899
+#define TRUE 41,982
+#define FALSE 45,1023
+#define NULL 49,1064
+#define MAX(MAX53,1104
+
+draw.c,1019
+Tree *TheTree;24,680
+static char AnimationMode 30,917
+static char strbuf[31,961
+static int  AnimationStep 32,990
+static int DrawingWidth;35,1049
+static int DrawingHeight;36,1075
+SelectNewDeleteOld 53,1629
+RefreshPen 60,1760
+BOOL SetNewFont 67,1925
+BeginFrame(85,2407
+EndFrame(102,2805
+GetDrawingSize(121,3304
+SetDrawingSize(150,3915
+SetDrawingTree(198,5032
+SetNodeLabel(217,5612
+SetDrawColor(269,6924
+SetLineWidth(288,7446
+SetContours(310,8045
+HiliteNode(368,9925
+DrawNodeHelper 392,10833
+DrawNode(488,13524
+DrawTreeContour(512,14456
+DrawTree(638,17796
+ShiftTree(677,18946
+AnimateTree(710,19902
+AnimateZip(747,20757
+CountNodes(799,22076
+CollectNodeRectangles(823,22701
+GetSubTreeRectangles(862,24005
+CollectNodeSegments(891,24953
+GetSubTreeSegments(922,26012
+ComputeSubTreeExtent(955,27039
+SearchTree(986,28247
+ExposeHandler 1020,29077
+ExposeHandler(1031,29224
+ExpandCollapseNode(1054,29758
+InsertNode(1232,35057
+DeleteNode(1334,37604
+ResetLabels(1428,39843
+SetupTree(1448,40287
+
+input.c,213
+char *EnvNm;14,377
+static int tokDepth 15,447
+static int prevTokDepth;16,514
+  GetNextToken(38,1334
+SetNodeLabelAndValue(105,2718
+  ReadTreeFromFile(136,3679
+SaveTreeToFile(298,7186
+  SaveSubtree(326,7850
+
+input.h,159
+#define TOKEN_MAXSIZ 7,229
+#define INPUT_BUFSIZ 8,310
+enum { TOKEN_LABEL,16,517
+       TOKEN_EOF 21,597
+} ErrCode;ErrCode33,774
+#define NUM_ERRS 35,788
+
+intf-msw.c,1546
+char         *ProgramName 33,217
+int           TreeContourWidth 37,256
+int           TreeBorderSize 39,293
+int           TreeParentDistance 41,338
+DoubleBuffer *TreeDrawingAreaDB;43,391
+ContourOption TreeShowContourOption 45,425
+DensityOption TreeLayoutDensity 47,476
+char          TreeShowSteps 49,518
+char          TreeAlignNodes 51,557
+char          PauseAfterStep 53,596
+HWND hwndFrame,59,642
+HWND hwndFrame, hwndClient;59,642
+static const char* SZ_FRAME_CLASS 63,673
+static const char* SZ_CLIENT_CLASS 65,728
+static HWND hwndStatus;67,785
+static HINSTANCE hAppInst;69,810
+static BOOL FileModified 73,840
+static char CurrentFile 75,875
+static char NextFile 77,912
+static char NewNodeName 79,946
+static char *FileTitle 81,995
+static Tree *SelectedNode;93,1247
+static Tree *PopupNode;95,1275
+SetupInterface 133,1645
+NewFile 157,1858
+LoadFile 191,2143
+SaveFileAs 253,2730
+SaveFile 293,3161
+UpdateFrameTitle 337,3650
+FileMessage 379,4060
+PromptFileName 413,4594
+DlgNodeNameProc 505,5591
+DlgSpacingProc 587,6479
+DlgAboutProc 711,8257
+DlgNodeName 743,8635
+PromptRootNode 769,8915
+PromptAndSave 781,9011
+MaybeNewTreeNode 845,9617
+SelectNode 869,9888
+ChangeFontMaybe 933,10629
+HandleClientMenuCommand 983,11163
+HandleFrameMenuCommand 1095,12484
+HandleScroll 1179,13280
+ToLP 1291,14545
+HandleLButton 1311,14713
+HandleRButton 1331,14901
+HandleMenuPopup 1415,15818
+#define FROB(FROB1419,15852
+ClientWndProc 1455,16490
+FrameWndProc 1619,18243
+StatusMsg(1771,20280
+Pause(1803,20833
+WinMain 1815,20879
+
+intf.h,3199
+#define DEFAULT_FONT	11,312
+#define BIG_FONT	12,373
+#define X11_APPLICATION_CLASS 14,432
+#define X11_DEFAULT_FONT 15,473
+#define X11_FONT_RESOURCE 16,515
+#define X11_FONT_CLASS_RESOURCE 17,561
+#define HELP_FILE 19,609
+#define TREE_MENU_NEW 21,658
+#define TREE_MENU_LOAD 22,695
+#define TREE_MENU_SAVE 23,732
+#define TREE_MENU_SEP1 24,769
+#define TREE_MENU_QUIT 25,806
+#define TREE_MENU_STATS 26,843
+#define TREE_MENU_ITEMS 27,880
+#define TREE_MENU_SEP2 29,919
+#define LAYOUT_MENU_FIXED 31,958
+#define LAYOUT_MENU_VARIABLE 32,1023
+#define LAYOUT_MENU_SEP1 33,1060
+#define LAYOUT_MENU_SPACING 35,1099
+#define LAYOUT_MENU_SEP2 36,1136
+#define LAYOUT_MENU_ALIGN_NODES 37,1173
+#define LAYOUT_MENU_ITEMS 38,1210
+#define NODE_MENU_LABEL 40,1249
+#define NODE_MENU_SEP1 41,1286
+#define NODE_MENU_ADD_CHILD 42,1323
+#define NODE_MENU_ADD_BEFORE 43,1360
+#define NODE_MENU_ADD_AFTER 44,1397
+#define NODE_MENU_ELISION 45,1434
+#define NODE_MENU_DELETE 46,1471
+#define NODE_MENU_ITEMS 47,1508
+#define TREE_MENU 49,1547
+#define LAYOUT_MENU 50,1584
+#define NODE_MENU 51,1621
+#define NUM_MENUS 52,1658
+#define STR_SHOW_STATS 54,1697
+#define STR_HIDE_STATS 55,1734
+#define STR_NODE_COLLAPSE 56,1771
+#define STR_NODE_EXPAND 57,1808
+#define STR_SHOW_CONTOUR 58,1845
+#define STR_HIDE_CONTOUR 59,1882
+#define STR_LOAD_FILE 60,1919
+#define STR_SAVE_FILE 61,1956
+#define NUM_MENU_STRS 62,1993
+#define DLG_NEW 64,2033
+#define DLG_NODE_NAME 65,2070
+#define DLG_FILE 66,2107
+#define DLG_INFO 67,2144
+#define DLG_ERROR 68,2181
+#define DLG_SPACING 69,2218
+#define NUM_DLG 70,2255
+extern  Widget        TreeTopLevel;72,2294
+extern  Widget        TreeDrawingArea;73,2331
+extern  Display      *TreeDisplay;74,2371
+extern  XFontStruct  *TreeLabelFont;75,2407
+#define MAX_NODE_NAME_LENGHT 79,2466
+extern HWND hwndClient;81,2502
+} XRectangle;XRectangle87,2630
+} XSegment;XSegment91,2696
+#define LABEL_MAT_WIDTH 95,2731
+#define LABEL_MAT_HEIGHT 96,2768
+#define BORDER_SIZE 97,2805
+#define MAX_BORDER_SIZE 98,2879
+#define PARENT_DISTANCE 99,2917
+#define MAX_PARENT_DISTANCE 100,2991
+#define DENSITY_FACTOR 101,3029
+#define MAT_SIZE 102,3069
+#define ELISION_WIDTH 103,3120
+#define ANIMATION_STEP 104,3157
+#define ANIMATION_STEP_STEP 105,3194
+#define BACKGROUND_COLOR 107,3233
+#define TREE_COLOR 108,3270
+#define CONTOUR_COLOR 109,3307
+#define HIGHLIGHT_COLOR 110,3344
+#define SPLIT_COLOR 111,3381
+#define ACTION_COLOR 112,3418
+#define HIGHLIGHT_BK_COLOR 114,3469
+#define NUM_COLORS 115,3506
+#define NUM_COLORS 117,3550
+#define ANIMATION_SPEED_FAST 121,3627
+} ContourOption;ContourOption128,3757
+} NodePosition;NodePosition134,3826
+} DensityOption;DensityOption139,3885
+extern  DoubleBuffer *TreeDrawingAreaDB;141,3905
+extern  int           TreeScreen;142,3947
+extern  int           TreeContourWidth;143,3982
+extern  int           TreeBorderSize;144,4023
+extern  int           TreeParentDistance;145,4062
+extern  char          TreeShowSteps;146,4105
+extern  ContourOption TreeShowContourOption;147,4143
+extern  DensityOption TreeLayoutDensity;148,4189
+extern  char          TreeAlignNodes;149,4231
+extern  char          PauseAfterStep;150,4273
+
+resource.h,1239
+#define IDR_MAINMENU 5,102
+#define IDD_NODENAME 6,147
+#define IDR_NODEPOPUP 7,192
+#define IDD_SPACING 8,237
+#define IDI_OOBR 9,282
+#define IDD_ABOUT 10,327
+#define IDS_APPTITLE 11,372
+#define IDC_NAME 12,418
+#define IDS_UNTITLED 13,464
+#define IDC_LEVEL_SL 14,510
+#define IDS_ROOTNODE 15,556
+#define IDC_LEVEL_ED 16,602
+#define IDS_MERENODE 17,648
+#define IDC_SIBLING_SL 18,694
+#define IDS_SAVECHANGES 19,740
+#define IDC_SIBLING_ED 20,786
+#define IDS_ERRORFIRST 21,832
+#define ID_FILE_OPEN 22,878
+#define ID_FILE_SAVE 23,925
+#define ID_FILE_NEW 24,972
+#define ID_FILE_SAVEAS 25,1019
+#define ID_FILE_EXIT 26,1066
+#define ID_HELP_CONTENTS 27,1113
+#define ID_HELP_ABOUT 28,1160
+#define ID_EDIT_ADDCHILD 29,1207
+#define ID_EDIT_ADDSIBLINGBEFORE 30,1254
+#define ID_EDIT_ADDSIBLIBNGAFTER 31,1301
+#define ID_EDIT_DELETE 32,1348
+#define ID_VIEW_EXPAND 33,1395
+#define ID_VIEW_COLLAPSE 34,1442
+#define ID_VIEW_SPACING 35,1489
+#define ID_VIEW_FONT 36,1536
+#define ID_VIEW_ALIGNLEVEL 37,1583
+#define ID_POPUP_EDIT 38,1630
+#define ID_POPUP_VIEW 39,1677
+#define _APS_NEXT_RESOURCE_VALUE 45,1831
+#define _APS_NEXT_COMMAND_VALUE 46,1876
+#define _APS_NEXT_CONTROL_VALUE 47,1923
+#define _APS_NEXT_SYMED_VALUE 48,1969
+
+tree.c,413
+int NumLines 19,596
+int NumNodes 20,615
+MakeLine(33,1032
+MakeNode(61,1733
+MakeBridge(89,2329
+Offset(129,3579
+Merge(177,4379
+DetachParent(233,5773
+AttachParent(260,6543
+Split(293,7543
+Join(324,8281
+RuboutLeaf(358,9297
+LayoutLeaf(381,10009
+LayoutTree(411,11095
+Unzip(448,11859
+Zip(527,13705
+Insert(548,14221
+Delete(578,15002
+DeleteTree(615,16052
+ComputeTreeSize(667,17121
+PetrifyTree(721,18573
+
+tree.h,741
+#define INTF 7,241
+#define FOREACH_CHILD(FOREACH_CHILD9,297
+#define PT_IN_RECT(PT_IN_RECT12,410
+#define PT_IN_EXTENT(PT_IN_EXTENT18,606
+#define IS_LEAF(IS_LEAF24,864
+typedef struct line  TreePolyline;TreePolyline27,919
+typedef struct tnode Tree;Tree28,955
+typedef struct point point30,985
+} Point;Point33,1031
+typedef struct extent extent35,1043
+} Extent;Extent39,1155
+struct line line41,1168
+typedef struct polygon polygon46,1229
+} TreePolygon;TreePolygon51,1342
+typedef struct label label53,1360
+} Label;Label58,1601
+struct tnode tnode60,1613
+} DrawMode;DrawMode88,2753
+} PosMode;PosMode93,2801
+extern Tree     *TheTree;103,3081
+extern int       NumLines;104,3108
+extern int       NumNodes;105,3136

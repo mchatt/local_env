@@ -1,0 +1,16 @@
+		      The OO-Browser, Version <VERSION>
+
+	     Bob Weiner designed and implemented the OO-Browser.
+			    <bwcto@users.sf.net>
+
+     Copyright (C) 1989-2002  Bob Weiner, BeOpen.com and the Free Software
+     Foundation, Inc.
+     Distributed under terms described in the BR-COPY file within the
+     OO-Browser distribution.
+
+     With thanks to Motorola, Inc. for helping fund initial development, to
+     Torgeir Veimo, Mark Stern, Steve Baur and Martin Buchholz for helping
+     with the X OO-Browser core, to Jeff Sparkes for help with Java language
+     support, to Harri Pasanen for contributing the initial Python
+     language support (derived from the C++ support code) and to Kirill
+     Katsnelson for adapting the graphical OO-Browser for use with Windows.

@@ -1,0 +1,98 @@
+#
+# SUMMARY:      Build OO-Browser Environments in batch/background modes.
+#
+# AUTHOR:       Bob Weiner
+# ORG:          BeOpen.com
+#               The Force for Open Source(TM)
+#
+#               Web:    www.beopen.com - Learn all about Open Source.
+#               E-mail: <info@beopen.com>  
+#
+# ORIG-DATE:     6-Oct-94 at 03:42:38
+# LAST-MOD:      9-Jun-99 at 18:02:52 by Bob Weiner
+#
+# Copyright (C) 1994-1999  BeOpen.com
+# See the file BR-COPY for license information.
+#
+# This file is part of the OO-Browser.
+#
+# DESCRIPTION:  
+#
+# USAGE:  Called from "br-env.el".  Do not try to call any targets in here
+#         by hand unless you understand how to set things up by hand.
+#
+#         make -f Env-Make oo-browser-env
+#   or
+#         make -f Env-Make oo-browser-env-debug
+#
+#   The latter target is for debugging background building.
+#
+# DESCRIP-END.
+
+##########################################################################
+#                         CONFIGURABLE SECTION                           #
+##########################################################################
+
+# Binaries for various versions of Emacs.  Set 'EMACS' below to the one you
+# want to use to byte-compile Lisp files.
+EMACS19 = emacs19
+EMACS18 = emacs
+INFODOCK = infodock.bin
+XEMACS = xemacs
+
+# Emacs version used to byte-compile .el files into .elc's.
+EMACS = $(XEMACS)
+
+# Site-specific Emacs Lisp libraries to load before byte-compiling any files
+# from this package.  Typically the only reason to set this is to get Emacs
+# to include the directory of this package into its load-path variable, which
+# determines where it will find Lisp library files to load.
+#
+# InfoDock and XEmacs 19.12 or higher include this package and automatically
+# add its directory to load-path.  Under Emacs 19, if you add this directory
+# to load-path in your site-lisp/site-start.el file, then you need not change
+# this setting since site-start is automatically loaded whenever Emacs starts
+# up.  If, however, you set load-path in your personal ~/.emacs file, you
+# must add that to this setting.
+#
+# You must include the .el or .elc file suffix on each library name and each
+# must be preceded by the `-l ' command-line flag.  If the directory in which
+# the library is stored will not be in your Emacs load-path when Emacs
+# attempts to load the library, you must include the full pathname to the
+# library.  Here is an example setting.
+#
+# SITE_PRELOADS = -l ~/.emacs -l set-load-path.el
+#
+SITE_PRELOADS =
+
+# Shell used to process this Makefile.  Bourne shell syntax is required.
+SHELL = /bin/sh
+
+##########################################################################
+#                     NO CHANGES REQUIRED BELOW HERE                     #
+##########################################################################
+
+# Libraries that must be pre-loaded before trying to byte-compile anything.
+PRELOADS = $(SITE_PRELOADS) -l ./br-start.el
+
+# Compile in batch mode. Under Emacs 19 and XEmacs, load
+# site-lisp/site-start.el, which may set load-path.
+BATCHFLAGS = -batch
+
+# This target is used for background building of OO-Browser Environments.
+# Don't change the name of the target since it is used in "br-env.el".
+# Don't try to use this target manually unless you first cd to the directory
+# where the OO-Browser program code lives and set the following 2 environment
+# variables:
+#    OO_BROWSER_ENV = space-separated Environment specification pathnames to build
+#    EMACSLOADPATH  = colon separated string of Emacs Lisp directories,
+#                     including the ones for the OO-Browser and Hyperbole
+#		      support code
+oo-browser-env:
+	$(EMACS) $(BATCHFLAGS) $(PRELOADS) ${OO_BROWSER_ENV} -f br-env-batch-build
+
+# This target presently works under InfoDock and XEmacs only.
+# It is used to debug background building of environments when necessary.
+oo-browser-env-debug:
+	$(EMACS) $(BATCHFLAGS) $(PRELOADS) ${OO_BROWSER_ENV} \
+	-eval "(call-with-condition-handler 'really-early-error-handler 'br-env-batch-build)"
